@@ -1,13 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Model;
 
-/**
- *
- * @author ASUS
- */
-public class Director {
-    
+public class Director extends Usuario {
+
+    private String cargo;
+
+    public Director(String nombre, String apellido, String contraseña, int edad, int id, String sexo, String nacionalidad, String identificacion, String cargo) {
+        super(nombre, apellido, contraseña, edad, id, sexo, nacionalidad, identificacion);
+        this.cargo = cargo;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
 }
