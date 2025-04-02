@@ -26,21 +26,148 @@ public class ExpedientePreso extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        LabelDatosgenerales = new javax.swing.JLabel();
+        TextFieldNumeroDeRegistro = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        TextFieldCodigoExpediente = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        TextFieldEstado = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        TextFieldJuzgado = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1048, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 587, Short.MAX_VALUE)
-        );
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setBackground(new java.awt.Color(29, 35, 51));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setText("EXPEDIENTE");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, -1, -1));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 50));
+
+        LabelDatosgenerales.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        LabelDatosgenerales.setForeground(new java.awt.Color(0, 0, 0));
+        LabelDatosgenerales.setText("DATOS GENERALES");
+        add(LabelDatosgenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
+
+        TextFieldNumeroDeRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldNumeroDeRegistroActionPerformed(evt);
+            }
+        });
+        add(TextFieldNumeroDeRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 190, -1));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Numero de registro");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, 20));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Codigo Expediente");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
+
+        TextFieldCodigoExpediente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldCodigoExpedienteActionPerformed(evt);
+            }
+        });
+        add(TextFieldCodigoExpediente, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 190, -1));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Fecha de Apertura");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, -1, -1));
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 190, -1));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Estado");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 340, -1, 20));
+
+        TextFieldEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextFieldEstadoActionPerformed(evt);
+            }
+        });
+        add(TextFieldEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 190, -1));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Juzgado");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, -1, -1));
+        add(TextFieldJuzgado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 190, -1));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("INFORMACION LEGAL");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Delito", "Fecha Sentencia", "Tiempo de condena", "Gravedad", ""
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 620, 200));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TextFieldCodigoExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldCodigoExpedienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldCodigoExpedienteActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void TextFieldEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldEstadoActionPerformed
+
+    private void TextFieldNumeroDeRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldNumeroDeRegistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextFieldNumeroDeRegistroActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LabelDatosgenerales;
+    private javax.swing.JTextField TextFieldCodigoExpediente;
+    private javax.swing.JTextField TextFieldEstado;
+    private javax.swing.JTextField TextFieldJuzgado;
+    private javax.swing.JTextField TextFieldNumeroDeRegistro;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
