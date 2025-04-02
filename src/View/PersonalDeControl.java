@@ -4,6 +4,8 @@
  */
 package View;
 
+import java.awt.Color;
+
 /**
  *
  * @author ASUS
@@ -26,15 +28,91 @@ public class PersonalDeControl extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        PresosPDC = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        PerfilPDC = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        VisitasPDC = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
         PersonalDeControlView = new javax.swing.JTabbedPane();
         PanelPerfilPDC = new javax.swing.JPanel();
         PanelListaPresosPDC = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaPresosPDC = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jTextField1 = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         PanelAñadirVisitaPDC = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PresosPDC.setBackground(new java.awt.Color(29, 35, 51));
+        PresosPDC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PresosPDCMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PresosPDCMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PresosPDCMouseExited(evt);
+            }
+        });
+        PresosPDC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("PRESOS");
+        PresosPDC.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+
+        jPanel1.add(PresosPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 340, 60));
+
+        PerfilPDC.setBackground(new java.awt.Color(29, 35, 51));
+        PerfilPDC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PerfilPDCMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                PerfilPDCMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                PerfilPDCMouseExited(evt);
+            }
+        });
+        PerfilPDC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("PERFIL");
+        PerfilPDC.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
+
+        jPanel1.add(PerfilPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 60));
+
+        VisitasPDC.setBackground(new java.awt.Color(29, 35, 51));
+        VisitasPDC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VisitasPDCMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                VisitasPDCMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                VisitasPDCMouseExited(evt);
+            }
+        });
+        VisitasPDC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("AÑADIR VISITA");
+        VisitasPDC.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
+
+        jPanel1.add(VisitasPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 360, 60));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 60));
 
         PanelPerfilPDC.setBackground(new java.awt.Color(255, 255, 255));
         PanelPerfilPDC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -80,15 +158,11 @@ public class PersonalDeControl extends javax.swing.JFrame {
             TablaPresosPDC.getColumnModel().getColumn(6).setResizable(false);
         }
 
-        PanelListaPresosPDC.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 77, 940, 420));
+        PanelListaPresosPDC.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 87, 940, 400));
+        PanelListaPresosPDC.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 620, 30));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        PanelListaPresosPDC.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 20, -1, -1));
+        jButton2.setText("Buscar");
+        PanelListaPresosPDC.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, -1, 30));
 
         PersonalDeControlView.addTab("Presos", PanelListaPresosPDC);
 
@@ -98,32 +172,53 @@ public class PersonalDeControl extends javax.swing.JFrame {
         PanelAñadirVisitaPDC.setLayout(PanelAñadirVisitaPDCLayout);
         PanelAñadirVisitaPDCLayout.setHorizontalGroup(
             PanelAñadirVisitaPDCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1048, Short.MAX_VALUE)
+            .addGap(0, 1050, Short.MAX_VALUE)
         );
         PanelAñadirVisitaPDCLayout.setVerticalGroup(
             PanelAñadirVisitaPDCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
+            .addGap(0, 535, Short.MAX_VALUE)
         );
 
         PersonalDeControlView.addTab("Añadir visita", PanelAñadirVisitaPDC);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PersonalDeControlView)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(PersonalDeControlView)
-        );
+        getContentPane().add(PersonalDeControlView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 17, -1, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void PerfilPDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PerfilPDCMouseClicked
+        PersonalDeControlView.setSelectedIndex(0);
+    }//GEN-LAST:event_PerfilPDCMouseClicked
+
+    private void PresosPDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PresosPDCMouseClicked
+        PersonalDeControlView.setSelectedIndex(1);
+    }//GEN-LAST:event_PresosPDCMouseClicked
+
+    private void VisitasPDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisitasPDCMouseClicked
+        PersonalDeControlView.setSelectedIndex(2);
+    }//GEN-LAST:event_VisitasPDCMouseClicked
+
+    private void PerfilPDCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PerfilPDCMouseEntered
+        PerfilPDC.setBackground(new Color(43, 54, 84));    }//GEN-LAST:event_PerfilPDCMouseEntered
+
+    private void PerfilPDCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PerfilPDCMouseExited
+        PerfilPDC.setBackground(new Color(29, 35, 51));
+    }//GEN-LAST:event_PerfilPDCMouseExited
+
+    private void PresosPDCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PresosPDCMouseEntered
+        PresosPDC.setBackground(new Color(43, 54, 84));     }//GEN-LAST:event_PresosPDCMouseEntered
+
+    private void PresosPDCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PresosPDCMouseExited
+        PresosPDC.setBackground(new Color(29, 35, 51));
+    }//GEN-LAST:event_PresosPDCMouseExited
+
+    private void VisitasPDCMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisitasPDCMouseEntered
+        VisitasPDC.setBackground(new Color(43, 54, 84));
+    }//GEN-LAST:event_VisitasPDCMouseEntered
+
+    private void VisitasPDCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisitasPDCMouseExited
+        VisitasPDC.setBackground(new Color(29, 35, 51));
+    }//GEN-LAST:event_VisitasPDCMouseExited
 
     /**
      * @param args the command line arguments
@@ -164,9 +259,17 @@ public class PersonalDeControl extends javax.swing.JFrame {
     private javax.swing.JPanel PanelAñadirVisitaPDC;
     private javax.swing.JPanel PanelListaPresosPDC;
     private javax.swing.JPanel PanelPerfilPDC;
+    private javax.swing.JPanel PerfilPDC;
     private javax.swing.JTabbedPane PersonalDeControlView;
+    private javax.swing.JPanel PresosPDC;
     private javax.swing.JTable TablaPresosPDC;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel VisitasPDC;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
