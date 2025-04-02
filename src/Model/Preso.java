@@ -2,13 +2,8 @@ package Model;
 
 import java.time.LocalDate;
 
-public class Preso {
+public class Preso extends Persona {
 
-    private String nombre;
-    private String apellido;
-    private String identificacion;
-    private String nacionalidad;
-    private char sexo;
     private float estatura;
     private float peso;
     private Delito delito;
@@ -24,12 +19,12 @@ public class Preso {
     private int numeroDeVisitas;
     private String grupoSanguineo;
 
-    public Preso(String nombre, String apellido, String identificacion, String nacionalidad, char sexo, float estatura, float peso, Delito delito, byte numeroDeExpediente, LocalDate fechaIngreso, LocalDate fechaSalida, String nivelDeSeguridad, String condicion, byte sentencia, String celdaAsignada, boolean enAislamiento, String nivelDeRiesgo, int numeroDeVisitas, String grupoSanguineo) {
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.identificacion = identificacion;
-        this.nacionalidad = nacionalidad;
-        this.sexo = sexo;
+    public Preso(String nombre, String apellido, int edad, int id, String sexo, String nacionalidad,
+            String identificacion, float estatura, float peso, Delito delito, byte numeroDeExpediente,
+            LocalDate fechaIngreso, LocalDate fechaSalida, String nivelDeSeguridad, String condicion,
+            byte sentencia, String celdaAsignada, boolean enAislamiento, String nivelDeRiesgo,
+            int numeroDeVisitas, String grupoSanguineo) {
+        super(nombre, apellido, edad, id, sexo, nacionalidad, identificacion);
         this.estatura = estatura;
         this.peso = peso;
         this.delito = delito;
@@ -44,46 +39,6 @@ public class Preso {
         this.nivelDeRiesgo = nivelDeRiesgo;
         this.numeroDeVisitas = numeroDeVisitas;
         this.grupoSanguineo = grupoSanguineo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellido() {
-        return apellido;
-    }
-
-    public void setApellido(String apellido) {
-        this.apellido = apellido;
-    }
-
-    public String getIdentificacion() {
-        return identificacion;
-    }
-
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
-    }
-
-    public String getNacionalidad() {
-        return nacionalidad;
-    }
-
-    public void setNacionalidad(String nacionalidad) {
-        this.nacionalidad = nacionalidad;
-    }
-
-    public char getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(char sexo) {
-        this.sexo = sexo;
     }
 
     public float getEstatura() {

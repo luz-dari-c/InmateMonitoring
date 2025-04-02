@@ -4,7 +4,7 @@ package Model;
 
 import java.time.LocalDate;
 
-public class Guardia extends Usuario {
+public class Guardia extends Persona {
 
     private String placa;
     private String rango;
@@ -14,8 +14,8 @@ public class Guardia extends Usuario {
     private Seccion seccion;
     private String tipoDeContrato;
 
-    public Guardia(String nombre, String apellido, String contraseña, int edad, int id, String sexo, String nacionalidad, String identificacion, String placa, String rango, String cargo, LocalDate fechaIngreso, String turno, Seccion seccion, String tipoDeContrato) {
-        super(nombre, apellido, contraseña, edad, id, sexo, nacionalidad, identificacion);
+    public Guardia(String nombre, String apellido, int edad, int id, String sexo, String nacionalidad, String identificacion, String placa, String rango, String cargo, LocalDate fechaIngreso, String turno, Seccion seccion, String tipoDeContrato) {
+        super(nombre, apellido, edad, id, sexo, nacionalidad, identificacion);
         this.placa = placa;
         this.rango = rango;
         this.cargo = cargo;

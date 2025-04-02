@@ -2,18 +2,18 @@ package Model;
 
 import java.time.LocalDate;
 
-public class OficialDeRegistro extends Usuario {
+public class OficialDeRegistro extends Persona {
 
     private String numeroPlaca;
     private String rango;
     private LocalDate fechaIngreso;
     private String turno;
 
-    public OficialDeRegistro(String nombre, String apellido, String contraseña, int edad, int id,
+    public OficialDeRegistro(String nombre, String apellido, int edad, int id,
             String sexo, String nacionalidad, String identificacion,
             String numeroPlaca, String rango, LocalDate fechaIngreso,
             String turno) {
-        super(nombre, apellido, contraseña, edad, id, sexo, nacionalidad, identificacion);
+        super(nombre, apellido, edad, id, sexo, nacionalidad, identificacion);
         this.numeroPlaca = numeroPlaca;
         this.rango = rango;
         this.fechaIngreso = fechaIngreso;
