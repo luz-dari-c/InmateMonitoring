@@ -26,21 +26,140 @@ public class InformacionPreso extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
+        jSeparator10 = new javax.swing.JSeparator();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1048, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 587, Short.MAX_VALUE)
-        );
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(29, 35, 51));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel1.setText("INFORMACIÓN PRESO");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 20, 160, 20));
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 50));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("Nombre:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 110, 20));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Apellido:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 110, 20));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Edad:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 110, 20));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Sexo:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 110, 20));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Nacionalidad:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 110, 20));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Identificación:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, 110, 20));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Estatura:");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 390, 110, 20));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Peso:");
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 110, 20));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Grupo Sanguineo:");
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 470, 140, 20));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("DATOS PERSONALES");
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 360, 20));
+
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 360, 20));
+
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 360, 20));
+
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 360, 20));
+
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 360, 20));
+
+        jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 360, 20));
+
+        jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 360, 20));
+
+        jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 360, 20));
+
+        jSeparator10.setForeground(new java.awt.Color(0, 0, 0));
+        add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 360, 20));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     // End of variables declaration//GEN-END:variables
 }
