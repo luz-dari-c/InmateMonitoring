@@ -1,0 +1,21 @@
+{
+ "usuarios": [
+    {
+      "email": "admin@clinica.com",
+      "password": "admin123",
+      "rol": "ADMINISTRADOR"
+    }
+  ,
+    {
+      "email": "recepcion@clinica.com",
+      "password": "recepcion123",
+      "rol": "RECEPCIONISTA"
+    },
+    {
+        "email":"doctor@clinica.com",
+        "password":"doctor123",
+        "rol":"MEDICO"
+    }
+    
+  ]
+}
