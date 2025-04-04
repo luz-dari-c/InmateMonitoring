@@ -14,9 +14,9 @@ public class Preso extends Persona {
     private String condicion;
     private byte sentencia;
     private String celdaAsignada;
-    private boolean enAislamiento;
+    private boolean enAislamiento = false;
     private String nivelDeRiesgo;
-    private int numeroDeVisitas;
+    private int numeroDeVisitas = 0;
     private String grupoSanguineo;
 
     public Preso(String nombre, String apellido, int edad, int id, String sexo, String nacionalidad,

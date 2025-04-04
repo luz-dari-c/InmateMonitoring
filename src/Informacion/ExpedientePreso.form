@@ -175,7 +175,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="javax.swing.JPanel" name="jPanel2">
+    <Container class="javax.swing.JPanel" name="PanelDatosGenerales">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="c3" green="b4" red="b4" type="rgb"/>
@@ -186,7 +186,7 @@
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="20" y="70" width="300" height="500"/>
+          <AbsoluteConstraints x="20" y="70" width="310" height="500"/>
         </Constraint>
       </Constraints>
 
@@ -490,7 +490,7 @@
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="350" y="330" width="670" height="220"/>
+          <AbsoluteConstraints x="360" y="320" width="660" height="240"/>
         </Constraint>
       </Constraints>
     </Component>
