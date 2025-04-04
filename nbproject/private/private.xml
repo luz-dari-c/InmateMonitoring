@@ -6,6 +6,28 @@
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/InmateMonitoring/src/Informacion/InformacionPreso.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/InmateMonitoring/src/View/OficialDeRegistro.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/InmateMonitoring/src/Informacion/ExpedientePreso.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Informacion/InformacionPreso.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/OficialDeRegistroDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/PersonalDeControl.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/OficialDeRegistro.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Informacion/ExpedientePreso.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/UsuarioDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/SeccionDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Resources/DATA/usuarios.json</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Model/Usuario.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/MedicoDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Model/Rol.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Sombra/textoSombra.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/Login.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Model/Director.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/Medico.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/VisitanteDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/Guardia.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/PresoDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/Director.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/GuardiaDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/VisitaDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/RoundedPanel.java</file>
         </group>
     </open-files>
 </project-private>
