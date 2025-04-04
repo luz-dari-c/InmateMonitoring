@@ -16,4 +16,6 @@ public class Director extends Persona {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+    
+    
 }

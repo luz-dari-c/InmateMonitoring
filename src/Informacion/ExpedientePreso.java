@@ -31,7 +31,7 @@ public class ExpedientePreso extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
-        jPanel2 = new RoundedPanel(30);
+        PanelDatosGenerales = new RoundedPanel(30);
         ;
         jLabel9 = new javax.swing.JLabel();
         LabelDatosgenerales = new javax.swing.JLabel();
@@ -117,63 +117,63 @@ public class ExpedientePreso extends javax.swing.JPanel {
         jLabel8.setText("INFORMACION LEGAL");
         add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 80, -1, 20));
 
-        jPanel2.setBackground(new java.awt.Color(180, 180, 195));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanelDatosGenerales.setBackground(new java.awt.Color(180, 180, 195));
+        PanelDatosGenerales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("DESCRIPCION DELITO");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, -1));
+        PanelDatosGenerales.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 280, -1, -1));
 
         LabelDatosgenerales.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         LabelDatosgenerales.setForeground(new java.awt.Color(0, 0, 0));
         LabelDatosgenerales.setText("DATOS GENERALES");
-        jPanel2.add(LabelDatosgenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+        PanelDatosGenerales.add(LabelDatosgenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
 
         DescripcionDelDelitoLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.add(DescripcionDelDelitoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 240, 160));
+        PanelDatosGenerales.add(DescripcionDelDelitoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 240, 160));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Numero de registro:");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 20));
+        PanelDatosGenerales.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 20));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Codigo Expediente:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+        PanelDatosGenerales.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Fecha de Apertura:");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+        PanelDatosGenerales.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Estado:");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 20));
+        PanelDatosGenerales.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 20));
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Juzgado:");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+        PanelDatosGenerales.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 260, 10));
+        PanelDatosGenerales.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 260, 10));
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 260, 20));
+        PanelDatosGenerales.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 260, 20));
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 260, 10));
+        PanelDatosGenerales.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 260, 10));
 
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 260, 10));
+        PanelDatosGenerales.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 260, 10));
 
         jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel2.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 260, 10));
+        PanelDatosGenerales.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 260, 10));
 
-        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 300, 500));
+        add(PanelDatosGenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 310, 500));
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
@@ -203,7 +203,7 @@ public class ExpedientePreso extends javax.swing.JPanel {
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 440, 410, 100));
 
         jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, 670, 220));
+        add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 320, 660, 240));
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegresarMouseClicked
@@ -216,6 +216,7 @@ public class ExpedientePreso extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DescripcionDelDelitoLabel;
     private javax.swing.JLabel LabelDatosgenerales;
+    private javax.swing.JPanel PanelDatosGenerales;
     private javax.swing.JButton botonRegresar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -232,7 +233,6 @@ public class ExpedientePreso extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

@@ -5,7 +5,6 @@ public enum Rol {
     OFICIALDEREGISTRO,
     GUARDIA,
     PERSONALDECONTRO
-  
 }
 
 

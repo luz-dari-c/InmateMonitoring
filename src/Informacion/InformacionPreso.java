@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package Informacion;
-
+import View.RoundedPanel;
 /**
  *
  * @author ASUS
@@ -47,6 +47,9 @@ public class InformacionPreso extends javax.swing.JPanel {
         jSeparator8 = new javax.swing.JSeparator();
         jSeparator9 = new javax.swing.JSeparator();
         jSeparator10 = new javax.swing.JSeparator();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new RoundedPanel(30);
+        ImagenPresoInformacion = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -108,42 +111,53 @@ public class InformacionPreso extends javax.swing.JPanel {
         jLabel16.setFont(new java.awt.Font("Arial", 1, 15)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("DATOS PERSONALES");
-        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 110, -1, -1));
+        add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, -1, -1));
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 360, 20));
+        add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 170, 360, 10));
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
-        add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 360, 20));
+        add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 207, 360, -1));
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
-        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 360, 20));
+        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 247, 360, -1));
 
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
-        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 360, 20));
+        add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 290, 360, -1));
 
         jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
-        add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 360, 20));
+        add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 360, 10));
 
         jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
         add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 360, 20));
 
         jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
-        add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 360, 20));
+        add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 360, -1));
 
         jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
-        add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 360, 20));
+        add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 450, 360, 10));
 
         jSeparator10.setForeground(new java.awt.Color(0, 0, 0));
-        add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 360, 20));
+        add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, 360, 10));
+
+        jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 440, 470));
+
+        jPanel1.setBackground(new java.awt.Color(180, 180, 195));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(ImagenPresoInformacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 130, 170));
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 100, 150, 190));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ImagenPresoInformacion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -151,6 +165,7 @@ public class InformacionPreso extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator2;
