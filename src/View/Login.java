@@ -4,6 +4,11 @@
  */
 package View;
 
+import DAO.UsuarioDAO;
+import Model.Usuario;
+import Sombra.textoSombra;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author ASUS
@@ -15,6 +20,9 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        textoSombra usuario = new textoSombra("Ingrese su usuario", FieldUsuario);
+        textoSombra contraseña = new textoSombra("Ingrese su contraseña", Password);
+
     }
 
     /**
@@ -26,21 +34,110 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel2 = new RoundedPanel(30);
+        txtUsuario = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JLabel();
+        Ingresar = new javax.swing.JButton();
+        txtSignIn = new javax.swing.JLabel();
+        baseUsuario = new RoundedPanel(30);
+        FieldUsuario = new javax.swing.JTextField();
+        Password = new javax.swing.JPasswordField();
+        BasePassword = new RoundedPanel(30);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picures/1117691499019247666-removebg-preview (3)_1.png"))); // NOI18N
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, 310, -1));
+
+        jPanel2.setBackground(new java.awt.Color(29, 35, 51));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsuario.setText("Usuario");
+        jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
+
+        txtPassword.setForeground(new java.awt.Color(255, 255, 255));
+        txtPassword.setText("Password");
+        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 60, -1));
+
+        Ingresar.setText("Ingresar");
+        Ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresarActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 150, 40));
+
+        txtSignIn.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        txtSignIn.setForeground(new java.awt.Color(255, 255, 255));
+        txtSignIn.setText("SIGN IN");
+        jPanel2.add(txtSignIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 150, 40));
+
+        baseUsuario.setBackground(new java.awt.Color(131, 156, 196));
+        baseUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        FieldUsuario.setBackground(new java.awt.Color(131, 156, 196));
+        FieldUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        FieldUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        FieldUsuario.setBorder(null);
+        baseUsuario.add(FieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 470, 50));
+
+        jPanel2.add(baseUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 490, 50));
+
+        Password.setBackground(new java.awt.Color(131, 156, 196));
+        Password.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        Password.setForeground(new java.awt.Color(255, 255, 255));
+        Password.setBorder(null);
+        jPanel2.add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 470, 50));
+
+        BasePassword.setBackground(new java.awt.Color(131, 156, 196));
+        BasePassword.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(BasePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 490, 50));
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 670, 450));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 911, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 474, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
+        String emails = FieldUsuario.getText().trim();
+        String passwords = new String(Password.getPassword());
+
+        if (emails.isEmpty() || passwords.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Email y constraseña son requeridos", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        Usuario usuario = usuarioDAO.validarCredenciales(emails, passwords);
+
+        if (usuario != null) {
+            if (usuarioDAO.esDirector(usuario)) {
+                JOptionPane.showMessageDialog(this, "Bienvenido Director", "Login Exitoso", JOptionPane.INFORMATION_MESSAGE);
+                new Director().setVisible(true);
+                this.dispose();
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos", "Error de Login", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_IngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +175,16 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel BasePassword;
+    private javax.swing.JTextField FieldUsuario;
+    private javax.swing.JButton Ingresar;
+    private javax.swing.JPasswordField Password;
+    private javax.swing.JPanel baseUsuario;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel txtPassword;
+    private javax.swing.JLabel txtSignIn;
+    private javax.swing.JLabel txtUsuario;
     // End of variables declaration//GEN-END:variables
 }

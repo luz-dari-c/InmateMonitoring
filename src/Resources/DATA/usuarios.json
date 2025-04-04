@@ -1,9 +1,9 @@
 {
  "usuarios": [
     {
-      "email": "admin@clinica.com",
-      "password": "admin123",
-      "rol": "ADMINISTRADOR"
+      "email": "mDiaz",
+      "password": "Marcos19",
+      "rol": "DIRECTOR"
     }
   ,
     {
