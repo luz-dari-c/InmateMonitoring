@@ -1,6 +1,7 @@
 package Model;
 
 import java.time.LocalDate;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Preso extends Persona {
 
@@ -18,12 +19,15 @@ public class Preso extends Persona {
     private String nivelDeRiesgo;
     private int numeroDeVisitas = 0;
     private String grupoSanguineo;
+     private String fotoPath;
+
+   
 
     public Preso(String nombre, String apellido, int edad, int id, String sexo, String nacionalidad,
             String identificacion, float estatura, float peso, Delito delito, byte numeroDeExpediente,
             LocalDate fechaIngreso, LocalDate fechaSalida, String nivelDeSeguridad, String condicion,
             byte sentencia, String celdaAsignada, boolean enAislamiento, String nivelDeRiesgo,
-            int numeroDeVisitas, String grupoSanguineo) {
+            int numeroDeVisitas, String grupoSanguineo, String fotoPath) {
         super(nombre, apellido, edad, id, sexo, nacionalidad, identificacion);
         this.estatura = estatura;
         this.peso = peso;
@@ -39,8 +43,21 @@ public class Preso extends Persona {
         this.nivelDeRiesgo = nivelDeRiesgo;
         this.numeroDeVisitas = numeroDeVisitas;
         this.grupoSanguineo = grupoSanguineo;
+        this.fotoPath = fotoPath;
+    }
+    
+ 
+
+    public String getFotoPath() {
+        return fotoPath;
     }
 
+    public void setFotoPath(String fotoPath) {
+        this.fotoPath = fotoPath;
+    }
+
+    
+    
     public float getEstatura() {
         return estatura;
     }

@@ -1,0 +1,33 @@
+[
+  {
+    "estatura": 23.0,
+    "peso": 22.0,
+    "delito": {
+      "codigo": 2,
+      "nombre": "ASESINATO",
+      "articuloLey": "LEY INVENTADA",
+      "gravedad": "GRAVISIMA",
+      "descripcion": "MATO UNA LAGARTIJA",
+      "fechaComision": "2012-09-09"
+    },
+    "numeroDeExpediente": 34,
+    "fechaIngreso": "2202-02-02",
+    "fechaSalida": "1980-02-01",
+    "nivelDeSeguridad": "BAJO",
+    "condicion": "LOCURA",
+    "sentencia": 3,
+    "celdaAsignada": "A",
+    "enAislamiento": false,
+    "nivelDeRiesgo": "BAJO",
+    "numeroDeVisitas": 0,
+    "grupoSanguineo": "A+",
+    "fotoPath": "src/Resources/Images/preso_0_1743825377442.jpg",
+    "nombre": "MANUEL",
+    "apellido": "SONAS",
+    "edad": 33,
+    "id": 0,
+    "sexo": "FEMENINO",
+    "nacionalidad": "PERUANO",
+    "identificacion": "232323"
+  }
+]
