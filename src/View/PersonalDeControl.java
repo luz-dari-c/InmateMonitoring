@@ -9,7 +9,6 @@ import Informacion.ExpedientePreso;
 import Informacion.HistorialDeSanciones;
 import Informacion.HistorialMedicoPreso;
 import Informacion.HistorialVisitasPreso;
-import Informacion.InformacionPreso;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
