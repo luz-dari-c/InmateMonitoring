@@ -4,16 +4,26 @@
  */
 package View;
 
+import DAO.VisitaDAO;
+import DAO.VisitanteDAO;
 import Informacion.ActualizarInformacionPDC;
 import Informacion.ExpedientePreso;
 import Informacion.HistorialDeSanciones;
 import Informacion.HistorialMedicoPreso;
 import Informacion.HistorialVisitasPreso;
 import Informacion.InformacionPreso;
+import Model.Visita;
+import Model.Visitante;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,25 +31,25 @@ import javax.swing.JMenuItem;
  */
 public class PersonalDeControl extends javax.swing.JFrame {
 
+    private List<Visitante> visitantesTemporales = new ArrayList<>();
+
     /**
      * Creates new form PersonalDeControl
      */
     public PersonalDeControl() {
         initComponents();
         InicializarMenu();
-        
+
         BotonParaLlevarPanelActualizar.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            ActualizarInformacionPDC panelActualizar = new ActualizarInformacionPDC();
-            PersonalDeControl.this.setContentPane(panelActualizar);
-            PersonalDeControl.this.revalidate();
-            PersonalDeControl.this.repaint();
-        }
-    });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ActualizarInformacionPDC panelActualizar = new ActualizarInformacionPDC();
+                PersonalDeControl.this.setContentPane(panelActualizar);
+                PersonalDeControl.this.revalidate();
+                PersonalDeControl.this.repaint();
+            }
+        });
     }
-    
-    
 
     public void InicializarMenu() {
         JMenuItem historialVisita = new JMenuItem("Historial de visitas");
@@ -233,7 +243,6 @@ public class PersonalDeControl extends javax.swing.JFrame {
         jSeparator19 = new javax.swing.JSeparator();
         IdentificacionPresoVisita = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
-        BotonAñadirVisita = new javax.swing.JButton();
         jSeparator20 = new javax.swing.JSeparator();
         jSeparator21 = new javax.swing.JSeparator();
         jSeparator22 = new javax.swing.JSeparator();
@@ -244,8 +253,9 @@ public class PersonalDeControl extends javax.swing.JFrame {
         HoraVisita = new javax.swing.JTextField();
         DuracionVisita = new javax.swing.JTextField();
         TipoVisita = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        CantidadDeVisitantesCombo = new javax.swing.JComboBox<>();
         jLabel31 = new javax.swing.JLabel();
+        BotonAñadirVisita = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -669,14 +679,6 @@ public class PersonalDeControl extends javax.swing.JFrame {
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Fecha de la visita:");
         PanelAñadirVisitaPDC.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
-
-        BotonAñadirVisita.setText("Añadir visita");
-        BotonAñadirVisita.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonAñadirVisitaActionPerformed(evt);
-            }
-        });
-        PanelAñadirVisitaPDC.add(BotonAñadirVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, 110, 30));
         PanelAñadirVisitaPDC.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 400, 400, 10));
         PanelAñadirVisitaPDC.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 400, 10));
         PanelAñadirVisitaPDC.add(jSeparator22, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 280, 400, 10));
@@ -728,18 +730,26 @@ public class PersonalDeControl extends javax.swing.JFrame {
         });
         PanelAñadirVisitaPDC.add(TipoVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 330, 300, 30));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        CantidadDeVisitantesCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
+        CantidadDeVisitantesCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                CantidadDeVisitantesComboActionPerformed(evt);
             }
         });
-        PanelAñadirVisitaPDC.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+        PanelAñadirVisitaPDC.add(CantidadDeVisitantesCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
 
         jLabel31.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Cantidad de visitantes");
         PanelAñadirVisitaPDC.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
+
+        BotonAñadirVisita.setText("Añadir visita");
+        BotonAñadirVisita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAñadirVisitaActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitaPDC.add(BotonAñadirVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 440, -1, -1));
 
         PersonalDeControlView.addTab("Añadir visita", PanelAñadirVisitaPDC);
 
@@ -826,35 +836,161 @@ public class PersonalDeControl extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TablaPresosPDCMouseClicked
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void CantidadDeVisitantesComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CantidadDeVisitantesComboActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_CantidadDeVisitantesComboActionPerformed
 
     private void BotonParaLlevarPanelActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonParaLlevarPanelActualizarActionPerformed
- 
+
     }//GEN-LAST:event_BotonParaLlevarPanelActualizarActionPerformed
 
+    private void limpiarCamposVisitante() {
+        NombreVisitante.setText("");
+        ApellidoVisitante.setText("");
+        EdadVisitante.setText("");
+        IdentificacionVisitante.setText("");
+        NacionalidadVisitante.setText("");
+        SexoVisitante.setText("");
+        RelacionConPreso.setText("");
+        RequiereSupervision.setText("");
+    }
+    
+    private void limpiarCamposVisita(){
+        IdentificacionPresoVisita.setText("");
+        FechaVisita.setText("");
+        HoraVisita.setText("");
+        DuracionVisita.setText("");
+        
+    
+    }
     private void BotonAñadirVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAñadirVisitanteActionPerformed
-        String nombre = NombreVisitante.getText();
-        String Apellido = ApellidoVisitante.getText();
-        String identificacion = IdentificacionVisitante.getText();
-        String nacionalidad = NacionalidadVisitante.getText();
-        String relacion = RelacionConPreso.getText();
+        String nombre = NombreVisitante.getText().trim();
+        String apellido = ApellidoVisitante.getText().trim();
+        String edadTexto = EdadVisitante.getText().trim();
+        String identificacion = IdentificacionVisitante.getText().trim();
+        String sexo = SexoVisitante.getText().trim();
+        String nacionalidad = NacionalidadVisitante.getText().trim();
+        String relacion = RelacionConPreso.getText().trim();
         String textoSupervision = RequiereSupervision.getText().trim().toLowerCase();
-        boolean supervision = textoSupervision.equals("sí") || textoSupervision.equals("no");
+        boolean supervision = textoSupervision.equals("sí");
+
+        if (nombre.isEmpty() || apellido.isEmpty() || edadTexto.isEmpty()
+                || identificacion.isEmpty() || sexo.isEmpty() || nacionalidad.isEmpty()
+                || relacion.isEmpty()) {
+
+            JOptionPane.showMessageDialog(this, "Por favor completa todos los campos del visitante.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int edad;
+        try {
+            edad = Integer.parseInt(edadTexto);
+            if (edad < 0 || edad > 120) {
+                JOptionPane.showMessageDialog(this, "La edad debe estar entre 0 y 120 años.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Por favor ingresa una edad válida (número entero).", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int cantidadTotal;
+        try {
+            cantidadTotal = Integer.parseInt(CantidadDeVisitantesCombo.getSelectedItem().toString());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Error en la cantidad de visitantes.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        Visitante visitante = new Visitante(nombre, apellido, edad, 0, sexo, nacionalidad, identificacion, relacion, supervision);
+        visitantesTemporales.add(visitante);
+        new VisitanteDAO().guardarVisitante(visitante);
+
+        limpiarCamposVisitante();
+
+        if (visitantesTemporales.size() >= cantidadTotal) {
+            JOptionPane.showMessageDialog(this,
+                    "Ya se añadieron todos los visitantes (" + visitantesTemporales.size() + ").\n"
+                    + "Ahora completa los datos de la visita.",
+                    "Información", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this,
+                    "Visitante añadido (" + visitantesTemporales.size() + " de " + cantidadTotal + ").\n"
+                    + "Por favor ingresa el siguiente visitante.",
+                    "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
 
 
     }//GEN-LAST:event_BotonAñadirVisitanteActionPerformed
 
     private void BotonAñadirVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAñadirVisitaActionPerformed
-        String identificacionPreso = IdentificacionPresoVisita.getText();
-        String fecha = FechaVisita.getText();
-        String hora = HoraVisita.getText();
-        String duracion = DuracionVisita.getText();
-        String tipo = TipoVisita.getText();
-        String lugar = LugarVisita.getText();    }//GEN-LAST:event_BotonAñadirVisitaActionPerformed
+        try {
+            if (visitantesTemporales.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Primero debes añadir los visitantes.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-    /**
+            String identificacionPreso = IdentificacionPresoVisita.getText().trim();
+            String fechaTexto = FechaVisita.getText().trim();
+            String horaTexto = HoraVisita.getText().trim();
+            String duracion = DuracionVisita.getText().trim();
+            String tipo = TipoVisita.getText().trim();
+            String lugar = LugarVisita.getText().trim();
+
+            if (duracion.isEmpty() || tipo.isEmpty() || lugar.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Por favor completa todos los campos obligatorios.",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            LocalDate fecha = parsearFecha(fechaTexto);
+            LocalTime hora = parsearHora(horaTexto);
+
+            Visita nuevaVisita = new Visita(0, "", fecha, hora, duracion, tipo, lugar, true, null, null);
+            nuevaVisita.getVisitantes().addAll(visitantesTemporales);
+
+            new VisitaDAO().guardarVisita(nuevaVisita);
+
+            visitantesTemporales.clear();
+            JOptionPane.showMessageDialog(this,
+                    "¡Visita registrada exitosamente! Código: VIS-",
+                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al registrar visita: " + e.getMessage(),
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+
+    private LocalDate parsearFecha(String fechaTexto) {
+        if (fechaTexto == null || fechaTexto.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return LocalDate.parse(fechaTexto, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Formato de fecha inválido. Use dd/MM/yyyy");
+        }
+    }
+
+    private LocalTime parsearHora(String horaTexto) {
+        if (horaTexto == null || horaTexto.trim().isEmpty()) {
+            return null;
+        }
+        try {
+            return LocalTime.parse(horaTexto, DateTimeFormatter.ofPattern("HH:mm"));
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Formato de hora inválido. Use HH:mm");
+        }
+
+     }//GEN-LAST:event_BotonAñadirVisitaActionPerformed
+
+    /*
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -897,6 +1033,7 @@ public class PersonalDeControl extends javax.swing.JFrame {
     private javax.swing.JButton BotonAñadirVisitante;
     private javax.swing.JButton BotonParaLlevarPanelActualizar;
     private javax.swing.JButton BuscarPresoPorId;
+    private javax.swing.JComboBox<String> CantidadDeVisitantesCombo;
     private javax.swing.JTextField DuracionVisita;
     private javax.swing.JLabel EdadPDC;
     private javax.swing.JTextField EdadVisitante;
@@ -930,7 +1067,6 @@ public class PersonalDeControl extends javax.swing.JFrame {
     private javax.swing.JPanel VisitasPDC;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
