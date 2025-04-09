@@ -5,6 +5,7 @@
         <group>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Informacion/InformacionPreso.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/OficialDeRegistroDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Model/ExpedienteJudicial.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/Enfermera.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/SeccionDAO.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Resources/DATA/usuarios.json</file>
@@ -16,6 +17,7 @@
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/ShadowRenderer.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/swing/shadow/util/ShadowRenderer_1.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/VisitanteDAO.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Model/Preso.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/Director.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/GuardiaDAO.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/swing/shadow/util/GraphicsUtilities_1.java</file>
@@ -28,6 +30,7 @@
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/MedicoDAO.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/Login.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Model/Director.java</file>
+            <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/Model/Persona.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/View/Guardia.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/PresoDAO.java</file>
             <file>file:/C:/Users/gameV/Desktop/InmateMonitoring/src/DAO/VisitaDAO.java</file>

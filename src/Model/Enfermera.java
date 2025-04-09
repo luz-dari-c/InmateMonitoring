@@ -1,12 +1,7 @@
-
 package Model;
 
+public class Enfermera extends Persona {
 
-public class Enfermera {
-    private int idEnfermera;
-    private String nombre;
-    private String apellidos;
-    private String identificacion;
     private String correo;
     private String telefono;
     private String turno;
@@ -16,14 +11,11 @@ public class Enfermera {
     private String usuario;
     private String contraseña;
 
-    // Constructor
-    public Enfermera(int idEnfermera, String nombre, String apellidos, String identificacion, String correo,
-                     String telefono, String turno, String especialidad, String fechaIngreso,
+    
+    public Enfermera(String nombre, String apellido, int edad, int id, String sexo, String nacionalidad, String identificacion,
+                     String correo, String telefono, String turno, String especialidad, String fechaIngreso,
                      String estado, String usuario, String contraseña) {
-        this.idEnfermera = idEnfermera;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.identificacion = identificacion;
+        super(nombre, apellido, edad, id, sexo, nacionalidad, identificacion);
         this.correo = correo;
         this.telefono = telefono;
         this.turno = turno;
@@ -34,39 +26,7 @@ public class Enfermera {
         this.contraseña = contraseña;
     }
 
-    // Getters y Setters
-    public int getIdEnfermera() {
-        return idEnfermera;
-    }
-
-    public void setIdEnfermera(int idEnfermera) {
-        this.idEnfermera = idEnfermera;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getApellidos() {
-        return apellidos;
-    }
-
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
-    }
-
-    public String getIdentificacion() {
-        return identificacion;
-    }
-
-    public void setIdentificacion(String identificacion) {
-        this.identificacion = identificacion;
-    }
-
+    
     public String getCorreo() {
         return correo;
     }

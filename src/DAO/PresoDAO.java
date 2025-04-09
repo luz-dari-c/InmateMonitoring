@@ -4,10 +4,7 @@
  */
 package DAO;
 
-/**
- *
- * @author ASUS
- */
+
 public class PresoDAO {
     
 }
