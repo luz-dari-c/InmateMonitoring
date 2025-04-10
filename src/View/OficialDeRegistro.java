@@ -1,12 +1,19 @@
 package View;
 
+import DAO.PresoDAO;
 import Informacion.ActualizarInformaciónODR;
 import Informacion.ExpedientePreso;
 import Informacion.HistorialMedicoPreso;
 import Informacion.HistorialVisitasPreso;
-import Informacion.InformacionPreso;
+import Model.Delito;
+import Model.Preso;
+import java.awt.AlphaComposite;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
+import java.awt.Transparency;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -17,6 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.List;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -24,12 +33,16 @@ import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 public class OficialDeRegistro extends javax.swing.JFrame {
 
@@ -39,7 +52,24 @@ public class OficialDeRegistro extends javax.swing.JFrame {
     public OficialDeRegistro() {
         initComponents();
         inicializarMenu();
+        configurarTablaImagenes();
 
+        cargarDatosEnTabla();
+       
+     
+        TablaPresos.getSelectionModel().addListSelectionListener(e -> {
+    if (!e.getValueIsAdjusting()) {
+        int fila = TablaPresos.getSelectedRow();
+        if (fila >= 0) {
+            String identificacion = (String) TablaPresos.getValueAt(fila, 5);
+            Preso preso = new PresoDAO().buscarPresoPorIdentificacion(identificacion);
+            if (preso != null) {
+                DescripDelito.setText(preso.getDatosExpedienteBasico());
+            }
+        }
+    }
+});
+        
         agregarValidacionInstantanea();
         Siguiente1.setEnabled(false);
         Siguiente2.setEnabled(false);
@@ -56,17 +86,17 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         });
 
     }
-
+     
     private void actualizarEstadoBoton() {
         boolean camposLlenos = !InputNombrePreso.getText().trim().isEmpty()
                 && !InputApellidoPreso.getText().trim().isEmpty()
                 && !InputEdadPreso.getText().trim().isEmpty()
                 && !InputIdentificacionPreso.getText().trim().isEmpty()
-                && !InputSexoPreso.getText().trim().isEmpty()
+                && !InputSexoPreso.getSelectedItem().toString().equals("Seleccione")
                 && !InputNacionalidadPreso.getText().trim().isEmpty()
                 && !InputEstaturaPreso.getText().trim().isEmpty()
                 && !InputPesoPreso.getText().trim().isEmpty()
-                && !InputGrupoSanguineoPreso.getText().trim().isEmpty()
+                && !TipoSangreCombobox.getSelectedItem().toString().equals("Seleccione")
                 && !Codigo.getText().trim().isEmpty()
                 && !ArticuloLey.getText().trim().isEmpty()
                 && !Gravedad.getText().trim().isEmpty()
@@ -77,51 +107,56 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         AñadirPreso.setEnabled(camposLlenos);
     }
 
-    private void agregarValidacionInstantanea() {
-        KeyListener listener = new KeyAdapter() {
-            @Override
-            public void keyReleased(KeyEvent e) {
-                int tabActual = TabbedAñadirInformacionGeneral.getSelectedIndex();
+ private void agregarValidacionInstantanea() {
+    Runnable actualizarBoton = () -> {
+        switch (TabbedAñadirInformacionGeneral.getSelectedIndex()) {
+            case 0 -> actualizarEstadoBotonDatosPersonales();
+            case 1 -> actualizarEstadoBotonInformacionJudicial();
+            case 2 -> actualizarEstadoBotonDelito();
+        }
+    };
 
-                switch (tabActual) {
-                    case 0:
-                        actualizarEstadoBotonDatosPersonales();
-                        break;
-                    case 1:
-                        actualizarEstadoBotonInformacionJudicial();
-                        break;
-                    case 2:
-                        actualizarEstadoBotonDelito();
-                        break;
-                }
-            }
-        };
+    KeyListener keyListener = new KeyAdapter() {
+        @Override
+        public void keyReleased(KeyEvent e) {
+            actualizarBoton.run();
+        }
+    };
 
-        InputNombrePreso.addKeyListener(listener);
-        InputApellidoPreso.addKeyListener(listener);
-        InputEdadPreso.addKeyListener(listener);
-        InputIdentificacionPreso.addKeyListener(listener);
-        InputSexoPreso.addKeyListener(listener);
-        InputNacionalidadPreso.addKeyListener(listener);
-        InputEstaturaPreso.addKeyListener(listener);
-        InputPesoPreso.addKeyListener(listener);
-        InputGrupoSanguineoPreso.addKeyListener(listener);
+    // Agregamos el mismo KeyListener a todos los JTextField
+    InputNombrePreso.addKeyListener(keyListener);
+    InputApellidoPreso.addKeyListener(keyListener);
+    InputEdadPreso.addKeyListener(keyListener);
+    InputIdentificacionPreso.addKeyListener(keyListener);
+    InputNacionalidadPreso.addKeyListener(keyListener);
+    InputEstaturaPreso.addKeyListener(keyListener);
+    InputPesoPreso.addKeyListener(keyListener);
+    
+    SeccionAsignada.addKeyListener(keyListener);
+        NivelSeguridad.addKeyListener(keyListener);
+        NivelRiesgo.addKeyListener(keyListener);
+        FechaIngreso.addKeyListener(keyListener);
+        NumeroExpediente.addKeyListener(keyListener);
+        Sentencia.addKeyListener(keyListener);
+        FechaSalida.addKeyListener(keyListener);
+        Condicion.addKeyListener(keyListener);
+        
+         NombreDelito.addKeyListener(keyListener);
+        Codigo.addKeyListener(keyListener);
+        ArticuloLey.addKeyListener(keyListener);
+        Gravedad.addKeyListener(keyListener);
+        FechaComision.addKeyListener(keyListener);
+        DescripcionDelito.addKeyListener(keyListener);
 
-        SeccionAsignada.addKeyListener(listener);
-        NivelSeguridad.addKeyListener(listener);
-        NivelRiesgo.addKeyListener(listener);
-        FechaIngreso.addKeyListener(listener);
-        NumeroExpediente.addKeyListener(listener);
-        Sentencia.addKeyListener(listener);
-        FechaSalida.addKeyListener(listener);
-        Condicion.addKeyListener(listener);
+    // Y el mismo ActionListener al JComboBox
+    TipoSangreCombobox.addActionListener(e -> actualizarBoton.run());
+    InputSexoPreso.addActionListener(e -> actualizarBoton.run());
 
-        NombreDelito.addKeyListener(listener);
-        Codigo.addKeyListener(listener);
-        ArticuloLey.addKeyListener(listener);
-        Gravedad.addKeyListener(listener);
-        FechaComision.addKeyListener(listener);
-        DescripcionDelito.addKeyListener(listener);
+
+
+        
+
+       
     }
 
     private void actualizarEstadoBotonDatosPersonales() {
@@ -136,67 +171,100 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         AñadirPreso.setEnabled(validarDatosDelito());
     }
 
-    // Método para validar Panel 1 (Datos Personales)
     private boolean validarDatosPersonales() {
-        // Verificar que los campos obligatorios no estén vacíos
         if (InputNombrePreso.getText().trim().isEmpty()
                 || InputApellidoPreso.getText().trim().isEmpty()
                 || InputEdadPreso.getText().trim().isEmpty()
                 || InputIdentificacionPreso.getText().trim().isEmpty()
-                || InputSexoPreso.getText().trim().isEmpty()
+                ||InputSexoPreso.getSelectedItem().toString().equals("Seleccione")
                 || InputNacionalidadPreso.getText().trim().isEmpty()
                 || InputEstaturaPreso.getText().trim().isEmpty()
                 || InputPesoPreso.getText().trim().isEmpty()
-                || InputGrupoSanguineoPreso.getText().trim().isEmpty()) {
+                ||InputSexoPreso.getSelectedItem().toString().equals("Seleccione")) {
             return false;
         }
 
         try {
-            // Validar que los campos numéricos sean correctos
-            Integer.parseInt(InputEdadPreso.getText().trim());  // Edad como entero
-            Float.parseFloat(InputEstaturaPreso.getText().trim());  // Estatura como decimal
-            Float.parseFloat(InputPesoPreso.getText().trim());  // Peso como decimal
+            Integer.parseInt(InputEdadPreso.getText().trim());  
+            Float.parseFloat(InputEstaturaPreso.getText().trim());  
+            Float.parseFloat(InputPesoPreso.getText().trim());  
             return true;
         } catch (NumberFormatException ex) {
-            return false; // Si hay error en la conversión
+            return false; 
         }
     }
 
-    private boolean validarDatosJudiciales() {
-        try {
-
-            return !SeccionAsignada.getText().trim().isEmpty()
-                    && !NivelSeguridad.getText().trim().isEmpty()
-                    && !NivelRiesgo.getText().trim().isEmpty()
-                    && !FechaIngreso.getText().trim().isEmpty()
-                    && !NumeroExpediente.getText().trim().isEmpty()
-                    && !Sentencia.getText().trim().isEmpty()
-                    && !FechaSalida.getText().trim().isEmpty()
-                    && !Condicion.getText().trim().isEmpty();
-
-        } catch (NumberFormatException ex) {
-            return false; // Si hay error en el número de expediente
-        }
+   private boolean validarDatosJudiciales() {
+    if (SeccionAsignada.getText().trim().isEmpty() ||
+        NivelSeguridad.getText().trim().isEmpty() ||
+        NivelRiesgo.getText().trim().isEmpty() ||
+        FechaIngreso.getText().trim().isEmpty() ||
+        NumeroExpediente.getText().trim().isEmpty() ||
+        Sentencia.getText().trim().isEmpty() ||
+        FechaSalida.getText().trim().isEmpty() ||
+        Condicion.getText().trim().isEmpty()) {
+        return false;
     }
+
+    if (!validarFecha(FechaIngreso.getText().trim()) || 
+        !validarFecha(FechaSalida.getText().trim())) {
+        return false;
+    }
+
+    if (!validarNumero(NumeroExpediente.getText().trim(), true) ||
+        !validarNumero(Sentencia.getText().trim(), true)) {
+        return false;
+    }
+
+    return true;
+}
 
     private boolean validarDatosDelito() {
-        try {
-            // Validar fecha (formato básico)
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            sdf.setLenient(false);
-            sdf.parse(FechaComision.getText().trim());
-
-            return !NombreDelito.getText().trim().isEmpty()
-                    && !Codigo.getText().trim().isEmpty()
-                    && !ArticuloLey.getText().trim().isEmpty()
-                    && !Gravedad.getText().trim().isEmpty()
-                    && !FechaComision.getText().trim().isEmpty()
-                    && !DescripcionDelito.getText().trim().isEmpty();
-
-        } catch (Exception ex) {
-            return false; // Si hay error en la fecha
-        }
+    if (NombreDelito.getText().trim().isEmpty() ||
+        Codigo.getText().trim().isEmpty() ||
+        ArticuloLey.getText().trim().isEmpty() ||
+        Gravedad.getText().trim().isEmpty() ||
+        FechaComision.getText().trim().isEmpty() ||
+        DescripcionDelito.getText().trim().isEmpty()) {
+        return false;
     }
+
+    if (!validarNumero(Codigo.getText().trim(), true)) {
+        return false;
+    }
+
+    if (!validarFecha(FechaComision.getText().trim())) {
+        return false;
+    }
+
+    return true;
+}
+
+private boolean validarFecha(String fechaStr) {
+    try {
+        LocalDate fecha = LocalDate.parse(fechaStr);
+        
+        if (fecha.getMonthValue() > 12 || fecha.getDayOfMonth() > 31) {
+            return false;
+        }        
+        return true;
+    } catch (Exception e) {
+        return false;
+    }
+}
+
+private boolean validarNumero(String numeroStr, boolean esEntero) {
+    try {
+        if (esEntero) {
+            Integer.parseInt(numeroStr);
+        } else {
+            Float.parseFloat(numeroStr);
+        }
+        return true;
+    } catch (NumberFormatException e) {
+        return false;
+    }
+}
 
     public void inicializarMenu() {
         JMenuItem Expediente = new JMenuItem("Expediente");
@@ -211,20 +279,48 @@ public class OficialDeRegistro extends javax.swing.JFrame {
 
         TablaPresos.setComponentPopupMenu(ppMenuTablaPresos);
 
-        Expediente.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ExpedientePreso ep = new ExpedientePreso();
-                ep.setSize(800, 600);
-                ep.setVisible(true);
+  Expediente.addActionListener(new ActionListener() {
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        int filaSeleccionada = TablaPresos.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(OficialDeRegistro.this, 
+                "¡Selecciona un preso primero!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        String identificacion = (String) TablaPresos.getValueAt(filaSeleccionada, 5); 
+        Preso preso = new PresoDAO().buscarPresoPorIdentificacion(identificacion);
+        
+        if (preso != null) {
 
-                OficialDeRegistro.this.setContentPane(ep);
-                OficialDeRegistro.this.revalidate();
-                OficialDeRegistro.this.repaint();
+          //  RegistroNum.setText(String.valueOf(preso.getNumeroExpediente())); 
+            CodExpe.setText(preso.getIdentificacion()); 
+            FechaAper.setText(preso.getFechaIngreso().toString());
+            Estado.setText("Activo"); 
+            Juzgado.setText("Juzgado Penal");
+            DescripDelito.setText(preso.getDelito().getDescripcion());
+            
+            
+            if (preso.getDelito() != null) {
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0); 
+                model.addRow(new Object[]{
+                    preso.getDelito().getNombre(),
+                    preso.getDelito().getCodigo(),
+                    preso.getFechaIngreso().plusYears(1).toString(), 
+                    preso.getSentencia() + " años",
+                    preso.getDelito().getGravedad(),
+                    preso.getDelito().getFechaComision().toString()
+                });
             }
-        });
-
-        Informacion.addActionListener(new ActionListener() {
+            
+            OficialDeRegistroView.setSelectedIndex(3); 
+        }
+    }
+});
+  
+  Informacion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 InformacionPreso info = new InformacionPreso();
@@ -237,7 +333,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
             }
         });
 
-        historialMedico.addActionListener(new ActionListener() {
+  historialMedico.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 HistorialMedicoPreso imp = new HistorialMedicoPreso();
@@ -250,7 +346,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
             }
         });
 
-        historialVisita.addActionListener(new ActionListener() {
+  historialVisita.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 HistorialVisitasPreso hvp = new HistorialVisitasPreso();
@@ -264,6 +360,56 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         });
 
     }
+    
+
+    
+    private void configurarTablaImagenes() {
+    TablaPresos.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+            boolean isSelected, boolean hasFocus, int row, int column) {
+            
+            JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, 
+                isSelected, hasFocus, row, column);
+            
+            if(column == 0 && value instanceof ImageIcon) {
+                ImageIcon originalIcon = (ImageIcon)value;
+                Image img = originalIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                ImageIcon roundedIcon = new ImageIcon(createRoundedImage(img));
+                label.setIcon(roundedIcon);
+                label.setText("");
+            } else {
+                label.setIcon(null);
+            }
+            label.setHorizontalAlignment(JLabel.CENTER);
+            return label;
+        }
+    });
+    
+    TablaPresos.setRowHeight(65); // Un poco más grande que la imagen para espacio
+    TablaPresos.getColumnModel().getColumn(0).setPreferredWidth(70); // Ancho columna imagen
+}
+
+private Image createRoundedImage(Image image) {
+    int width = image.getWidth(null);
+    int height = image.getHeight(null);
+    
+    BufferedImage output = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+    Graphics2D g2 = output.createGraphics();
+    
+    output = g2.getDeviceConfiguration().createCompatibleImage(width, height, Transparency.TRANSLUCENT);
+    g2.dispose();
+    g2 = output.createGraphics();
+    
+    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+    g2.fillRoundRect(0, 0, width, height, 20, 20); 
+    g2.setComposite(AlphaComposite.SrcIn);
+    g2.drawImage(image, 0, 0, null);
+    g2.dispose();
+    
+    return output;
+}
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -306,7 +452,6 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         InputApellidoPreso = new javax.swing.JTextField();
         InputEdadPreso = new javax.swing.JTextField();
         InputIdentificacionPreso = new javax.swing.JTextField();
-        InputSexoPreso = new javax.swing.JTextField();
         jLabel21 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
@@ -317,13 +462,12 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         jSeparator12 = new javax.swing.JSeparator();
         jSeparator13 = new javax.swing.JSeparator();
         jSeparator14 = new javax.swing.JSeparator();
-        jSeparator15 = new javax.swing.JSeparator();
         jSeparator16 = new javax.swing.JSeparator();
         jSeparator17 = new javax.swing.JSeparator();
-        jSeparator18 = new javax.swing.JSeparator();
         jLabel34 = new javax.swing.JLabel();
-        InputGrupoSanguineoPreso = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
+        TipoSangreCombobox = new javax.swing.JComboBox<>();
+        InputSexoPreso = new javax.swing.JComboBox<>();
         Siguiente1 = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
         InformacionJudicialPanel = new javax.swing.JPanel();
@@ -381,7 +525,6 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         jLabel26 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         AñadirPreso = new javax.swing.JButton();
-        jCalendar1 = new com.toedter.calendar.JCalendar();
         PanelPerfilBase = new javax.swing.JPanel();
         PanelInfoBasicaODR = new RoundedPanel(30);
         ;
@@ -423,6 +566,38 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         jSeparator7 = new javax.swing.JSeparator();
         jPanel14 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
+        jPanel16 = new javax.swing.JPanel();
+        PanelDatosGenerales = new RoundedPanel(30);
+        ;
+        jLabel31 = new javax.swing.JLabel();
+        LabelDatosgenerales = new javax.swing.JLabel();
+        DescripDelito = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jSeparator20 = new javax.swing.JSeparator();
+        jSeparator21 = new javax.swing.JSeparator();
+        jSeparator22 = new javax.swing.JSeparator();
+        jSeparator23 = new javax.swing.JSeparator();
+        jSeparator33 = new javax.swing.JSeparator();
+        RegistroNum = new javax.swing.JLabel();
+        CodExpe = new javax.swing.JLabel();
+        FechaAper = new javax.swing.JLabel();
+        Estado = new javax.swing.JLabel();
+        Juzgado = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel44 = new javax.swing.JLabel();
+        ObservacionesConducta = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jSeparator34 = new javax.swing.JSeparator();
+        jLabel46 = new javax.swing.JLabel();
+        jSeparator35 = new javax.swing.JSeparator();
+        jLabel52 = new javax.swing.JLabel();
+        jSeparator41 = new javax.swing.JSeparator();
+        botonRegresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -521,23 +696,28 @@ public class OficialDeRegistro extends javax.swing.JFrame {
                 SelectorSeccionItemStateChanged(evt);
             }
         });
+        SelectorSeccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SelectorSeccionActionPerformed(evt);
+            }
+        });
         PanelTablaPresoBase.add(SelectorSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
 
         jPanel13.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TablaPresos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Foto", "Id", "Nombre", "Apellido", "Edad", "Identificación", "Nacionalidad", "Sección", "Celda"
+                "Foto", "Id", "Nombre", "Apellido", "Edad", "Identificación", "Nacionalidad", "Celda"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -546,7 +726,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(TablaPresos);
         if (TablaPresos.getColumnModel().getColumnCount() > 0) {
-            TablaPresos.getColumnModel().getColumn(0).setResizable(false);
+            TablaPresos.getColumnModel().getColumn(5).setResizable(false);
         }
 
         jPanel13.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 380));
@@ -571,12 +751,12 @@ public class OficialDeRegistro extends javax.swing.JFrame {
                 jButton3ActionPerformed(evt);
             }
         });
-        InformacionGeneralPaneñ.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 90, 140, 30));
+        InformacionGeneralPaneñ.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 140, 30));
 
         jLabel22.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Vista previa foto del preso");
-        InformacionGeneralPaneñ.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 150, -1, -1));
+        InformacionGeneralPaneñ.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 110, -1, -1));
 
         jPanel7.setBackground(new java.awt.Color(180, 180, 195));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -584,7 +764,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         lblFoto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel7.add(lblFoto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 140, 170));
 
-        InformacionGeneralPaneñ.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 180, 160, 190));
+        InformacionGeneralPaneñ.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 140, 160, 190));
 
         jPanel8.setBackground(new java.awt.Color(180, 180, 195));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -595,32 +775,32 @@ public class OficialDeRegistro extends javax.swing.JFrame {
 
         jSeparator9.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel8.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 460, 10));
+        jPanel8.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, 460, 10));
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Nombre:");
-        jPanel8.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, 100, -1));
+        jPanel8.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 100, -1));
 
         jLabel16.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Apellido:");
-        jPanel8.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 100, -1));
+        jPanel8.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 80, -1));
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Edad:");
-        jPanel8.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 100, -1));
+        jPanel8.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 100, -1));
 
         jLabel18.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Identificación:");
-        jPanel8.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, 100, -1));
+        jPanel8.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 100, -1));
 
         jLabel19.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Sexo:");
-        jPanel8.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 200, 100, -1));
+        jPanel8.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 360, 50, 20));
 
         InputNombrePreso.setBackground(new java.awt.Color(180, 180, 195));
         InputNombrePreso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -631,7 +811,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
                 InputNombrePresoActionPerformed(evt);
             }
         });
-        jPanel8.add(InputNombrePreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 330, 20));
+        jPanel8.add(InputNombrePreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 390, 20));
 
         InputApellidoPreso.setBackground(new java.awt.Color(180, 180, 195));
         InputApellidoPreso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -642,7 +822,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
                 InputApellidoPresoActionPerformed(evt);
             }
         });
-        jPanel8.add(InputApellidoPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 330, 20));
+        jPanel8.add(InputApellidoPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 100, 330, 20));
 
         InputEdadPreso.setBackground(new java.awt.Color(180, 180, 195));
         InputEdadPreso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -653,7 +833,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
                 InputEdadPresoActionPerformed(evt);
             }
         });
-        jPanel8.add(InputEdadPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, 350, 20));
+        jPanel8.add(InputEdadPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 350, 20));
 
         InputIdentificacionPreso.setBackground(new java.awt.Color(180, 180, 195));
         InputIdentificacionPreso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -664,33 +844,22 @@ public class OficialDeRegistro extends javax.swing.JFrame {
                 InputIdentificacionPresoActionPerformed(evt);
             }
         });
-        jPanel8.add(InputIdentificacionPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, 330, 20));
-
-        InputSexoPreso.setBackground(new java.awt.Color(180, 180, 195));
-        InputSexoPreso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        InputSexoPreso.setForeground(new java.awt.Color(0, 0, 0));
-        InputSexoPreso.setBorder(null);
-        InputSexoPreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputSexoPresoActionPerformed(evt);
-            }
-        });
-        jPanel8.add(InputSexoPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 370, 20));
+        jPanel8.add(InputIdentificacionPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 330, 20));
 
         jLabel21.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Nacionalidad:");
-        jPanel8.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 100, -1));
+        jPanel8.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 100, -1));
 
         jLabel24.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel24.setText("Estatura:");
-        jPanel8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 100, -1));
+        jLabel24.setText("Estatura (cm):");
+        jPanel8.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 100, -1));
 
         jLabel25.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setText("Peso:");
-        jPanel8.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, 100, -1));
+        jLabel25.setText("Peso(kg):");
+        jPanel8.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 100, -1));
 
         InputNacionalidadPreso.setBackground(new java.awt.Color(180, 180, 195));
         InputNacionalidadPreso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -701,7 +870,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
                 InputNacionalidadPresoActionPerformed(evt);
             }
         });
-        jPanel8.add(InputNacionalidadPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 340, 20));
+        jPanel8.add(InputNacionalidadPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 220, 340, 20));
 
         InputEstaturaPreso.setBackground(new java.awt.Color(180, 180, 195));
         InputEstaturaPreso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -712,7 +881,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
                 InputEstaturaPresoActionPerformed(evt);
             }
         });
-        jPanel8.add(InputEstaturaPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 350, 20));
+        jPanel8.add(InputEstaturaPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 350, 20));
 
         InputPesoPreso.setBackground(new java.awt.Color(180, 180, 195));
         InputPesoPreso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
@@ -723,59 +892,56 @@ public class OficialDeRegistro extends javax.swing.JFrame {
                 InputPesoPresoActionPerformed(evt);
             }
         });
-        jPanel8.add(InputPesoPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 320, 380, 20));
+        jPanel8.add(InputPesoPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 380, 20));
 
         jSeparator11.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator11.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel8.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 460, 10));
+        jPanel8.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 80, 460, 10));
 
         jSeparator12.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator12.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel8.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, 460, 10));
+        jPanel8.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 460, 10));
 
         jSeparator13.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator13.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel8.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 460, 10));
+        jPanel8.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 460, 10));
 
         jSeparator14.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator14.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel8.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 460, 10));
-
-        jSeparator15.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator15.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel8.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 460, 10));
+        jPanel8.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 200, 460, 10));
 
         jSeparator16.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator16.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel8.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 460, 10));
+        jPanel8.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 460, 10));
 
         jSeparator17.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator17.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel8.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 300, 460, 10));
-
-        jSeparator18.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator18.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel8.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 460, 10));
+        jPanel8.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 460, 10));
 
         jLabel34.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("Tipo Sangre:");
-        jPanel8.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 100, -1));
-
-        InputGrupoSanguineoPreso.setBackground(new java.awt.Color(180, 180, 195));
-        InputGrupoSanguineoPreso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        InputGrupoSanguineoPreso.setForeground(new java.awt.Color(0, 0, 0));
-        InputGrupoSanguineoPreso.setBorder(null);
-        InputGrupoSanguineoPreso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InputGrupoSanguineoPresoActionPerformed(evt);
-            }
-        });
-        jPanel8.add(InputGrupoSanguineoPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 360, 20));
+        jPanel8.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 360, 100, 20));
 
         jPanel11.setBackground(new java.awt.Color(29, 35, 51));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel8.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 650, 30));
+
+        TipoSangreCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Seleccione>", "A+", "A-", "O+", "O-", "B+", "B-", "AB+", "AB-" }));
+        TipoSangreCombobox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoSangreComboboxActionPerformed(evt);
+            }
+        });
+        jPanel8.add(TipoSangreCombobox, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 360, -1, -1));
+
+        InputSexoPreso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "<Seleccione>", "F", "M" }));
+        InputSexoPreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InputSexoPresoActionPerformed(evt);
+            }
+        });
+        jPanel8.add(InputSexoPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 360, -1, -1));
 
         InformacionGeneralPaneñ.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 650, 420));
 
@@ -1098,7 +1264,6 @@ public class OficialDeRegistro extends javax.swing.JFrame {
             }
         });
         PanelIngresarDelito.add(AñadirPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 440, -1, 40));
-        PanelIngresarDelito.add(jCalendar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 270, -1, 30));
 
         TabbedAñadirInformacionGeneral.addTab("Añadir Delito", PanelIngresarDelito);
 
@@ -1124,7 +1289,12 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         PanelInfoBasicaODR.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 210, -1, -1));
 
         BotonCerrarSesion.setText("Cerrar sesión");
-        PanelInfoBasicaODR.add(BotonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 460, 120, 30));
+        BotonCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonCerrarSesionActionPerformed(evt);
+            }
+        });
+        PanelInfoBasicaODR.add(BotonCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, 120, 30));
 
         jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
         PanelInfoBasicaODR.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 200, 10));
@@ -1148,7 +1318,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         PanelInfoBasicaODR.add(LabelNumeroPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, 170, 20));
         PanelInfoBasicaODR.add(LabelTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 180, 20));
 
-        PanelPerfilBase.add(PanelInfoBasicaODR, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 280, 500));
+        PanelPerfilBase.add(PanelInfoBasicaODR, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 280, 490));
 
         jPanel3.setBackground(new java.awt.Color(139, 139, 157));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1243,7 +1413,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 480, 10));
@@ -1258,7 +1428,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 10));
@@ -1267,7 +1437,151 @@ public class OficialDeRegistro extends javax.swing.JFrame {
 
         OficialDeRegistroView.addTab("Perfil", PanelPerfilBase);
 
-        jPanel1.add(OficialDeRegistroView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1050, 570));
+        jPanel16.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PanelDatosGenerales.setBackground(new java.awt.Color(180, 180, 195));
+        PanelDatosGenerales.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel31.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setText("DESCRIPCION DELITO");
+        PanelDatosGenerales.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 270, -1, -1));
+
+        LabelDatosgenerales.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        LabelDatosgenerales.setForeground(new java.awt.Color(0, 0, 0));
+        LabelDatosgenerales.setText("DATOS GENERALES");
+        PanelDatosGenerales.add(LabelDatosgenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 30, -1, -1));
+
+        DescripDelito.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        PanelDatosGenerales.add(DescripDelito, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 280, 160));
+
+        jLabel37.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel37.setText("Numero de registro:");
+        PanelDatosGenerales.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, 20));
+
+        jLabel38.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel38.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel38.setText("Codigo Expediente:");
+        PanelDatosGenerales.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, -1));
+
+        jLabel41.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel41.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel41.setText("Fecha de Apertura:");
+        PanelDatosGenerales.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
+
+        jLabel42.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel42.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel42.setText("Estado:");
+        PanelDatosGenerales.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, -1, 20));
+
+        jLabel43.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel43.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel43.setText("Juzgado:");
+        PanelDatosGenerales.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 230, -1, -1));
+
+        jSeparator20.setForeground(new java.awt.Color(0, 0, 0));
+        PanelDatosGenerales.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 290, 10));
+
+        jSeparator21.setForeground(new java.awt.Color(0, 0, 0));
+        PanelDatosGenerales.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 290, 10));
+
+        jSeparator22.setForeground(new java.awt.Color(0, 0, 0));
+        PanelDatosGenerales.add(jSeparator22, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 290, 10));
+
+        jSeparator23.setForeground(new java.awt.Color(0, 0, 0));
+        PanelDatosGenerales.add(jSeparator23, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, 290, 10));
+
+        jSeparator33.setForeground(new java.awt.Color(0, 0, 0));
+        PanelDatosGenerales.add(jSeparator33, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 290, 10));
+        PanelDatosGenerales.add(RegistroNum, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 140, 20));
+        PanelDatosGenerales.add(CodExpe, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 150, 20));
+        PanelDatosGenerales.add(FechaAper, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 150, 20));
+        PanelDatosGenerales.add(Estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 220, 20));
+        PanelDatosGenerales.add(Juzgado, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 210, 20));
+
+        jPanel16.add(PanelDatosGenerales, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 330, 500));
+
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "Delito", "Código", "Fecha Sentencia", "Tiempo de condena", "Gravedad", "Fecha comisión"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(jTable1);
+
+        jPanel16.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 660, 190));
+
+        jLabel44.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel44.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel44.setText("INFORMACION LEGAL");
+        jPanel16.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 0, -1, 50));
+
+        ObservacionesConducta.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel16.add(ObservacionesConducta, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 370, 410, 100));
+
+        jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel45.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel45.setText("Observaciones de conducta:");
+        jPanel16.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 370, 250, -1));
+
+        jSeparator34.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel16.add(jSeparator34, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 190, 10));
+
+        jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel46.setText("Nivel de riesgo:");
+        jPanel16.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, 120, -1));
+
+        jSeparator35.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel16.add(jSeparator35, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 620, 10));
+
+        jLabel52.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel52.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel52.setText("Nivel de adaptación: ");
+        jPanel16.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 270, 200, -1));
+
+        jSeparator41.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel16.add(jSeparator41, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 290, 620, 10));
+
+        botonRegresar.setText("Regresar");
+        botonRegresar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonRegresarMouseClicked(evt);
+            }
+        });
+        botonRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonRegresarActionPerformed(evt);
+            }
+        });
+        jPanel16.add(botonRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 80, -1));
+
+        OficialDeRegistroView.addTab("tab4", jPanel16);
+
+        jPanel1.add(OficialDeRegistroView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 1050, 530));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1367,14 +1681,6 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_InputPesoPresoActionPerformed
 
-    private void InputSexoPresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputSexoPresoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputSexoPresoActionPerformed
-
-    private void InputGrupoSanguineoPresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputGrupoSanguineoPresoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_InputGrupoSanguineoPresoActionPerformed
-
     private void Siguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Siguiente2ActionPerformed
 
         TabbedAñadirInformacionGeneral.setSelectedIndex(2);
@@ -1402,35 +1708,33 @@ public class OficialDeRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "Imágenes (JPG, PNG, GIF)", "jpg", "jpeg", "png", "gif");
-        fileChooser.setFileFilter(filter);
+       JFileChooser fileChooser = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter(
+            "Imágenes (JPG, PNG, GIF)", "jpg", "jpeg", "png", "gif");
+    fileChooser.setFileFilter(filter);
 
-        int resultado = fileChooser.showOpenDialog(this);
+    int resultado = fileChooser.showOpenDialog(this);
 
-        if (resultado == JFileChooser.APPROVE_OPTION) {
-            selectedImageFile = fileChooser.getSelectedFile();
+    if (resultado == JFileChooser.APPROVE_OPTION) {
+        selectedImageFile = fileChooser.getSelectedFile(); 
 
-            try {
-                originalImage = ImageIO.read(selectedImageFile);
+        try {
+            originalImage = ImageIO.read(selectedImageFile);
+            ImageIcon icon = new ImageIcon(originalImage);
+            Image img = icon.getImage();
+            Image imgEscalada = img.getScaledInstance(
+                    lblFoto.getWidth(),
+                    lblFoto.getHeight(),
+                    Image.SCALE_SMOOTH);
 
-                ImageIcon icon = new ImageIcon(originalImage);
-                Image img = icon.getImage();
-                Image imgEscalada = img.getScaledInstance(
-                        lblFoto.getWidth(),
-                        lblFoto.getHeight(),
-                        Image.SCALE_SMOOTH);
-
-                // Mostrar la imagen en el JLabel
-                lblFoto.setIcon(new ImageIcon(imgEscalada));
-
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(this,
-                        "Error al cargar la imagen: " + ex.getMessage(),
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }
+            lblFoto.setIcon(new ImageIcon(imgEscalada));
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al cargar la imagen: " + ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    
 
         }    }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -1467,36 +1771,128 @@ public class OficialDeRegistro extends javax.swing.JFrame {
     }//GEN-LAST:event_GravedadActionPerformed
 
     private void AñadirPresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirPresoActionPerformed
-        String nombrePreso = InputNombrePreso.getText();
-        String apellido = InputApellidoPreso.getText();
-        int edad = Integer.parseInt(InputEdadPreso.getText());
-        String nacionalidad = InputNacionalidadPreso.getText();
-        String sexo = InputSexoPreso.getText();
-        float estatura = Float.parseFloat(InputEstaturaPreso.getText()); //
-        float peso = Float.parseFloat(InputPesoPreso.getText());  //
-        String tipoSangre = InputGrupoSanguineoPreso.getText();
-        String identificacion = InputIdentificacionPreso.getText();
+        
+        try {
+    if (!validarDatosDelito()) {
+        StringBuilder errorMsg = new StringBuilder("Errores en datos del delito:\n");
+        
+        if (NombreDelito.getText().trim().isEmpty()) errorMsg.append("- Nombre del delito vacío\n");
+        if (Codigo.getText().trim().isEmpty()) errorMsg.append("- Código vacío\n");
+        else if (!validarNumero(Codigo.getText().trim(), true)) errorMsg.append("- Código debe ser numérico\n");
+        if (ArticuloLey.getText().trim().isEmpty()) errorMsg.append("- Artículo de ley vacío\n");
+        if (Gravedad.getText().trim().isEmpty()) errorMsg.append("- Gravedad vacía\n");
+        if (FechaComision.getText().trim().isEmpty()) errorMsg.append("- Fecha vacía\n");
+        else if (!validarFecha(FechaComision.getText().trim())) errorMsg.append("- Formato de fecha inválido (use AAAA-MM-DD)\n");
+        if (DescripcionDelito.getText().trim().isEmpty()) errorMsg.append("- Descripción vacía\n");
+        
+        JOptionPane.showMessageDialog(this, errorMsg.toString(), "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        String fechaIngreso = FechaIngreso.getText();
-        String fechaSalida = FechaSalida.getText();
+    if (lblFoto.getIcon() == null) {
+        JOptionPane.showMessageDialog(this, "Debe seleccionar una foto del preso", 
+            "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
-        String condicion = Condicion.getText();
-        String seccionAsignada = SeccionAsignada.getText();
-        String nivelDeRiesgo = NivelRiesgo.getText();
-        String nivelDeSeguridad = NivelSeguridad.getText();//
-        String sentencia = Sentencia.getText();
-        byte numeroDeExpediente = Byte.parseByte(NumeroExpediente.getText());
-        //
-        String nombreDelito = NombreDelito.getText();
-        String codigoDelito = Codigo.getText();
-        String articuloLey = ArticuloLey.getText();
-        String gravedad = Gravedad.getText();
-        String fechaComision = FechaComision.getText();
-        String descripcionDelito = DescripcionDelito.getText();
+    
+    String nombrePreso = InputNombrePreso.getText().trim();
+    String apellido = InputApellidoPreso.getText().trim();
+    int edad = Integer.parseInt(InputEdadPreso.getText().trim());
+    String nacionalidad = InputNacionalidadPreso.getText().trim();
+    String sexo = InputSexoPreso.getSelectedItem().toString();
+    float estatura = Float.parseFloat(InputEstaturaPreso.getText().trim());
+    float peso = Float.parseFloat(InputPesoPreso.getText().trim());
+    
+    String tipoSangre = TipoSangreCombobox.getSelectedItem().toString();
+    String identificacion = InputIdentificacionPreso.getText().trim();
 
+    LocalDate fechaIngreso = LocalDate.parse(FechaIngreso.getText().trim());
+    LocalDate fechaSalida = LocalDate.parse(FechaSalida.getText().trim());
 
+    String condicion = Condicion.getText().trim();
+    String seccionAsignada = SeccionAsignada.getText().trim();
+    String nivelDeRiesgo = NivelRiesgo.getText().trim();
+    String nivelDeSeguridad = NivelSeguridad.getText().trim();
+    byte sentencia = Byte.parseByte(Sentencia.getText().trim());
+    byte numeroDeExpediente = Byte.parseByte(NumeroExpediente.getText().trim());
+
+    String nombreDelito = NombreDelito.getText().trim();
+    int codigoDelito = Integer.parseInt(Codigo.getText().trim());
+    String articuloLey = ArticuloLey.getText().trim();
+    String gravedad = Gravedad.getText().trim();
+    LocalDate fechaComision = LocalDate.parse(FechaComision.getText().trim());
+    String descripcionDelito = DescripcionDelito.getText().trim();
+
+    Delito delito = new Delito(codigoDelito, nombreDelito, articuloLey, gravedad, descripcionDelito, fechaComision);
+    
+
+    Preso preso = new Preso(
+        nombrePreso, apellido, edad, 0, sexo, nacionalidad, identificacion,
+        estatura, peso, delito, numeroDeExpediente,
+        fechaIngreso, fechaSalida,
+        nivelDeSeguridad, condicion, sentencia,
+        seccionAsignada, false, nivelDeRiesgo, 0, tipoSangre, null
+    );
+
+    PresoDAO presoDAO = new PresoDAO();
+     
+    boolean guardado = presoDAO.guardarPreso(preso, selectedImageFile);
+    
+    
+    
+    if (guardado) {
+        limpiarFormulario();
+        
+        cargarDatosEnTabla();
+        
+        JOptionPane.showMessageDialog(this, "Preso añadido correctamente.");
+        OficialDeRegistroView.setSelectedIndex(0);
+    } else {
+        JOptionPane.showMessageDialog(this, "Error al guardar el preso.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(this, "Error en los formatos numéricos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+} catch (DateTimeParseException e) {
+    JOptionPane.showMessageDialog(this, "Error en el formato de fecha: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(this, "Error inesperado: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    e.printStackTrace();
+}
                 }//GEN-LAST:event_AñadirPresoActionPerformed
 
+    private void limpiarFormulario() {
+    InputNombrePreso.setText("");
+    InputApellidoPreso.setText("");
+    InputEdadPreso.setText("");
+    InputIdentificacionPreso.setText("");
+    InputSexoPreso.setSelectedItem(0);
+    InputNacionalidadPreso.setText("");
+    InputEstaturaPreso.setText("");
+    InputPesoPreso.setText("");
+    TipoSangreCombobox.setSelectedItem(0);
+    lblFoto.setIcon(null);
+    
+    SeccionAsignada.setText("");
+    NivelSeguridad.setText("");
+    NivelRiesgo.setText("");
+    FechaIngreso.setText("");
+    NumeroExpediente.setText("");
+    Sentencia.setText("");
+    FechaSalida.setText("");
+    Condicion.setText("");
+    
+    NombreDelito.setText("");
+    Codigo.setText("");
+    ArticuloLey.setText("");
+    Gravedad.setText("");
+    FechaComision.setText("");
+    DescripcionDelito.setText("");
+    
+    TabbedAñadirInformacionGeneral.setSelectedIndex(0);
+}
+    
+    
     private void Siguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Siguiente1ActionPerformed
 
         TabbedAñadirInformacionGeneral.setSelectedIndex(1);
@@ -1517,6 +1913,32 @@ public class OficialDeRegistro extends javax.swing.JFrame {
     private void NumeroExpedienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NumeroExpedienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_NumeroExpedienteActionPerformed
+
+    private void SelectorSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectorSeccionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SelectorSeccionActionPerformed
+
+    private void botonRegresarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegresarMouseClicked
+
+    }//GEN-LAST:event_botonRegresarMouseClicked
+
+    private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
+        
+        OficialDeRegistroView.setSelectedIndex(0);
+
+    }//GEN-LAST:event_botonRegresarActionPerformed
+
+    private void BotonCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonCerrarSesionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonCerrarSesionActionPerformed
+
+    private void TipoSangreComboboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoSangreComboboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoSangreComboboxActionPerformed
+
+    private void InputSexoPresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InputSexoPresoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_InputSexoPresoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -1548,16 +1970,61 @@ public class OficialDeRegistro extends javax.swing.JFrame {
                 new OficialDeRegistro().setVisible(true);
             }
         });
+}
+
+ private void cargarDatosEnTabla() {
+    DefaultTableModel modelo = (DefaultTableModel) TablaPresos.getModel();
+    modelo.setRowCount(0); 
+    
+    PresoDAO presoDAO = new PresoDAO();
+    List<Preso> presos = presoDAO.cargarTodos();
+    
+    for (Preso preso : presos) {
+        ImageIcon foto = null;
+        if (preso.getFotoPath() != null && !preso.getFotoPath().isEmpty()) {
+            foto = cargarImagenPreso(preso.getFotoPath());
+        } else {
+            foto = new ImageIcon(getClass().getResource("/images/default_profile.png"));
+        }
+        
+        modelo.addRow(new Object[]{
+            foto,
+            preso.getId(),
+            preso.getNombre(),
+            preso.getApellido(),
+            preso.getEdad(),
+            preso.getIdentificacion(),
+            preso.getNacionalidad(),
+            preso.getCeldaAsignada()
+        });
     }
+    
+    TablaPresos.revalidate();
+    TablaPresos.repaint();
+}
+
+private ImageIcon cargarImagenPreso(String path) {
+    try {
+        Image img = ImageIO.read(new File(path));
+        return new ImageIcon(img.getScaledInstance(50, 50, Image.SCALE_SMOOTH));
+    } catch (Exception e) {
+        return new ImageIcon(getClass().getResource("/images/default_profile.png"));
+    }
+}   
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ArticuloLey;
     private javax.swing.JButton AñadirPreso;
     private javax.swing.JTextField BarraDeBusquedaPreso;
     private javax.swing.JButton BotonCerrarSesion;
+    private javax.swing.JLabel CodExpe;
     private javax.swing.JTextField Codigo;
     private javax.swing.JTextField Condicion;
+    private javax.swing.JLabel DescripDelito;
     private javax.swing.JTextArea DescripcionDelito;
+    private javax.swing.JLabel Estado;
+    private javax.swing.JLabel FechaAper;
     private javax.swing.JTextField FechaComision;
     private javax.swing.JTextField FechaIngreso;
     private javax.swing.JTextField FechaSalida;
@@ -1567,13 +2034,14 @@ public class OficialDeRegistro extends javax.swing.JFrame {
     private javax.swing.JTextField InputApellidoPreso;
     private javax.swing.JTextField InputEdadPreso;
     private javax.swing.JTextField InputEstaturaPreso;
-    private javax.swing.JTextField InputGrupoSanguineoPreso;
     private javax.swing.JTextField InputIdentificacionPreso;
     private javax.swing.JTextField InputNacionalidadPreso;
     private javax.swing.JTextField InputNombrePreso;
     private javax.swing.JTextField InputPesoPreso;
-    private javax.swing.JTextField InputSexoPreso;
+    private javax.swing.JComboBox<String> InputSexoPreso;
+    private javax.swing.JLabel Juzgado;
     private javax.swing.JLabel LabelApellidoIG;
+    private javax.swing.JLabel LabelDatosgenerales;
     private javax.swing.JLabel LabelEdadIG;
     private javax.swing.JLabel LabelFotoOficialDeRegistro;
     private javax.swing.JLabel LabelIdentificacionIG;
@@ -1587,15 +2055,18 @@ public class OficialDeRegistro extends javax.swing.JFrame {
     private javax.swing.JTextField NivelSeguridad;
     private javax.swing.JTextField NombreDelito;
     private javax.swing.JTextField NumeroExpediente;
+    private javax.swing.JLabel ObservacionesConducta;
     private javax.swing.JTabbedPane OficialDeRegistroView;
     private javax.swing.JPanel PanelAñadirPresoBase;
     private javax.swing.JPanel PanelAñadirPresoTitulo;
+    private javax.swing.JPanel PanelDatosGenerales;
     private javax.swing.JPanel PanelInfoBasicaODR;
     private javax.swing.JPanel PanelIngresarDelito;
     private javax.swing.JPanel PanelPerfilBase;
     private javax.swing.JPanel PanelPerfilTitulo;
     private javax.swing.JPanel PanelPresosTitulo;
     private javax.swing.JPanel PanelTablaPresoBase;
+    private javax.swing.JLabel RegistroNum;
     private javax.swing.JTextField SeccionAsignada;
     private javax.swing.JComboBox<String> SelectorSeccion;
     private javax.swing.JTextField Sentencia;
@@ -1604,10 +2075,11 @@ public class OficialDeRegistro extends javax.swing.JFrame {
     private javax.swing.JPanel SobrePanelEleccionBase;
     private javax.swing.JTabbedPane TabbedAñadirInformacionGeneral;
     private javax.swing.JTable TablaPresos;
+    private javax.swing.JComboBox<String> TipoSangreCombobox;
+    private javax.swing.JButton botonRegresar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1632,20 +2104,30 @@ public class OficialDeRegistro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
+    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -1657,6 +2139,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1667,18 +2150,21 @@ public class OficialDeRegistro extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator12;
     private javax.swing.JSeparator jSeparator13;
     private javax.swing.JSeparator jSeparator14;
-    private javax.swing.JSeparator jSeparator15;
     private javax.swing.JSeparator jSeparator16;
     private javax.swing.JSeparator jSeparator17;
-    private javax.swing.JSeparator jSeparator18;
     private javax.swing.JSeparator jSeparator19;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator20;
+    private javax.swing.JSeparator jSeparator21;
+    private javax.swing.JSeparator jSeparator22;
+    private javax.swing.JSeparator jSeparator23;
     private javax.swing.JSeparator jSeparator24;
     private javax.swing.JSeparator jSeparator25;
     private javax.swing.JSeparator jSeparator26;
@@ -1689,18 +2175,24 @@ public class OficialDeRegistro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator30;
     private javax.swing.JSeparator jSeparator31;
     private javax.swing.JSeparator jSeparator32;
+    private javax.swing.JSeparator jSeparator33;
+    private javax.swing.JSeparator jSeparator34;
+    private javax.swing.JSeparator jSeparator35;
     private javax.swing.JSeparator jSeparator36;
     private javax.swing.JSeparator jSeparator37;
     private javax.swing.JSeparator jSeparator38;
     private javax.swing.JSeparator jSeparator39;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator40;
+    private javax.swing.JSeparator jSeparator41;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblFoto;
     private javax.swing.JPopupMenu ppMenuTablaPresos;
     // End of variables declaration//GEN-END:variables
 }
+
