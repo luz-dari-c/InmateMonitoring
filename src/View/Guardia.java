@@ -13,7 +13,7 @@ public class Guardia extends javax.swing.JFrame {
     /**
      * Creates new form Guardia
      */
-    public Guardia() {
+    public Guardia(String nombres, String apellidos, String correos, String cedula, String cargo, String turnos, String nacionalidades, String edades) {
         initComponents();
     }
 
@@ -72,7 +72,7 @@ public class Guardia extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Guardia().setVisible(true);
+                new Guardia(nombres, apellidos, correos, cedula, cargo, turnos, nacionalidades, edades).setVisible(true);
             }
         });
     }

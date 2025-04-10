@@ -23,8 +23,7 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        textoSombra usuario = new textoSombra("Ingrese su usuario", FieldUsuario);
-        textoSombra contraseña = new textoSombra("Ingrese su contraseña", Password);
+        
         // Posiciones destino (ajústalas a tu diseño actual)
 
 
@@ -48,11 +47,9 @@ public class Login extends javax.swing.JFrame {
         txtPassword = new javax.swing.JLabel();
         txtSignIn = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        FieldUsuario = new View.TextField();
-        Password = new View.PasswordField();
-        button1 = new View.Button();
         lblCandado = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -88,25 +85,14 @@ public class Login extends javax.swing.JFrame {
         });
         jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 440, 40));
 
-        FieldUsuario.setShadowColor(new java.awt.Color(204, 204, 255));
-        jPanel2.add(FieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 400, -1));
-        jPanel2.add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 400, -1));
-
-        button1.setBackground(new java.awt.Color(0, 51, 102));
-        button1.setForeground(new java.awt.Color(255, 255, 255));
-        button1.setText("Ingresar");
-        button1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 160, -1));
-
         lblCandado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picures/Diseño_sin_título__4_-removebg-preview (2)_1.png"))); // NOI18N
         jPanel2.add(lblCandado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picures/Diseño_sin_título__6_-removebg-preview (1).png"))); // NOI18N
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 190, -1, -1));
+
+        jButton1.setText("jButton1");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 20, 610, 510));
 
@@ -129,27 +115,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
-        String emails = FieldUsuario.getText().trim();
-        String passwords = new String(Password.getPassword());
-
-        if (emails.isEmpty() || passwords.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Email y constraseña son requeridos", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = usuarioDAO.validarCredenciales(emails, passwords);
-
-        if (usuario != null) {
-            if (usuarioDAO.esDirector(usuario)) {
-                JOptionPane.showMessageDialog(this, "Bienvenido Director", "Login Exitoso", JOptionPane.INFORMATION_MESSAGE);
-                new Director().setVisible(true);
-                this.dispose();
-
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos", "Error de Login", JOptionPane.ERROR_MESSAGE);
-        }
+       
     }//GEN-LAST:event_button1ActionPerformed
 
     /**
@@ -188,9 +154,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private View.TextField FieldUsuario;
-    private View.PasswordField Password;
-    private View.Button button1;
+    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;

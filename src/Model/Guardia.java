@@ -1,44 +1,59 @@
-
 package Model;
 
-
-import java.time.LocalDate;
-
-public class Guardia extends Persona {
-
-    private String placa;
-    private String rango;
+public class Guardia {
+    private String nombres;
+    private String apellidos;
+    private String correos;
+    private String cedula;
     private String cargo;
-    private LocalDate fechaIngreso;
-    private String turno;
-    private Seccion seccion;
-    private String tipoDeContrato;
+    private String turnos;
+    private String nacionalidades;
+    private String edades;
 
-    public Guardia(String nombre, String apellido, int edad, int id, String sexo, String nacionalidad, String identificacion, String placa, String rango, String cargo, LocalDate fechaIngreso, String turno, Seccion seccion, String tipoDeContrato) {
-        super(nombre, apellido, edad, id, sexo, nacionalidad, identificacion);
-        this.placa = placa;
-        this.rango = rango;
+    public Guardia(String nombres, String apellidos, String correos, String cedula,
+                   String cargo, String turnos, String nacionalidades, String edades) {
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.correos = correos;
+        this.cedula = cedula;
         this.cargo = cargo;
-        this.fechaIngreso = fechaIngreso;
-        this.turno = turno;
-        this.seccion = seccion;
-        this.tipoDeContrato = tipoDeContrato;
+        this.turnos = turnos;
+        this.nacionalidades = nacionalidades;
+        this.edades = edades;
     }
 
-    public String getPlaca() {
-        return placa;
+    // getters y setters si los necesitas
+
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setPlaca(String placa) {
-        this.placa = placa;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getRango() {
-        return rango;
+    public String getApellidos() {
+        return apellidos;
     }
 
-    public void setRango(String rango) {
-        this.rango = rango;
+    public void setApellidos(String apellidos) {
+        this.apellidos = apellidos;
+    }
+
+    public String getCorreos() {
+        return correos;
+    }
+
+    public void setCorreos(String correos) {
+        this.correos = correos;
+    }
+
+    public String getCedula() {
+        return cedula;
+    }
+
+    public void setCedula(String cedula) {
+        this.cedula = cedula;
     }
 
     public String getCargo() {
@@ -49,35 +64,28 @@ public class Guardia extends Persona {
         this.cargo = cargo;
     }
 
-    public LocalDate getFechaIngreso() {
-        return fechaIngreso;
+    public String getTurnos() {
+        return turnos;
     }
 
-    public void setFechaIngreso(LocalDate fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
+    public void setTurnos(String turnos) {
+        this.turnos = turnos;
     }
 
-    public String getTurno() {
-        return turno;
+    public String getNacionalidades() {
+        return nacionalidades;
     }
 
-    public void setTurno(String turno) {
-        this.turno = turno;
+    public void setNacionalidades(String nacionalidades) {
+        this.nacionalidades = nacionalidades;
     }
 
-    public Seccion getSeccion() {
-        return seccion;
+    public String getEdades() {
+        return edades;
     }
 
-    public void setSeccion(Seccion seccion) {
-        this.seccion = seccion;
+    public void setEdades(String edades) {
+        this.edades = edades;
     }
-
-    public String getTipoDeContrato() {
-        return tipoDeContrato;
-    }
-
-    public void setTipoDeContrato(String tipoDeContrato) {
-        this.tipoDeContrato = tipoDeContrato;
-    }
+    
 }

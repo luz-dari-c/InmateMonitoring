@@ -1,0 +1,15 @@
+{
+    "guardias": [
+        {
+
+            "nombre": "",
+            "apellido": "",
+            "cedula": "",
+            "cargo": "",
+            "turno": "",
+            "edad": "",
+            "nacionalidad": ""
+        }
+
+    ]
+}

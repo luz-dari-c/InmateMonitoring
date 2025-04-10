@@ -1,10 +1,15 @@
 package View;
 
+import DAO.DirectorDAO;
+import Model.Guardia;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import javax.swing.JOptionPane;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author gameV
@@ -14,8 +19,77 @@ public class Director extends javax.swing.JFrame {
     /**
      * Creates new form Director
      */
-    public Director() {
-        initComponents();
+    
+
+    private void guardarMedicoDesdeFormulario() {
+    try {
+        String nombres = fieldNombre.getText().trim();
+        String apellidos = fieldApellido.getText().trim();
+        String correos = correo.getText().trim();
+        String cedula = fieldCedula.getText().trim();
+        String cargo = (String) comboBoxCarga.getSelectedItem();
+        String turnos = (String) turno.getSelectedItem();
+        String nacionalidades = nacionalidad.getText().trim();
+        String edades = edad.getText().trim();
+
+        if (nombres.isEmpty() || apellidos.isEmpty() || correos.isEmpty()
+                || cedula.isEmpty() || turnos.isEmpty() || cargo.isEmpty()
+                || nacionalidades.isEmpty() || edades.isEmpty()) {
+            JOptionPane.showMessageDialog(this,
+                    "Todos los campos son obligatorios",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // 🔥 CREAR UN GUARDIA (no un Director)
+        Guardia guardia = new Guardia(
+                nombres,
+                apellidos,
+                correos,
+                cedula,
+                cargo,
+                turnos,
+                nacionalidades,
+                edades
+        );
+
+        // 🔥 GUARDARLO USANDO DirectorDAO
+        DirectorDAO dao = new DirectorDAO();
+        dao.guardarGuardia(guardia);
+
+        JOptionPane.showMessageDialog(this,
+                "Guardia guardado exitosamente",
+                "Éxito",
+                JOptionPane.INFORMATION_MESSAGE);
+
+        // limpiarFormulario(); // Si quieres limpiar después
+
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(this,
+                "Error al guardar guardia: " + e.getMessage(),
+                "Error",
+                JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+
+
+            DirectorDAO dao = new DirectorDAO(); // crea un guardia con sus datos
+            dao.guardarGuardia(guardia);
+            JOptionPane.showMessageDialog(this,
+                    "Médico guardado exitosamente",
+                    "Éxito",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+            //limpiarFormulario();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,
+                    "Error al guardar médico: " + e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     /**
@@ -31,9 +105,6 @@ public class Director extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel6 = new RoundedPanel(30);
-        button1 = new View.Button();
-        button2 = new View.Button();
-        button3 = new View.Button();
         jPanel7 = new RoundedPanel(30);
         FotoDirector1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -46,12 +117,14 @@ public class Director extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         comboBoxCarga = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        button4 = new View.Button();
+        turno = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
-        fieldApellido1 = new javax.swing.JTextField();
-        fieldNombre1 = new javax.swing.JTextField();
+        nacionalidad = new javax.swing.JTextField();
+        edad = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        correo = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
 
@@ -66,16 +139,6 @@ public class Director extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(119, 155, 204));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        button1.setText("Cambiar enfermera");
-        jPanel6.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 200, -1));
-
-        button2.setText("Agregar Guardia");
-        jPanel6.add(button2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 200, -1));
-
-        button3.setText("Agregar Personal de control");
-        jPanel6.add(button3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 200, -1));
-
         jPanel2.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 130, 480, 280));
 
         jPanel7.setBackground(new java.awt.Color(119, 155, 204));
@@ -117,23 +180,31 @@ public class Director extends javax.swing.JFrame {
         comboBoxCarga.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supervisor general", "Subinspector", "Custodio" }));
         jPanel3.add(comboBoxCarga, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 240, -1));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diurno", "Nocturno" }));
-        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 240, -1));
-
-        button4.setBackground(new java.awt.Color(0, 0, 51));
-        button4.setForeground(new java.awt.Color(255, 255, 255));
-        button4.setText("Agregar");
-        jPanel3.add(button4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 290, 110, -1));
+        turno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diurno", "Nocturno" }));
+        jPanel3.add(turno, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 240, -1));
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Nacionalidad");
         jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 246, 90, 20));
-        jPanel3.add(fieldApellido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 240, -1));
-        jPanel3.add(fieldNombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 240, -1));
+        jPanel3.add(nacionalidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, 240, -1));
+        jPanel3.add(edad, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 240, -1));
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Edad");
         jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 210, 70, -1));
+
+        jButton1.setText("Guardar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, -1, -1));
+
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Correo:");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 280, 70, 20));
+        jPanel3.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 280, 240, 30));
 
         jTabbedPane1.addTab("AgregarPolicia", jPanel3);
 
@@ -159,6 +230,10 @@ public class Director extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,24 +265,20 @@ public class Director extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Director().setVisible(true);
+                new Director(nombres, apellidos, correos, cedula, cargo, turnos, nacionalidades, edades).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FotoDirector1;
-    private View.Button button1;
-    private View.Button button2;
-    private View.Button button3;
-    private View.Button button4;
     private javax.swing.JComboBox<String> comboBoxCarga;
+    private javax.swing.JTextField correo;
+    private javax.swing.JTextField edad;
     private javax.swing.JTextField fieldApellido;
-    private javax.swing.JTextField fieldApellido1;
     private javax.swing.JTextField fieldCedula;
     private javax.swing.JTextField fieldNombre;
-    private javax.swing.JTextField fieldNombre1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -215,6 +286,7 @@ public class Director extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -223,5 +295,7 @@ public class Director extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField nacionalidad;
+    private javax.swing.JComboBox<String> turno;
     // End of variables declaration//GEN-END:variables
 }

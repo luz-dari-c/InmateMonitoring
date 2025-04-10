@@ -72,8 +72,6 @@ public class Enfermera extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
-        button1 = new View.Button();
-        button2 = new View.Button();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -285,16 +283,6 @@ public class Enfermera extends javax.swing.JFrame {
 
         jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 680, 270));
 
-        button1.setBackground(new java.awt.Color(0, 0, 51));
-        button1.setForeground(new java.awt.Color(255, 255, 255));
-        button1.setText("Finalizar diagnostico");
-        jPanel5.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 480, 150, 40));
-
-        button2.setBackground(new java.awt.Color(0, 0, 0));
-        button2.setForeground(new java.awt.Color(255, 255, 255));
-        button2.setText("Descargar PDF del diagnostico");
-        jPanel5.add(button2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, -1, -1));
-
         viewEnfermera.addTab("tab3", jPanel5);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -411,8 +399,6 @@ public class Enfermera extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel EnfermeraFotolbl1;
     private javax.swing.JLabel NombreEnfermeralbl;
-    private View.Button button1;
-    private View.Button button2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
