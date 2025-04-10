@@ -100,7 +100,7 @@ public class Login extends javax.swing.JFrame {
                 button1ActionPerformed(evt);
             }
         });
-        jPanel2.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 150, -1));
+        jPanel2.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 350, 160, -1));
 
         lblCandado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picures/Diseño_sin_título__4_-removebg-preview (2)_1.png"))); // NOI18N
         jPanel2.add(lblCandado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, -1, 50));
