@@ -4,7 +4,15 @@
  */
 package View;
 
+import Informacion.ActualizarInformacionPDC;
+import Informacion.ExpedientePreso;
+import Informacion.HistorialDeSanciones;
+import Informacion.HistorialMedicoPreso;
+import Informacion.HistorialVisitasPreso;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JMenuItem;
 
 /**
  *
@@ -17,6 +25,111 @@ public class PersonalDeControl extends javax.swing.JFrame {
      */
     public PersonalDeControl() {
         initComponents();
+        InicializarMenu();
+        
+        BotonParaLlevarPanelActualizar.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ActualizarInformacionPDC panelActualizar = new ActualizarInformacionPDC();
+            PersonalDeControl.this.setContentPane(panelActualizar);
+            PersonalDeControl.this.revalidate();
+            PersonalDeControl.this.repaint();
+        }
+    });
+    }
+    
+    
+
+    public void InicializarMenu() {
+        JMenuItem historialVisita = new JMenuItem("Historial de visitas");
+        JMenuItem historialMedicoPreso = new JMenuItem("Historial Medico");
+        JMenuItem historialDeSanciones = new JMenuItem("Historial de sanciones");
+        JMenuItem informacionPreso = new JMenuItem("Informacion preso");
+        JMenuItem expediente = new JMenuItem("Expediente");
+
+        ppMenuTablaPresosPDC.add(historialVisita);
+        ppMenuTablaPresosPDC.add(historialMedicoPreso);
+        ppMenuTablaPresosPDC.add(historialDeSanciones);
+        ppMenuTablaPresosPDC.add(informacionPreso);
+        ppMenuTablaPresosPDC.add(expediente);
+
+        TablaPresosPDC.setComponentPopupMenu(ppMenuTablaPresosPDC);
+
+        expediente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ExpedientePreso exp = new ExpedientePreso();
+                exp.setSize(800, 600);
+                exp.setVisible(true);
+
+                PersonalDeControl.this.setContentPane(exp);
+                PersonalDeControl.this.revalidate();
+                PersonalDeControl.this.repaint();
+
+            }
+
+        });
+
+        informacionPreso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                InformacionPreso inf = new InformacionPreso();
+                inf.setSize(800, 600);
+                inf.setVisible(true);
+
+                PersonalDeControl.this.setContentPane(inf);
+                PersonalDeControl.this.revalidate();
+                PersonalDeControl.this.repaint();
+
+            }
+
+        });
+
+        historialDeSanciones.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HistorialDeSanciones hisS = new HistorialDeSanciones();
+                hisS.setSize(800, 600);
+                hisS.setVisible(true);
+
+                PersonalDeControl.this.setContentPane(hisS);
+                PersonalDeControl.this.revalidate();
+                PersonalDeControl.this.repaint();
+
+            }
+
+        });
+
+        historialMedicoPreso.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HistorialMedicoPreso hisM = new HistorialMedicoPreso();
+                hisM.setSize(800, 600);
+                hisM.setVisible(true);
+
+                PersonalDeControl.this.setContentPane(hisM);
+                PersonalDeControl.this.revalidate();
+                PersonalDeControl.this.repaint();
+
+            }
+
+        });
+
+        historialVisita.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HistorialVisitasPreso hisV = new HistorialVisitasPreso();
+                hisV.setSize(800, 600);
+                hisV.setVisible(true);
+
+                PersonalDeControl.this.setContentPane(hisV);
+                PersonalDeControl.this.revalidate();
+                PersonalDeControl.this.repaint();
+
+            }
+
+        });
+
     }
 
     /**
@@ -28,7 +141,8 @@ public class PersonalDeControl extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        ppMenuTablaPresosPDC = new javax.swing.JPopupMenu();
+        PanelBotones = new javax.swing.JPanel();
         PresosPDC = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         PerfilPDC = new javax.swing.JPanel();
@@ -36,18 +150,106 @@ public class PersonalDeControl extends javax.swing.JFrame {
         VisitasPDC = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         PersonalDeControlView = new javax.swing.JTabbedPane();
-        PanelPerfilPDC = new javax.swing.JPanel();
         PanelListaPresosPDC = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         TablaPresosPDC = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        BarraDeBusquedaPresoPDC = new javax.swing.JTextField();
+        BuscarPresoPorId = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        PanelPerfilPDC = new javax.swing.JPanel();
+        jPanel2 = new RoundedPanel(30);
+        LabelFotoPDC = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator1 = new javax.swing.JSeparator();
+        TurnoPDC = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jSeparator25 = new javax.swing.JSeparator();
+        FechaDeIngresoPDC = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        jPanel4 = new RoundedPanel(30);
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jSeparator9 = new javax.swing.JSeparator();
+        jLabel14 = new javax.swing.JLabel();
+        IdentificacionPDC = new javax.swing.JLabel();
+        Nombre2PDC1 = new javax.swing.JLabel();
+        NacionalidadPDC = new javax.swing.JLabel();
+        ApellidoPDC2 = new javax.swing.JLabel();
+        EdadPDC = new javax.swing.JLabel();
+        SexoPDC1 = new javax.swing.JLabel();
+        BotonParaLlevarPanelActualizar = new javax.swing.JButton();
+        jSeparator8 = new javax.swing.JSeparator();
         PanelAñadirVisitaPDC = new javax.swing.JPanel();
+        PanelAñadirVisitante = new RoundedPanel(30);
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jSeparator10 = new javax.swing.JSeparator();
+        jSeparator11 = new javax.swing.JSeparator();
+        jSeparator12 = new javax.swing.JSeparator();
+        jSeparator13 = new javax.swing.JSeparator();
+        jSeparator14 = new javax.swing.JSeparator();
+        jSeparator15 = new javax.swing.JSeparator();
+        jSeparator16 = new javax.swing.JSeparator();
+        jSeparator17 = new javax.swing.JSeparator();
+        jSeparator18 = new javax.swing.JSeparator();
+        NombreVisitante = new javax.swing.JTextField();
+        EdadVisitante = new javax.swing.JTextField();
+        ApellidoVisitante = new javax.swing.JTextField();
+        IdentificacionVisitante = new javax.swing.JTextField();
+        SexoVisitante = new javax.swing.JTextField();
+        RequiereSupervision = new javax.swing.JTextField();
+        NacionalidadVisitante = new javax.swing.JTextField();
+        RelacionConPreso = new javax.swing.JTextField();
+        BotonAñadirVisitante = new javax.swing.JButton();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jPanel6 = new RoundedPanel(30);
+        jLabel27 = new javax.swing.JLabel();
+        jSeparator19 = new javax.swing.JSeparator();
+        IdentificacionPresoVisita = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        BotonAñadirVisita = new javax.swing.JButton();
+        jSeparator20 = new javax.swing.JSeparator();
+        jSeparator21 = new javax.swing.JSeparator();
+        jSeparator22 = new javax.swing.JSeparator();
+        jSeparator23 = new javax.swing.JSeparator();
+        jSeparator24 = new javax.swing.JSeparator();
+        FechaVisita = new javax.swing.JTextField();
+        LugarVisita = new javax.swing.JTextField();
+        HoraVisita = new javax.swing.JTextField();
+        DuracionVisita = new javax.swing.JTextField();
+        TipoVisita = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jLabel31 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanelBotones.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         PresosPDC.setBackground(new java.awt.Color(29, 35, 51));
         PresosPDC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -68,7 +270,7 @@ public class PersonalDeControl extends javax.swing.JFrame {
         jLabel2.setText("PRESOS");
         PresosPDC.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
-        jPanel1.add(PresosPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 340, 60));
+        PanelBotones.add(PresosPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 0, 340, 60));
 
         PerfilPDC.setBackground(new java.awt.Color(29, 35, 51));
         PerfilPDC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -89,7 +291,7 @@ public class PersonalDeControl extends javax.swing.JFrame {
         jLabel1.setText("PERFIL");
         PerfilPDC.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, -1, -1));
 
-        jPanel1.add(PerfilPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 60));
+        PanelBotones.add(PerfilPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 60));
 
         VisitasPDC.setBackground(new java.awt.Color(29, 35, 51));
         VisitasPDC.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -110,13 +312,9 @@ public class PersonalDeControl extends javax.swing.JFrame {
         jLabel3.setText("AÑADIR VISITA");
         VisitasPDC.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 20, -1, -1));
 
-        jPanel1.add(VisitasPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 360, 60));
+        PanelBotones.add(VisitasPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 360, 60));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 60));
-
-        PanelPerfilPDC.setBackground(new java.awt.Color(255, 255, 255));
-        PanelPerfilPDC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        PersonalDeControlView.addTab("Perfil", PanelPerfilPDC);
+        getContentPane().add(PanelBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 60));
 
         PanelListaPresosPDC.setBackground(new java.awt.Color(255, 255, 255));
         PanelListaPresosPDC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -147,6 +345,11 @@ public class PersonalDeControl extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        TablaPresosPDC.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaPresosPDCMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(TablaPresosPDC);
         if (TablaPresosPDC.getColumnModel().getColumnCount() > 0) {
             TablaPresosPDC.getColumnModel().getColumn(0).setResizable(false);
@@ -159,39 +362,397 @@ public class PersonalDeControl extends javax.swing.JFrame {
         }
 
         PanelListaPresosPDC.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 87, 940, 400));
-        PanelListaPresosPDC.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 620, 30));
+        PanelListaPresosPDC.add(BarraDeBusquedaPresoPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, 620, 30));
 
-        jButton2.setText("Buscar");
-        PanelListaPresosPDC.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 30, -1, 30));
+        BuscarPresoPorId.setText("Buscar");
+        BuscarPresoPorId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarPresoPorIdActionPerformed(evt);
+            }
+        });
+        PanelListaPresosPDC.add(BuscarPresoPorId, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 30, -1, 30));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seccion A", "Seccion B", "Seccion C" }));
+        PanelListaPresosPDC.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 90, 30));
 
         PersonalDeControlView.addTab("Presos", PanelListaPresosPDC);
 
-        PanelAñadirVisitaPDC.setBackground(new java.awt.Color(255, 255, 255));
+        PanelPerfilPDC.setBackground(new java.awt.Color(255, 255, 255));
+        PanelPerfilPDC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout PanelAñadirVisitaPDCLayout = new javax.swing.GroupLayout(PanelAñadirVisitaPDC);
-        PanelAñadirVisitaPDC.setLayout(PanelAñadirVisitaPDCLayout);
-        PanelAñadirVisitaPDCLayout.setHorizontalGroup(
-            PanelAñadirVisitaPDCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1050, Short.MAX_VALUE)
-        );
-        PanelAñadirVisitaPDCLayout.setVerticalGroup(
-            PanelAñadirVisitaPDCLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 535, Short.MAX_VALUE)
-        );
+        jPanel2.setBackground(new java.awt.Color(180, 180, 195));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel2.add(LabelFotoPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 170, 180));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 2, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel4.setText("Personal de control");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 140, 20));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("Fecha Ingreso");
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
+
+        jButton1.setText("Cerrar sesión");
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 430, 110, 30));
+
+        jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, 380, 10));
+
+        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 210, 10));
+        jPanel2.add(TurnoPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 210, 30));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setText("Cargo");
+        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, -1, -1));
+
+        jLabel32.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Turno");
+        jPanel2.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
+
+        jSeparator25.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel2.add(jSeparator25, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 210, 10));
+        jPanel2.add(FechaDeIngresoPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 380, 210, 30));
+
+        PanelPerfilPDC.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 290, 490));
+
+        jPanel3.setBackground(new java.awt.Color(139, 139, 157));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanelPerfilPDC.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 70));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("INFORMACIÓN PERSONAL");
+        PanelPerfilPDC.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 100, -1, -1));
+
+        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        PanelPerfilPDC.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 200, 370, 10));
+
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        PanelPerfilPDC.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 240, 370, 10));
+
+        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
+        PanelPerfilPDC.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 370, 10));
+
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
+        PanelPerfilPDC.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 370, 10));
+
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
+        PanelPerfilPDC.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 360, 370, 10));
+
+        jPanel4.setBackground(new java.awt.Color(180, 180, 195));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Nombre:");
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Apellido:");
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Identificación:");
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Edad:");
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Sexo:");
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Nacionalidad:");
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 230, -1, -1));
+
+        jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel4.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 370, 10));
+        jPanel4.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 310, -1));
+        jPanel4.add(IdentificacionPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 260, 30));
+        jPanel4.add(Nombre2PDC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 16, 260, 30));
+        jPanel4.add(NacionalidadPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 260, 30));
+        jPanel4.add(ApellidoPDC2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 260, 30));
+        jPanel4.add(EdadPDC, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 260, 30));
+        jPanel4.add(SexoPDC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 260, 30));
+
+        PanelPerfilPDC.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 470, 290));
+
+        BotonParaLlevarPanelActualizar.setText("Actualizar información");
+        BotonParaLlevarPanelActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonParaLlevarPanelActualizarActionPerformed(evt);
+            }
+        });
+        PanelPerfilPDC.add(BotonParaLlevarPanelActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 470, 170, 30));
+
+        jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
+        PanelPerfilPDC.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 400, 370, 10));
+
+        PersonalDeControlView.addTab("Perfil", PanelPerfilPDC);
+
+        PanelAñadirVisitaPDC.setBackground(new java.awt.Color(255, 255, 255));
+        PanelAñadirVisitaPDC.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PanelAñadirVisitante.setBackground(new java.awt.Color(180, 180, 195));
+        PanelAñadirVisitante.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Nombre:");
+        PanelAñadirVisitante.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 100, -1, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Apellido:");
+        PanelAñadirVisitante.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, -1, -1));
+
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("Identificación:");
+        PanelAñadirVisitante.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+
+        jLabel18.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Edad:");
+        PanelAñadirVisitante.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, -1, -1));
+
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Sexo:");
+        PanelAñadirVisitante.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
+
+        jLabel20.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("Requiere supervision:");
+        PanelAñadirVisitante.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 380, -1, -1));
+
+        jLabel23.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel23.setText("Nacionalidad:");
+        PanelAñadirVisitante.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, -1));
+
+        jLabel24.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("Relación con el preso:");
+        PanelAñadirVisitante.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, -1, -1));
+
+        jLabel22.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setText("Información del visitante");
+        PanelAñadirVisitante.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
+        PanelAñadirVisitante.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 290, 10));
+        PanelAñadirVisitante.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 400, 380, 10));
+        PanelAñadirVisitante.add(jSeparator12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 380, 10));
+        PanelAñadirVisitante.add(jSeparator13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 380, 10));
+        PanelAñadirVisitante.add(jSeparator14, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 380, 10));
+        PanelAñadirVisitante.add(jSeparator15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 240, 380, 10));
+        PanelAñadirVisitante.add(jSeparator16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 280, 380, 10));
+        PanelAñadirVisitante.add(jSeparator17, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, 380, 10));
+        PanelAñadirVisitante.add(jSeparator18, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 380, 10));
+
+        NombreVisitante.setBackground(new java.awt.Color(180, 180, 195));
+        NombreVisitante.setBorder(null);
+        NombreVisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NombreVisitanteActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitante.add(NombreVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 310, 30));
+
+        EdadVisitante.setBackground(new java.awt.Color(180, 180, 195));
+        EdadVisitante.setBorder(null);
+        PanelAñadirVisitante.add(EdadVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 330, 30));
+
+        ApellidoVisitante.setBackground(new java.awt.Color(180, 180, 195));
+        ApellidoVisitante.setBorder(null);
+        PanelAñadirVisitante.add(ApellidoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, 310, 30));
+
+        IdentificacionVisitante.setBackground(new java.awt.Color(180, 180, 195));
+        IdentificacionVisitante.setBorder(null);
+        PanelAñadirVisitante.add(IdentificacionVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, 280, 30));
+
+        SexoVisitante.setBackground(new java.awt.Color(180, 180, 195));
+        SexoVisitante.setBorder(null);
+        PanelAñadirVisitante.add(SexoVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 330, 30));
+
+        RequiereSupervision.setBackground(new java.awt.Color(180, 180, 195));
+        RequiereSupervision.setBorder(null);
+        RequiereSupervision.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RequiereSupervisionActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitante.add(RequiereSupervision, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 370, 220, 30));
+
+        NacionalidadVisitante.setBackground(new java.awt.Color(180, 180, 195));
+        NacionalidadVisitante.setBorder(null);
+        PanelAñadirVisitante.add(NacionalidadVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 280, 30));
+
+        RelacionConPreso.setBackground(new java.awt.Color(180, 180, 195));
+        RelacionConPreso.setBorder(null);
+        RelacionConPreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RelacionConPresoActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitante.add(RelacionConPreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 220, 30));
+
+        BotonAñadirVisitante.setText("Añadir visitante");
+        BotonAñadirVisitante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAñadirVisitanteActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitante.add(BotonAñadirVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, -1, -1));
+
+        PanelAñadirVisitaPDC.add(PanelAñadirVisitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 480, 460));
+
+        jLabel21.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setText("Información de la visita");
+        PanelAñadirVisitaPDC.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 60, -1, -1));
+
+        jLabel25.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("Tipo de visita:");
+        PanelAñadirVisitaPDC.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 340, -1, -1));
+
+        jLabel26.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Duracion de la visita:");
+        PanelAñadirVisitaPDC.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 300, -1, -1));
+
+        jLabel29.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setText("Hora de la visita:");
+        PanelAñadirVisitaPDC.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 260, -1, -1));
+
+        jLabel30.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel30.setText("Lugar de la visita:");
+        PanelAñadirVisitaPDC.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 380, -1, -1));
+
+        jPanel6.setBackground(new java.awt.Color(180, 180, 195));
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel27.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Indentificación del preso:");
+        jPanel6.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
+        jPanel6.add(jSeparator19, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 400, 10));
+
+        IdentificacionPresoVisita.setBackground(new java.awt.Color(180, 180, 195));
+        IdentificacionPresoVisita.setBorder(null);
+        IdentificacionPresoVisita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IdentificacionPresoVisitaActionPerformed(evt);
+            }
+        });
+        jPanel6.add(IdentificacionPresoVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 20, 220, 30));
+
+        PanelAñadirVisitaPDC.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, 430, 80));
+
+        jLabel28.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setText("Fecha de la visita:");
+        PanelAñadirVisitaPDC.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 220, -1, -1));
+
+        BotonAñadirVisita.setText("Añadir visita");
+        BotonAñadirVisita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonAñadirVisitaActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitaPDC.add(BotonAñadirVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 420, 110, 30));
+        PanelAñadirVisitaPDC.add(jSeparator20, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 400, 400, 10));
+        PanelAñadirVisitaPDC.add(jSeparator21, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 400, 10));
+        PanelAñadirVisitaPDC.add(jSeparator22, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 280, 400, 10));
+        PanelAñadirVisitaPDC.add(jSeparator23, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 320, 400, 10));
+        PanelAñadirVisitaPDC.add(jSeparator24, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 360, 400, 10));
+
+        FechaVisita.setBackground(new java.awt.Color(255, 255, 255));
+        FechaVisita.setBorder(null);
+        FechaVisita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FechaVisitaActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitaPDC.add(FechaVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 210, 260, 30));
+
+        LugarVisita.setBackground(new java.awt.Color(255, 255, 255));
+        LugarVisita.setBorder(null);
+        LugarVisita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LugarVisitaActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitaPDC.add(LugarVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 370, 270, 30));
+
+        HoraVisita.setBackground(new java.awt.Color(255, 255, 255));
+        HoraVisita.setBorder(null);
+        HoraVisita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HoraVisitaActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitaPDC.add(HoraVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, 280, 30));
+
+        DuracionVisita.setBackground(new java.awt.Color(255, 255, 255));
+        DuracionVisita.setBorder(null);
+        DuracionVisita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DuracionVisitaActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitaPDC.add(DuracionVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 290, 250, 30));
+
+        TipoVisita.setBackground(new java.awt.Color(255, 255, 255));
+        TipoVisita.setBorder(null);
+        TipoVisita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TipoVisitaActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitaPDC.add(TipoVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 330, 300, 30));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2" }));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+        PanelAñadirVisitaPDC.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, -1, -1));
+
+        jLabel31.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setText("Cantidad de visitantes");
+        PanelAñadirVisitaPDC.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, -1, -1));
 
         PersonalDeControlView.addTab("Añadir visita", PanelAñadirVisitaPDC);
 
-        getContentPane().add(PersonalDeControlView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 17, -1, 570));
+        getContentPane().add(PersonalDeControlView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 17, 1050, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void PerfilPDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PerfilPDCMouseClicked
-        PersonalDeControlView.setSelectedIndex(0);
+        PersonalDeControlView.setSelectedIndex(1);
     }//GEN-LAST:event_PerfilPDCMouseClicked
 
     private void PresosPDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PresosPDCMouseClicked
-        PersonalDeControlView.setSelectedIndex(1);
+        PersonalDeControlView.setSelectedIndex(0);
     }//GEN-LAST:event_PresosPDCMouseClicked
 
     private void VisitasPDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisitasPDCMouseClicked
@@ -219,6 +780,78 @@ public class PersonalDeControl extends javax.swing.JFrame {
     private void VisitasPDCMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisitasPDCMouseExited
         VisitasPDC.setBackground(new Color(29, 35, 51));
     }//GEN-LAST:event_VisitasPDCMouseExited
+
+    private void NombreVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NombreVisitanteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NombreVisitanteActionPerformed
+
+    private void IdentificacionPresoVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentificacionPresoVisitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IdentificacionPresoVisitaActionPerformed
+
+    private void RequiereSupervisionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RequiereSupervisionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RequiereSupervisionActionPerformed
+
+    private void RelacionConPresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RelacionConPresoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RelacionConPresoActionPerformed
+
+    private void FechaVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FechaVisitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FechaVisitaActionPerformed
+
+    private void LugarVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LugarVisitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_LugarVisitaActionPerformed
+
+    private void HoraVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HoraVisitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HoraVisitaActionPerformed
+
+    private void DuracionVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DuracionVisitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DuracionVisitaActionPerformed
+
+    private void TipoVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TipoVisitaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TipoVisitaActionPerformed
+
+    private void BuscarPresoPorIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPresoPorIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BuscarPresoPorIdActionPerformed
+
+    private void TablaPresosPDCMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaPresosPDCMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TablaPresosPDCMouseClicked
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void BotonParaLlevarPanelActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonParaLlevarPanelActualizarActionPerformed
+ 
+    }//GEN-LAST:event_BotonParaLlevarPanelActualizarActionPerformed
+
+    private void BotonAñadirVisitanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAñadirVisitanteActionPerformed
+        String nombre = NombreVisitante.getText();
+        String Apellido = ApellidoVisitante.getText();
+        String identificacion = IdentificacionVisitante.getText();
+        String nacionalidad = NacionalidadVisitante.getText();
+        String relacion = RelacionConPreso.getText();
+        String textoSupervision = RequiereSupervision.getText().trim().toLowerCase();
+        boolean supervision = textoSupervision.equals("sí") || textoSupervision.equals("no");
+
+
+    }//GEN-LAST:event_BotonAñadirVisitanteActionPerformed
+
+    private void BotonAñadirVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAñadirVisitaActionPerformed
+        String identificacionPreso = IdentificacionPresoVisita.getText();
+        String fecha = FechaVisita.getText();
+        String hora = HoraVisita.getText();
+        String duracion = DuracionVisita.getText();
+        String tipo = TipoVisita.getText();
+        String lugar = LugarVisita.getText();    }//GEN-LAST:event_BotonAñadirVisitaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,20 +889,109 @@ public class PersonalDeControl extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ApellidoPDC2;
+    private javax.swing.JTextField ApellidoVisitante;
+    private javax.swing.JTextField BarraDeBusquedaPresoPDC;
+    private javax.swing.JButton BotonAñadirVisita;
+    private javax.swing.JButton BotonAñadirVisitante;
+    private javax.swing.JButton BotonParaLlevarPanelActualizar;
+    private javax.swing.JButton BuscarPresoPorId;
+    private javax.swing.JTextField DuracionVisita;
+    private javax.swing.JLabel EdadPDC;
+    private javax.swing.JTextField EdadVisitante;
+    private javax.swing.JLabel FechaDeIngresoPDC;
+    private javax.swing.JTextField FechaVisita;
+    private javax.swing.JTextField HoraVisita;
+    private javax.swing.JLabel IdentificacionPDC;
+    private javax.swing.JTextField IdentificacionPresoVisita;
+    private javax.swing.JTextField IdentificacionVisitante;
+    private javax.swing.JLabel LabelFotoPDC;
+    private javax.swing.JTextField LugarVisita;
+    private javax.swing.JLabel NacionalidadPDC;
+    private javax.swing.JTextField NacionalidadVisitante;
+    private javax.swing.JLabel Nombre2PDC1;
+    private javax.swing.JTextField NombreVisitante;
     private javax.swing.JPanel PanelAñadirVisitaPDC;
+    private javax.swing.JPanel PanelAñadirVisitante;
+    private javax.swing.JPanel PanelBotones;
     private javax.swing.JPanel PanelListaPresosPDC;
     private javax.swing.JPanel PanelPerfilPDC;
     private javax.swing.JPanel PerfilPDC;
     private javax.swing.JTabbedPane PersonalDeControlView;
     private javax.swing.JPanel PresosPDC;
+    private javax.swing.JTextField RelacionConPreso;
+    private javax.swing.JTextField RequiereSupervision;
+    private javax.swing.JLabel SexoPDC1;
+    private javax.swing.JTextField SexoVisitante;
     private javax.swing.JTable TablaPresosPDC;
+    private javax.swing.JTextField TipoVisita;
+    private javax.swing.JLabel TurnoPDC;
     private javax.swing.JPanel VisitasPDC;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
+    private javax.swing.JSeparator jSeparator14;
+    private javax.swing.JSeparator jSeparator15;
+    private javax.swing.JSeparator jSeparator16;
+    private javax.swing.JSeparator jSeparator17;
+    private javax.swing.JSeparator jSeparator18;
+    private javax.swing.JSeparator jSeparator19;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator20;
+    private javax.swing.JSeparator jSeparator21;
+    private javax.swing.JSeparator jSeparator22;
+    private javax.swing.JSeparator jSeparator23;
+    private javax.swing.JSeparator jSeparator24;
+    private javax.swing.JSeparator jSeparator25;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JPopupMenu ppMenuTablaPresosPDC;
     // End of variables declaration//GEN-END:variables
 }
