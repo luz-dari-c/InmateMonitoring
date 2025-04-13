@@ -21,76 +21,7 @@ public class Director extends javax.swing.JFrame {
      */
     
 
-    private void guardarMedicoDesdeFormulario() {
-    try {
-        String nombres = fieldNombre.getText().trim();
-        String apellidos = fieldApellido.getText().trim();
-        String correos = correo.getText().trim();
-        String cedula = fieldCedula.getText().trim();
-        String cargo = (String) comboBoxCarga.getSelectedItem();
-        String turnos = (String) turno.getSelectedItem();
-        String nacionalidades = nacionalidad.getText().trim();
-        String edades = edad.getText().trim();
-
-        if (nombres.isEmpty() || apellidos.isEmpty() || correos.isEmpty()
-                || cedula.isEmpty() || turnos.isEmpty() || cargo.isEmpty()
-                || nacionalidades.isEmpty() || edades.isEmpty()) {
-            JOptionPane.showMessageDialog(this,
-                    "Todos los campos son obligatorios",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        // 🔥 CREAR UN GUARDIA (no un Director)
-        Guardia guardia = new Guardia(
-                nombres,
-                apellidos,
-                correos,
-                cedula,
-                cargo,
-                turnos,
-                nacionalidades,
-                edades
-        );
-
-        // 🔥 GUARDARLO USANDO DirectorDAO
-        DirectorDAO dao = new DirectorDAO();
-        dao.guardarGuardia(guardia);
-
-        JOptionPane.showMessageDialog(this,
-                "Guardia guardado exitosamente",
-                "Éxito",
-                JOptionPane.INFORMATION_MESSAGE);
-
-        // limpiarFormulario(); // Si quieres limpiar después
-
-    } catch (Exception e) {
-        JOptionPane.showMessageDialog(this,
-                "Error al guardar guardia: " + e.getMessage(),
-                "Error",
-                JOptionPane.ERROR_MESSAGE);
-    }
-}
-
-
-
-            DirectorDAO dao = new DirectorDAO(); // crea un guardia con sus datos
-            dao.guardarGuardia(guardia);
-            JOptionPane.showMessageDialog(this,
-                    "Médico guardado exitosamente",
-                    "Éxito",
-                    JOptionPane.INFORMATION_MESSAGE);
-
-            //limpiarFormulario();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,
-                    "Error al guardar médico: " + e.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-
-    }
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -265,7 +196,7 @@ public class Director extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Director(nombres, apellidos, correos, cedula, cargo, turnos, nacionalidades, edades).setVisible(true);
+                new Director().setVisible(true);
             }
         });
     }

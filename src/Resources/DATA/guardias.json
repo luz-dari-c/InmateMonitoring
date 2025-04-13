@@ -1,15 +1,76 @@
 {
-    "guardias": [
-        {
-
-            "nombre": "",
-            "apellido": "",
-            "cedula": "",
-            "cargo": "",
-            "turno": "",
-            "edad": "",
-            "nacionalidad": ""
-        }
-
-    ]
+  "guardias": [
+    {
+      "nombre": "qwertyu",
+      "apellido": "adadad",
+      "cedula": "123224224",
+      "cargo": "Supervisor general",
+      "turno": "Diurno",
+      "edad": 12,
+      "nacionalidad": "dadadS",
+      "correo": "adadadadawadadaw",
+      "fechaNacimiento": "2000-04-06",
+      "rutaImagen": "imagenes_guardias/123224224_123224224_Captura_de_pantalla_2024-03-06_145910.png"
+    },
+    {
+      "nombre": "qqewqqw",
+      "apellido": "qwqwq",
+      "cedula": "12343434343",
+      "cargo": "Subinspector",
+      "turno": "Diurno",
+      "edad": 34,
+      "nacionalidad": "aeqeqeq",
+      "correo": "dadadadad",
+      "fechaNacimiento": "2000-04-27",
+      "rutaImagen": "imagenes_guardias/12343434343_12343434343_Captura_de_pantalla_2024-03-06_151619.png"
+    },
+    {
+      "nombre": "Sharlok",
+      "apellido": "Alcazar",
+      "cedula": "12309876",
+      "cargo": "Subinspector",
+      "turno": "Nocturno",
+      "edad": 64,
+      "nacionalidad": "caca",
+      "correo": "ppopo",
+      "fechaNacimiento": "2000-04-20",
+      "rutaImagen": "imagenes_guardias/12309876_12309876_Captura_de_pantalla_2024-03-06_145925.png"
+    },
+    {
+      "nombre": "Celina",
+      "apellido": "Restrepo",
+      "cedula": "98765432",
+      "cargo": "Supervisor general",
+      "turno": "Diurno",
+      "edad": 34,
+      "nacionalidad": "qqeq",
+      "correo": "ccccc",
+      "fechaNacimiento": "2025-04-04",
+      "rutaImagen": "imagenes_guardias/98765432_98765432_Captura_de_pantalla_2024-03-06_150737.png"
+    },
+    {
+      "nombre": "Haider",
+      "apellido": "Pabon",
+      "cedula": "0986123",
+      "cargo": "Supervisor general",
+      "turno": "Diurno",
+      "edad": 96,
+      "nacionalidad": "Peruano",
+      "correo": "Hola@gmail.com",
+      "fechaNacimiento": "2000-04-04",
+      "rutaImagen": "imagenes_guardias/0986123_0986123_Captura_de_pantalla_2024-03-07_130911.png"
+    },
+    {
+      "nombre": "prueba",
+      "apellido": "funcionamiento",
+      "cedula": "0987652",
+      "cargo": "Subinspector",
+      "turno": "Nocturno",
+      "edad": 96,
+      "nacionalidad": "csxaxa",
+      "correo": "@.com",
+      "fechaNacimiento": "2000-04-24",
+      "rutaImagen": "imagenes_guardias/0987652_0987652_Captura_de_pantalla_2024-03-06_150451.png"
+    }
+  ]
 }
