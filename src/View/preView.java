@@ -25,6 +25,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,12 +36,15 @@ import javax.swing.table.DefaultTableModel;
 public class preView extends javax.swing.JFrame {
 
     private String rutaImagenFinal = ""; // Variable para almacenar la ruta de la imagen seleccionada
+    private GuardiaDAO guardiaDAO = new GuardiaDAO();
+    private File imagenSeleccionadaModificar = null;
 
     /**
      * Creates new form preView
      */
     public preView() {
         initComponents();
+        guardiaDAO = new GuardiaDAO();
         tablaGuardias.setModel(cargarGuardiasConImagen());
         ajustarImagenesTabla();
 
@@ -90,7 +94,7 @@ public class preView extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaGuardias = new javax.swing.JTable();
         ViewDirector = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        panelModificar = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         txtCorreoMod = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -109,15 +113,11 @@ public class preView extends javax.swing.JFrame {
         fondoFoto1 = new javax.swing.JPanel();
         previewFoto1 = new javax.swing.JLabel();
         chooseImg1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        txtCorreoMod1 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        txtNacionalidadMod1 = new javax.swing.JTextField();
-        txtEdadMod1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtCedulaMod = new javax.swing.JTextField();
+        fechaNacimientoChooserModificar = new com.toedter.calendar.JDateChooser();
+        txtFechaNacimiento1 = new javax.swing.JLabel();
 
         Modificar.setText("Modificar");
         Modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -287,8 +287,8 @@ public class preView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("ViewDirector", ViewDirector);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelModificar.setBackground(new java.awt.Color(255, 255, 255));
+        panelModificar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton2.setText("Modificar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -296,52 +296,52 @@ public class preView extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 110, -1));
-        jPanel2.add(txtCorreoMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 240, 30));
+        panelModificar.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 110, -1));
+        panelModificar.add(txtCorreoMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 290, 240, 30));
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Correo:");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 70, 20));
+        panelModificar.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 70, 20));
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Nacionalidad");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 90, 20));
-        jPanel2.add(txtNacionalidadMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 240, -1));
+        panelModificar.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 90, 20));
+        panelModificar.add(txtNacionalidadMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 240, -1));
 
         txtEdadMod.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtEdadModKeyTyped(evt);
             }
         });
-        jPanel2.add(txtEdadMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 240, -1));
+        panelModificar.add(txtEdadMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 220, 240, -1));
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Edad");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 70, -1));
+        panelModificar.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, 70, -1));
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Turno:");
-        jPanel2.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 70, 20));
+        panelModificar.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 180, 70, 20));
 
         cmbTurnoMod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diurno", "Nocturno" }));
-        jPanel2.add(cmbTurnoMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 240, -1));
+        panelModificar.add(cmbTurnoMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 180, 240, -1));
 
         cmbCargoMod.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supervisor general", "Subinspector", "Custodio" }));
-        jPanel2.add(cmbCargoMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 240, -1));
+        panelModificar.add(cmbCargoMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 240, -1));
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Cargo:");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 70, 30));
+        panelModificar.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 140, 70, 30));
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Apellido:");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 70, -1));
-        jPanel2.add(txtApellidoMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 240, -1));
-        jPanel2.add(txtNombreMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, 240, -1));
+        panelModificar.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 70, 70, -1));
+        panelModificar.add(txtApellidoMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 70, 240, -1));
+        panelModificar.add(txtNombreMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 40, 240, -1));
 
         txtName1.setForeground(new java.awt.Color(0, 0, 0));
         txtName1.setText("Nombre:");
-        jPanel2.add(txtName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 30, 70, -1));
+        panelModificar.add(txtName1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 70, -1));
 
         javax.swing.GroupLayout fondoFoto1Layout = new javax.swing.GroupLayout(fondoFoto1);
         fondoFoto1.setLayout(fondoFoto1Layout);
@@ -360,7 +360,7 @@ public class preView extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        jPanel2.add(fondoFoto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 80, 170, 200));
+        panelModificar.add(fondoFoto1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 130, 170, 200));
 
         chooseImg1.setText("Seleccionar");
         chooseImg1.addActionListener(new java.awt.event.ActionListener() {
@@ -368,43 +368,23 @@ public class preView extends javax.swing.JFrame {
                 chooseImg1ActionPerformed(evt);
             }
         });
-        jPanel2.add(chooseImg1, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 310, -1, -1));
-
-        jButton3.setText("Contratar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 360, 110, -1));
-        jPanel2.add(txtCorreoMod1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 240, 30));
-
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Nacionalidad");
-        jPanel2.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 90, 20));
-
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("Correo:");
-        jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 70, 20));
-        jPanel2.add(txtNacionalidadMod1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, 240, -1));
-
-        txtEdadMod1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtEdadMod1KeyTyped(evt);
-            }
-        });
-        jPanel2.add(txtEdadMod1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 240, -1));
+        panelModificar.add(chooseImg1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 360, -1, -1));
 
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Seleccionar nueva imagen: ");
-        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, -1, -1));
+        panelModificar.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 100, -1, -1));
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cedula:");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 60, -1));
-        jPanel2.add(txtCedulaMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 240, -1));
+        panelModificar.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 60, -1));
+        panelModificar.add(txtCedulaMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 240, -1));
+        panelModificar.add(fechaNacimientoChooserModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 50, 240, -1));
 
-        jTabbedPane1.addTab("ModficarGuardia", jPanel2);
+        txtFechaNacimiento1.setForeground(new java.awt.Color(0, 0, 0));
+        txtFechaNacimiento1.setText("Fecha de nacimiento:");
+        panelModificar.add(txtFechaNacimiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, -1, -1));
+
+        jTabbedPane1.addTab("ModficarGuardia", panelModificar);
 
         jPanel1.add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 1040, 460));
 
@@ -487,12 +467,66 @@ public class preView extends javax.swing.JFrame {
         tablaGuardias.setRowHeight(80); // Altura de cada fila para que quepa la imagen
     }
 
+    public void cargarDatosGuardiaParaModificar(String cedula) {
+        // Elimina la línea que declara guardiaDAO aquí
+        Guardia guardia = guardiaDAO.buscarGuardiaPorCedula(cedula);
+
+        if (guardia != null) {
+            // Mostrar los datos en los campos (pero hacer la cédula no editable)
+            txtNombreMod.setText(guardia.getNombre());
+            txtApellidoMod.setText(guardia.getApellido());
+            txtCedulaMod.setText(guardia.getCedula());
+            txtCedulaMod.setEditable(false); // Hacer que la cédula no sea editable
+
+            // Seleccionar el cargo y turno correctos en los combobox
+            cmbCargoMod.setSelectedItem(guardia.getCargo());
+            cmbTurnoMod.setSelectedItem(guardia.getTurno());
+
+            txtEdadMod.setText(String.valueOf(guardia.getEdad()));
+            txtNacionalidadMod.setText(guardia.getNacionalidad());
+            txtCorreoMod.setText(guardia.getCorreo());
+
+            // Formatear y mostrar la fecha de nacimiento
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = sdf.parse(guardia.getFechaNacimiento());
+                fechaNacimientoChooserModificar.setDate(fecha);
+            } catch (Exception e) {
+                System.out.println("Error al parsear la fecha: " + e.getMessage());
+            }
+            
+             // Manejo seguro de la fecha al cargar
+        if (guardia.getFechaNacimiento() != null && !guardia.getFechaNacimiento().isEmpty()) {
+            try {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date fecha = sdf.parse(guardia.getFechaNacimiento());
+                fechaNacimientoChooserModificar.setDate(fecha);
+            } catch (Exception e) {
+                System.out.println("Error al parsear la fecha: " + e.getMessage());
+                fechaNacimientoChooserModificar.setDate(null);
+            }
+        } else {
+            fechaNacimientoChooserModificar.setDate(null);
+        }
+
+            // Mostrar la imagen si existe
+            if (guardia.getRutaImagen() != null && !guardia.getRutaImagen().isEmpty()) {
+                try {
+                    ImageIcon icon = new ImageIcon(guardia.getRutaImagen());
+                    Image img = icon.getImage().getScaledInstance(previewFoto1.getWidth(),
+                            previewFoto1.getHeight(),
+                            Image.SCALE_SMOOTH);
+                    previewFoto1.setIcon(new ImageIcon(img));
+                } catch (Exception e) {
+                    System.out.println("Error al cargar la imagen: " + e.getMessage());
+                }
+            }
+
+        }
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        
-
-        
 // Aquí pones el resto de tu código si el correo es válido
         if (rutaImagenFinal.isEmpty()) {
             JOptionPane.showMessageDialog(null, "¡Debes seleccionar una imagen para el guardia!");
@@ -510,12 +544,11 @@ public class preView extends javax.swing.JFrame {
         String nacionalidad = txtNacionalidad.getText();
         String correo = txtCorreo.getText();
         String fechaNacimiento = sdf.format(fechaNacimientoChooser.getDate());
-        
+
         if (!correo.contains("@") || !correo.endsWith(".com")) {
             JOptionPane.showMessageDialog(null, "Por favor, ingresa un correo válido que contenga '@' y termine en '.com'.", "Correo inválido", JOptionPane.WARNING_MESSAGE);
             return; // no deja avanzar
         }
-
 
         // Crear objeto Guardia
         Guardia guardia = new Guardia(nombre, apellido, cedula, cargo, turno, edad, nacionalidad, correo, fechaNacimiento, rutaImagenFinal);
@@ -589,57 +622,159 @@ public class preView extends javax.swing.JFrame {
     private void txtCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCedulaKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isDigit(c) && c != '\b') {
-    evt.consume(); // no deja que se escriba
+            evt.consume(); // no deja que se escriba
 
-    // solo muestra el mensaje si no es backspace
-    if (c != '\b') {
-        JOptionPane.showMessageDialog(null, "Solo se permiten números.", "Entrada inválida", JOptionPane.WARNING_MESSAGE);
-    }
+            // solo muestra el mensaje si no es backspace
+            if (c != '\b') {
+                JOptionPane.showMessageDialog(null, "Solo se permiten números.", "Entrada inválida", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_txtCedulaKeyTyped
 
     private void txtEdadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyTyped
         char c = evt.getKeyChar();
         if (!Character.isDigit(c) && c != '\b') {
-    evt.consume(); // no deja que se escriba
+            evt.consume(); // no deja que se escriba
 
-    // solo muestra el mensaje si no es backspace
-    if (c != '\b') {
-        JOptionPane.showMessageDialog(null, "Solo se permiten números.", "Entrada inválida", JOptionPane.WARNING_MESSAGE);
-    }
+            // solo muestra el mensaje si no es backspace
+            if (c != '\b') {
+                JOptionPane.showMessageDialog(null, "Solo se permiten números.", "Entrada inválida", JOptionPane.WARNING_MESSAGE);
+            }
         }
     }//GEN-LAST:event_txtEdadKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
- 
+       if (txtCedulaMod.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "No se ha cargado ningún guardia para modificar", 
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
 
+    // Crear objeto con los nuevos datos
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String fechaNacimiento = (fechaNacimientoChooserModificar.getDate() != null) ? 
+                            sdf.format(fechaNacimientoChooserModificar.getDate()) : "";
+    
+    Guardia nuevosDatos = new Guardia(
+        txtNombreMod.getText(),
+        txtApellidoMod.getText(),
+        txtCedulaMod.getText(),
+        cmbCargoMod.getSelectedItem().toString(),
+        cmbTurnoMod.getSelectedItem().toString(),
+        txtEdadMod.getText().isEmpty() ? 0 : Integer.parseInt(txtEdadMod.getText()),
+        txtNacionalidadMod.getText(),
+        txtCorreoMod.getText(),
+        fechaNacimiento,
+        null
+    );
+    
+    // Llamar al DAO para actualizar
+    if (guardiaDAO.actualizarGuardia(txtCedulaMod.getText(), nuevosDatos, imagenSeleccionadaModificar)) {
+        JOptionPane.showMessageDialog(this, "Guardia actualizado correctamente", 
+                                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        
+        // Actualizar la tabla
+        tablaGuardias.setModel(cargarGuardiasConImagen());
+        ajustarImagenesTabla();
+        
+        // Volver a la pestaña de visualización
+        jTabbedPane1.setSelectedComponent(MostrarGuardia);
+    } else {
+        JOptionPane.showMessageDialog(this, "Error al actualizar el guardia", 
+                                    "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void limpiarCamposModificacion() {
+        txtNombreMod.setText("");
+        txtApellidoMod.setText("");
+        txtCedulaMod.setText("");
+        txtCedulaMod.setEditable(true); // Volver a hacer editable para nueva búsqueda
+        cmbCargoMod.setSelectedIndex(0);
+        cmbTurnoMod.setSelectedIndex(0);
+        txtEdadMod.setText("");
+        txtNacionalidadMod.setText("");
+        txtCorreoMod.setText("");
+        fechaNacimientoChooserModificar.setDate(null);
+        previewFoto1.setIcon(null);
+        imagenSeleccionadaModificar = null;
+    }
 
     private void txtEdadModKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadModKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEdadModKeyTyped
 
     private void chooseImg1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseImg1ActionPerformed
-                                     
-   
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Seleccionar imagen del guardia");
 
+        // Filtrar solo archivos de imagen
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "Imágenes", "jpg", "jpeg", "png", "gif");
+        fileChooser.setFileFilter(filter);
+
+        int result = fileChooser.showOpenDialog(this);
+
+        if (result == JFileChooser.APPROVE_OPTION) {
+            imagenSeleccionadaModificar = fileChooser.getSelectedFile();
+
+            // Mostrar la imagen en el label
+            try {
+                ImageIcon icon = new ImageIcon(imagenSeleccionadaModificar.getAbsolutePath());
+                Image img = icon.getImage().getScaledInstance(previewFoto1.getWidth(),
+                        previewFoto1.getHeight(),
+                        Image.SCALE_SMOOTH);
+                previewFoto1.setIcon(new ImageIcon(img));
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al cargar la imagen",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_chooseImg1ActionPerformed
 
+    private void actualizarTablaGuardias() {
+        // Obtener la lista actualizada de guardias
+        List<Guardia> guardias = guardiaDAO.obtenerGuardias();
+
+        // Limpiar el modelo de la tabla
+        DefaultTableModel modelo = (DefaultTableModel) tablaGuardias.getModel();
+        modelo.setRowCount(0);
+
+        // Llenar la tabla con los nuevos datos
+        for (Guardia guardia : guardias) {
+            Object[] fila = {
+                guardia.getNombre(),
+                guardia.getApellido(),
+                guardia.getCedula(),
+                guardia.getCargo(),
+                guardia.getTurno(),
+                guardia.getEdad(),
+                guardia.getNacionalidad(),
+                guardia.getCorreo(),
+                guardia.getFechaNacimiento()
+            };
+            modelo.addRow(fila);
+        }
+    }
+
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-       
-   
+
+      int filaSeleccionada = tablaGuardias.getSelectedRow();
     
-
-
+    if (filaSeleccionada >= 0) {
+        // Obtener la cédula del guardia seleccionado (asumiendo que está en la columna 4)
+        String cedula = tablaGuardias.getValueAt(filaSeleccionada, 4).toString();
+        
+        // Cambiar al panel de modificación
+        jTabbedPane1.setSelectedComponent(panelModificar);
+        
+        // Cargar los datos del guardia en el formulario
+        cargarDatosGuardiaParaModificar(cedula);
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione un guardia para modificar", 
+                                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+    }
     }//GEN-LAST:event_ModificarActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void txtEdadMod1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadMod1KeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEdadMod1KeyTyped
 
     /**
      * @param args the command line arguments
@@ -689,11 +824,11 @@ public class preView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbTurno;
     private javax.swing.JComboBox<String> cmbTurnoMod;
     private com.toedter.calendar.JDateChooser fechaNacimientoChooser;
+    private com.toedter.calendar.JDateChooser fechaNacimientoChooserModificar;
     private javax.swing.JPanel fondoFoto;
     private javax.swing.JPanel fondoFoto1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -701,9 +836,7 @@ public class preView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -713,11 +846,11 @@ public class preView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JPanel panelModificar;
     private javax.swing.JLabel previewFoto;
     private javax.swing.JLabel previewFoto1;
     private javax.swing.JTable tablaGuardias;
@@ -727,15 +860,13 @@ public class preView extends javax.swing.JFrame {
     private javax.swing.JTextField txtCedulaMod;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtCorreoMod;
-    private javax.swing.JTextField txtCorreoMod1;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtEdadMod;
-    private javax.swing.JTextField txtEdadMod1;
     private javax.swing.JLabel txtFechaNacimiento;
+    private javax.swing.JLabel txtFechaNacimiento1;
     private javax.swing.JLabel txtImagen;
     private javax.swing.JTextField txtNacionalidad;
     private javax.swing.JTextField txtNacionalidadMod;
-    private javax.swing.JTextField txtNacionalidadMod1;
     private javax.swing.JLabel txtName;
     private javax.swing.JLabel txtName1;
     private javax.swing.JTextField txtNombre;
