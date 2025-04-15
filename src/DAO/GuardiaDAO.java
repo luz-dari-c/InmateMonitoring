@@ -23,42 +23,48 @@ public class GuardiaDAO {
     }
 
     public boolean guardarGuardia(Guardia guardia, File imagenSeleccionada) {
-        try {
-            // Verificar si el guardia tiene datos vacíos antes de guardar
-            if (guardia.getNombre().isEmpty() || guardia.getApellido().isEmpty() || guardia.getCedula().isEmpty()) {
-                System.out.println("Los datos del guardia están incompletos, no se guardará.");
-                return false;
-            }
-
-            // Copiar la imagen al directorio correspondiente
-            String nombreImagen = guardia.getCedula() + "_" + imagenSeleccionada.getName();
-            String rutaImagenFinal = RUTA_IMAGENES + nombreImagen;
-            Files.copy(imagenSeleccionada.toPath(), Paths.get(rutaImagenFinal), StandardCopyOption.REPLACE_EXISTING);
-            guardia.setRutaImagen(rutaImagenFinal);
-
-            // Obtener la lista de guardias actuales desde el archivo JSON
-            List<Guardia> lista = obtenerGuardias();
-
-            // Añadir el nuevo guardia a la lista
-            lista.add(guardia);
-
-            // Convertir la lista a JSON con formato bonito
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            String json = gson.toJson(Collections.singletonMap("guardias", lista));
-
-            // Escribir los datos JSON en el archivo
-            FileWriter fw = new FileWriter(RUTA_JSON);
-            fw.write(json);
-            fw.close();
-
-            System.out.println("Datos guardados correctamente en JSON: " + json);
-            return true;
-
-        } catch (IOException e) {
-            System.out.println("Error al guardar el guardia: " + e.getMessage());
+    try {
+        // Verificar si el guardia tiene datos vacíos antes de guardar
+        if (guardia.getNombre().isEmpty() || guardia.getApellido().isEmpty() || guardia.getCedula().isEmpty()) {
+            System.out.println("Los datos del guardia están incompletos, no se guardará.");
             return false;
         }
+        
+        // Validar que no exista un guardia con la misma cédula
+        if (existeGuardiaConCedula(guardia.getCedula())) {
+            System.out.println("Ya existe un guardia con la cédula: " + guardia.getCedula());
+            return false;
+        }
+
+        // Copiar la imagen al directorio correspondiente
+        String nombreImagen = guardia.getCedula() + "_" + imagenSeleccionada.getName();
+        String rutaImagenFinal = RUTA_IMAGENES + nombreImagen;
+        Files.copy(imagenSeleccionada.toPath(), Paths.get(rutaImagenFinal), StandardCopyOption.REPLACE_EXISTING);
+        guardia.setRutaImagen(rutaImagenFinal);
+
+        // Obtener la lista de guardias actuales desde el archivo JSON
+        List<Guardia> lista = obtenerGuardias();
+
+        // Añadir el nuevo guardia a la lista
+        lista.add(guardia);
+
+        // Convertir la lista a JSON con formato bonito
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(Collections.singletonMap("guardias", lista));
+
+        // Escribir los datos JSON en el archivo
+        FileWriter fw = new FileWriter(RUTA_JSON);
+        fw.write(json);
+        fw.close();
+
+        System.out.println("Datos guardados correctamente en JSON: " + json);
+        return true;
+
+    } catch (IOException e) {
+        System.out.println("Error al guardar el guardia: " + e.getMessage());
+        return false;
     }
+}
     
     
 
@@ -201,5 +207,55 @@ public Guardia buscarGuardiaPorCedula(String cedula) {
     return null;
 }
 
+public boolean existeGuardiaConCedula(String cedula) {
+    List<Guardia> guardias = obtenerGuardias();
+    for (Guardia guardia : guardias) {
+        if (guardia.getCedula().equals(cedula)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+public boolean eliminarGuardia(String cedula) {
+    try {
+        List<Guardia> guardias = obtenerGuardias();
+        Iterator<Guardia> iterator = guardias.iterator();
+        boolean encontrado = false;
+        
+        while (iterator.hasNext()) {
+            Guardia guardia = iterator.next();
+            if (guardia.getCedula().equals(cedula)) {
+                // Eliminar la imagen asociada si existe
+                if (guardia.getRutaImagen() != null && !guardia.getRutaImagen().isEmpty()) {
+                    try {
+                        Files.deleteIfExists(Paths.get(guardia.getRutaImagen()));
+                    } catch (IOException e) {
+                        System.err.println("Error al eliminar imagen: " + e.getMessage());
+                    }
+                }
+                iterator.remove();
+                encontrado = true;
+                break;
+            }
+        }
+        
+        if (!encontrado) {
+            return false;
+        }
+        
+        // Guardar los cambios en el JSON
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(Collections.singletonMap("guardias", guardias));
+        
+        try (FileWriter writer = new FileWriter(RUTA_JSON)) {
+            writer.write(json);
+            return true;
+        }
+    } catch (Exception e) {
+        System.err.println("Error al eliminar guardia: " + e.getMessage());
+        return false;
+    }
+}
 
 }

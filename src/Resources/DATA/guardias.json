@@ -71,6 +71,18 @@
       "correo": "@.com",
       "fechaNacimiento": "2000-04-24",
       "rutaImagen": "imagenes_guardias/0987652_0987652_Captura_de_pantalla_2024-03-06_150451.png"
+    },
+    {
+      "nombre": "Alcazar",
+      "apellido": "Gutierrez",
+      "cedula": "232456578",
+      "cargo": "Supervisor general",
+      "turno": "Diurno",
+      "edad": 45,
+      "nacionalidad": "",
+      "correo": "@gmail.com",
+      "fechaNacimiento": "2000-04-26",
+      "rutaImagen": "imagenes_guardias/232456578_12343434343_Captura_de_pantalla_2024-03-07_131815.png"
     }
   ]
 }

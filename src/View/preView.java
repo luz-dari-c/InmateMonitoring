@@ -128,6 +128,11 @@ public class preView extends javax.swing.JFrame {
         jPopupMenu1.add(Modificar);
 
         Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
         jPopupMenu1.add(Eliminar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -377,6 +382,8 @@ public class preView extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Cedula:");
         panelModificar.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 60, -1));
+
+        txtCedulaMod.setBackground(new java.awt.Color(153, 153, 153));
         panelModificar.add(txtCedulaMod, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 240, -1));
         panelModificar.add(fechaNacimientoChooserModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 50, 240, -1));
 
@@ -494,20 +501,20 @@ public class preView extends javax.swing.JFrame {
             } catch (Exception e) {
                 System.out.println("Error al parsear la fecha: " + e.getMessage());
             }
-            
-             // Manejo seguro de la fecha al cargar
-        if (guardia.getFechaNacimiento() != null && !guardia.getFechaNacimiento().isEmpty()) {
-            try {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date fecha = sdf.parse(guardia.getFechaNacimiento());
-                fechaNacimientoChooserModificar.setDate(fecha);
-            } catch (Exception e) {
-                System.out.println("Error al parsear la fecha: " + e.getMessage());
+
+            // Manejo seguro de la fecha al cargar
+            if (guardia.getFechaNacimiento() != null && !guardia.getFechaNacimiento().isEmpty()) {
+                try {
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                    Date fecha = sdf.parse(guardia.getFechaNacimiento());
+                    fechaNacimientoChooserModificar.setDate(fecha);
+                } catch (Exception e) {
+                    System.out.println("Error al parsear la fecha: " + e.getMessage());
+                    fechaNacimientoChooserModificar.setDate(null);
+                }
+            } else {
                 fechaNacimientoChooserModificar.setDate(null);
             }
-        } else {
-            fechaNacimientoChooserModificar.setDate(null);
-        }
 
             // Mostrar la imagen si existe
             if (guardia.getRutaImagen() != null && !guardia.getRutaImagen().isEmpty()) {
@@ -526,47 +533,91 @@ public class preView extends javax.swing.JFrame {
     }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+// 1. Primero validar campos vacíos y selección de imagen
+if (rutaImagenFinal.isEmpty()) {
+    JOptionPane.showMessageDialog(null, "¡Debes seleccionar una imagen para el guardia!");
+    return;
+}
 
-// Aquí pones el resto de tu código si el correo es válido
-        if (rutaImagenFinal.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "¡Debes seleccionar una imagen para el guardia!");
-            return; // Detener el flujo si no hay imagen seleccionada
-        }
+if (txtNombre.getText().trim().isEmpty() ||
+    txtApellido.getText().trim().isEmpty() ||
+    txtCedula.getText().trim().isEmpty() ||
+    txtEdad.getText().trim().isEmpty() || // Validar que no esté vacío ANTES de parseInt
+    txtNacionalidad.getText().trim().isEmpty() ||
+    txtCorreo.getText().trim().isEmpty() ||
+    fechaNacimientoChooser.getDate() == null) {
+    
+    JOptionPane.showMessageDialog(null, "Todos los campos son obligatorios", "Campos incompletos", JOptionPane.WARNING_MESSAGE);
+    return;
+}
 
-        // Obtener los datos del formulario
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        String cedula = txtCedula.getText();
-        String cargo = cmbCargo.getSelectedItem().toString();
-        String turno = cmbTurno.getSelectedItem().toString();
-        int edad = Integer.parseInt(txtEdad.getText());
-        String nacionalidad = txtNacionalidad.getText();
-        String correo = txtCorreo.getText();
-        String fechaNacimiento = sdf.format(fechaNacimientoChooser.getDate());
+// 2. Validar formato del correo
+if (!txtCorreo.getText().contains("@") || !txtCorreo.getText().endsWith(".com")) {
+    JOptionPane.showMessageDialog(null, "Por favor, ingresa un correo válido que contenga '@' y termine en '.com'.", "Correo inválido", JOptionPane.WARNING_MESSAGE);
+    return;
+}
 
-        if (!correo.contains("@") || !correo.endsWith(".com")) {
-            JOptionPane.showMessageDialog(null, "Por favor, ingresa un correo válido que contenga '@' y termine en '.com'.", "Correo inválido", JOptionPane.WARNING_MESSAGE);
-            return; // no deja avanzar
-        }
+// 3. Validar y convertir la edad
+int edad;
+try {
+    edad = Integer.parseInt(txtEdad.getText().trim());
+    if (edad <= 0 || edad > 120) {
+        JOptionPane.showMessageDialog(null, "Por favor, ingresa una edad válida (entre 1 y 120 años)", "Edad inválida", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(null, "La edad debe ser un número válido", "Edad inválida", JOptionPane.WARNING_MESSAGE);
+    return;
+}
 
-        // Crear objeto Guardia
-        Guardia guardia = new Guardia(nombre, apellido, cedula, cargo, turno, edad, nacionalidad, correo, fechaNacimiento, rutaImagenFinal);
+// 4. Validar cédula (solo números)
+if (!txtCedula.getText().trim().matches("\\d+")) {
+    JOptionPane.showMessageDialog(null, "La cédula debe contener solo números", "Cédula inválida", JOptionPane.WARNING_MESSAGE);
+    return;
+}
 
-        // Guardar el guardia en el archivo JSON (puedes cambiarlo por base de datos si es necesario)
-        GuardiaDAO dao = new GuardiaDAO();
-        boolean exito = dao.guardarGuardia(guardia, new File(rutaImagenFinal));
+// 5. Obtener los datos del formulario (SOLO SI PASÓ TODAS LAS VALIDACIONES)
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+String nombre = txtNombre.getText();
+String apellido = txtApellido.getText();
+String cedula = txtCedula.getText();
+String cargo = cmbCargo.getSelectedItem().toString();
+String turno = cmbTurno.getSelectedItem().toString();
+String nacionalidad = txtNacionalidad.getText();
+String correo = txtCorreo.getText();
+String fechaNacimiento = sdf.format(fechaNacimientoChooser.getDate());
 
-        // Mostrar mensaje según si se guardó correctamente o no
-        if (exito) {
-            JOptionPane.showMessageDialog(null, "Guardia guardado correctamente 🎉");
-        } else {
-            JOptionPane.showMessageDialog(null, "Error al guardar el guardia 😓");
-        }
+// 6. Verificar si la cédula ya existe
+GuardiaDAO dao = new GuardiaDAO();
+if (dao.existeGuardiaConCedula(cedula)) {
+    JOptionPane.showMessageDialog(null, "Ya existe un guardia con esta cédula", "Error", JOptionPane.ERROR_MESSAGE);
+    return;
+}
 
-        System.out.println("Ruta imagen: " + rutaImagenFinal);
+// 7. Crear y guardar el guardia
+Guardia guardia = new Guardia(nombre, apellido, cedula, cargo, turno, edad, nacionalidad, correo, fechaNacimiento, rutaImagenFinal);
+boolean exito = dao.guardarGuardia(guardia, new File(rutaImagenFinal));
 
+if (exito) {
+    JOptionPane.showMessageDialog(null, "Guardia guardado correctamente 🎉");
+    limpiarCampos();
+    tablaGuardias.setModel(cargarGuardiasConImagen());
+} else {
+    JOptionPane.showMessageDialog(null, "Error al guardar el guardia 😓");
+}
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void limpiarCampos() {
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtCedula.setText("");
+        txtEdad.setText("");
+        txtNacionalidad.setText("");
+        txtCorreo.setText("");
+        fechaNacimientoChooser.setDate(null);
+        previewFoto.setIcon(null);
+        // Limpiar también la ruta de la imagen si la tienes como variable
+    }
 
     private void chooseImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseImgActionPerformed
         JFileChooser chooser = new JFileChooser();
@@ -644,61 +695,47 @@ public class preView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEdadKeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       if (txtCedulaMod.getText().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "No se ha cargado ningún guardia para modificar", 
-                                    "Error", JOptionPane.ERROR_MESSAGE);
-        return;
-    }
+        if (txtCedulaMod.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No se ha cargado ningún guardia para modificar",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
-    // Crear objeto con los nuevos datos
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-    String fechaNacimiento = (fechaNacimientoChooserModificar.getDate() != null) ? 
-                            sdf.format(fechaNacimientoChooserModificar.getDate()) : "";
-    
-    Guardia nuevosDatos = new Guardia(
-        txtNombreMod.getText(),
-        txtApellidoMod.getText(),
-        txtCedulaMod.getText(),
-        cmbCargoMod.getSelectedItem().toString(),
-        cmbTurnoMod.getSelectedItem().toString(),
-        txtEdadMod.getText().isEmpty() ? 0 : Integer.parseInt(txtEdadMod.getText()),
-        txtNacionalidadMod.getText(),
-        txtCorreoMod.getText(),
-        fechaNacimiento,
-        null
-    );
-    
-    // Llamar al DAO para actualizar
-    if (guardiaDAO.actualizarGuardia(txtCedulaMod.getText(), nuevosDatos, imagenSeleccionadaModificar)) {
-        JOptionPane.showMessageDialog(this, "Guardia actualizado correctamente", 
-                                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        
-        // Actualizar la tabla
-        tablaGuardias.setModel(cargarGuardiasConImagen());
-        ajustarImagenesTabla();
-        
-        // Volver a la pestaña de visualización
-        jTabbedPane1.setSelectedComponent(MostrarGuardia);
-    } else {
-        JOptionPane.showMessageDialog(this, "Error al actualizar el guardia", 
-                                    "Error", JOptionPane.ERROR_MESSAGE);
-    }
+        // Crear objeto con los nuevos datos
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String fechaNacimiento = (fechaNacimientoChooserModificar.getDate() != null)
+                ? sdf.format(fechaNacimientoChooserModificar.getDate()) : "";
+
+        Guardia nuevosDatos = new Guardia(
+                txtNombreMod.getText(),
+                txtApellidoMod.getText(),
+                txtCedulaMod.getText(),
+                cmbCargoMod.getSelectedItem().toString(),
+                cmbTurnoMod.getSelectedItem().toString(),
+                txtEdadMod.getText().isEmpty() ? 0 : Integer.parseInt(txtEdadMod.getText()),
+                txtNacionalidadMod.getText(),
+                txtCorreoMod.getText(),
+                fechaNacimiento,
+                null
+        );
+
+        // Llamar al DAO para actualizar
+        if (guardiaDAO.actualizarGuardia(txtCedulaMod.getText(), nuevosDatos, imagenSeleccionadaModificar)) {
+            JOptionPane.showMessageDialog(this, "Guardia actualizado correctamente",
+                    "Éxito", JOptionPane.INFORMATION_MESSAGE);
+
+            // Actualizar la tabla
+            tablaGuardias.setModel(cargarGuardiasConImagen());
+            ajustarImagenesTabla();
+
+            // Volver a la pestaña de visualización
+            jTabbedPane1.setSelectedComponent(MostrarGuardia);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al actualizar el guardia",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void limpiarCamposModificacion() {
-        txtNombreMod.setText("");
-        txtApellidoMod.setText("");
-        txtCedulaMod.setText("");
-        txtCedulaMod.setEditable(true); // Volver a hacer editable para nueva búsqueda
-        cmbCargoMod.setSelectedIndex(0);
-        cmbTurnoMod.setSelectedIndex(0);
-        txtEdadMod.setText("");
-        txtNacionalidadMod.setText("");
-        txtCorreoMod.setText("");
-        fechaNacimientoChooserModificar.setDate(null);
-        previewFoto1.setIcon(null);
-        imagenSeleccionadaModificar = null;
-    }
 
     private void txtEdadModKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadModKeyTyped
         // TODO add your handling code here:
@@ -732,49 +769,50 @@ public class preView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_chooseImg1ActionPerformed
 
-    private void actualizarTablaGuardias() {
-        // Obtener la lista actualizada de guardias
-        List<Guardia> guardias = guardiaDAO.obtenerGuardias();
-
-        // Limpiar el modelo de la tabla
-        DefaultTableModel modelo = (DefaultTableModel) tablaGuardias.getModel();
-        modelo.setRowCount(0);
-
-        // Llenar la tabla con los nuevos datos
-        for (Guardia guardia : guardias) {
-            Object[] fila = {
-                guardia.getNombre(),
-                guardia.getApellido(),
-                guardia.getCedula(),
-                guardia.getCargo(),
-                guardia.getTurno(),
-                guardia.getEdad(),
-                guardia.getNacionalidad(),
-                guardia.getCorreo(),
-                guardia.getFechaNacimiento()
-            };
-            modelo.addRow(fila);
-        }
-    }
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
 
-      int filaSeleccionada = tablaGuardias.getSelectedRow();
-    
-    if (filaSeleccionada >= 0) {
-        // Obtener la cédula del guardia seleccionado (asumiendo que está en la columna 4)
-        String cedula = tablaGuardias.getValueAt(filaSeleccionada, 4).toString();
-        
-        // Cambiar al panel de modificación
-        jTabbedPane1.setSelectedComponent(panelModificar);
-        
-        // Cargar los datos del guardia en el formulario
-        cargarDatosGuardiaParaModificar(cedula);
-    } else {
-        JOptionPane.showMessageDialog(this, "Por favor, seleccione un guardia para modificar", 
-                                    "Advertencia", JOptionPane.WARNING_MESSAGE);
-    }
+        int filaSeleccionada = tablaGuardias.getSelectedRow();
+
+        if (filaSeleccionada >= 0) {
+            // Obtener la cédula del guardia seleccionado (asumiendo que está en la columna 4)
+            String cedula = tablaGuardias.getValueAt(filaSeleccionada, 4).toString();
+
+            // Cambiar al panel de modificación
+            jTabbedPane1.setSelectedComponent(panelModificar);
+
+            // Cargar los datos del guardia en el formulario
+            cargarDatosGuardiaParaModificar(cedula);
+        } else {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione un guardia para modificar",
+                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
     }//GEN-LAST:event_ModificarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+       int fila = tablaGuardias.getSelectedRow();
+    if (fila < 0) return;
+    
+    String cedula = tablaGuardias.getValueAt(fila, 4).toString();
+    String nombre = tablaGuardias.getValueAt(fila, 1).toString();
+    
+    String input = JOptionPane.showInputDialog(
+        this, 
+        "Escriba la cédula de " + nombre + " para confirmar:", 
+        "Confirmar eliminación", 
+        JOptionPane.WARNING_MESSAGE
+    );
+    
+    if (input != null && input.equals(cedula)) {
+        if (guardiaDAO.eliminarGuardia(cedula)) {
+            JOptionPane.showMessageDialog(this, "Eliminado correctamente", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            tablaGuardias.setModel(cargarGuardiasConImagen());
+        }
+    } else if (input != null) {
+        JOptionPane.showMessageDialog(this, "Cédula incorrecta", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    }//GEN-LAST:event_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
