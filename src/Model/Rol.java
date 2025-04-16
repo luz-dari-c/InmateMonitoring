@@ -2,9 +2,8 @@ package Model;
 
 public enum Rol {
     DIRECTOR,
-    OFICIALDEREGISTRO,
-    GUARDIA,
-    PERSONALDECONTRO
+    OFICIAL,
+    PERSONAL_DE_CONTROL,
+    OFICIAL_DE_REGISTRO,
+    ENFERMERA
 }
-
-

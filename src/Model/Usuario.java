@@ -1,17 +1,22 @@
 package Model;
 
 public class Usuario {
-
     private String email;
     private String contraseña;
     private Rol roles;
     private Persona persona;
 
+    // Constructor completo
     public Usuario(String email, String contraseña, Rol roles, Persona persona) {
         this.email = email;
         this.contraseña = contraseña;
         this.roles = roles;
         this.persona = persona;
+    }
+
+    // Nuevo constructor para cuando no tienes Persona
+    public Usuario(String email, String contraseña, Rol roles) {
+        this(email, contraseña, roles, null); // Llama al constructor principal con persona=null
     }
 
     public String getEmail() {
@@ -46,6 +51,4 @@ public class Usuario {
         this.persona = persona;
     }
     
-    
-
 }
