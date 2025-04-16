@@ -4,7 +4,6 @@ import DAO.PresoDAO;
 import Informacion.ActualizarInformaciónODR;
 import Informacion.ExpedientePreso;
 import Informacion.HistorialMedicoPreso;
-import Informacion.HistorialVisitasPreso;
 import Model.Delito;
 import Model.Preso;
 import java.awt.AlphaComposite;

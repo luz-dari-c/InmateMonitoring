@@ -1,6 +1,6 @@
 package DAO;
 
-import Model.Guardia;
+import Model.CitaMedica;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
@@ -9,19 +9,19 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GuardiaDAO {
+public class CitaMedicaDAO {
 
-    private static final String JSON_FILE = "C:\\Users\\nicol\\OneDrive\\Escritorio\\InmateMonitoring\\src\\Resources\\DATA\\guardias.json";
+    private static final String JSON_FILE = "C:\\Users\\nicol\\OneDrive\\Escritorio\\InmateMonitoring\\src\\Resources\\DATA\\citasMedicas.json";
     private Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-    public List<Guardia> cargarTodos() {
+    public List<CitaMedica> cargarTodas() {
         File archivo = new File(JSON_FILE);
 
         if (!archivo.exists()) {
             try {
                 archivo.createNewFile();
                 try (FileWriter writer = new FileWriter(JSON_FILE)) {
-                    gson.toJson(new ArrayList<Guardia>(), writer);
+                    gson.toJson(new ArrayList<CitaMedica>(), writer);
                 }
                 return new ArrayList<>();
             } catch (IOException e) {
@@ -35,27 +35,27 @@ public class GuardiaDAO {
         }
 
         try (Reader reader = new FileReader(JSON_FILE)) {
-            Type tipoLista = new TypeToken<ArrayList<Guardia>>() {
+            Type tipoLista = new TypeToken<ArrayList<CitaMedica>>() {
             }.getType();
-            List<Guardia> guardias = gson.fromJson(reader, tipoLista);
-            return guardias != null ? guardias : new ArrayList<>();
+            List<CitaMedica> citas = gson.fromJson(reader, tipoLista);
+            return citas != null ? citas : new ArrayList<>();
         } catch (IOException e) {
             System.err.println("Error al leer el archivo JSON: " + e.getMessage());
             return new ArrayList<>();
         }
     }
 
-    public void guardarGuardia(Guardia guardia) {
-        List<Guardia> guardias = cargarTodos();
-        guardias.add(guardia);
-        guardarTodos(guardias);
+    public void guardarCita(CitaMedica cita) {
+        List<CitaMedica> citas = cargarTodas();
+        citas.add(cita);
+        guardarTodas(citas);
     }
 
-    public void guardarTodos(List<Guardia> guardias) {
+    public void guardarTodas(List<CitaMedica> citas) {
         try (FileWriter writer = new FileWriter(JSON_FILE)) {
-            gson.toJson(guardias, writer);
+            gson.toJson(citas, writer);
         } catch (IOException e) {
-            System.err.println("Error al guardar en archivo JSON: " + e.getMessage());
+            System.err.println("Error al guardar citas en JSON: " + e.getMessage());
         }
     }
 }

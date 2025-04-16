@@ -25,6 +25,7 @@ public class VisitaDAO {
     }
 
     private static class LocalDateAdapter implements JsonSerializer<LocalDate>, JsonDeserializer<LocalDate> {
+
         private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         @Override
@@ -85,8 +86,38 @@ public class VisitaDAO {
 
     public void guardarVisita(Visita visita) {
         List<Visita> visitas = cargarTodas();
+
+        if (visita.getId() == 0) {
+            int nuevoId = obtenerProximoId(visitas);
+            visita.setId(nuevoId);
+        }
+
         visitas.add(visita);
         guardarTodas(visitas);
+    }
+
+    private int obtenerProximoId(List<Visita> visitas) {
+        if (visitas.isEmpty()) {
+            return 1;
+        }
+        return visitas.stream()
+                .mapToInt(Visita::getId)
+                .max()
+                .orElse(0) + 1;
+    }
+
+    public List<Visita> cargarPorIdentificacionPreso(String identificacionPreso) {
+        List<Visita> todasVisitas = cargarTodas();
+        List<Visita> visitasFiltradas = new ArrayList<>();
+
+        for (Visita visita : todasVisitas) {
+            if (visita.getPreso() != null
+                    && visita.getPreso().getIdentificacion().equals(identificacionPreso)) {
+                visitasFiltradas.add(visita);
+            }
+        }
+
+        return visitasFiltradas;
     }
 
     public void guardarTodas(List<Visita> visitas) {

@@ -1,3 +1,203 @@
 [
- 
+  {
+    "id": 1,
+    "fechaVisita": "12/12/2026",
+    "horaVisita": "12:12",
+    "duracionVisita": "3",
+    "tipoVisita": "Familiar",
+    "lugarVisita": "Sala de visitas",
+    "preso": {
+      "estatura": 170.0,
+      "peso": 89.0,
+      "delito": {
+        "codigo": 23,
+        "nombre": "Asesinato",
+        "articuloLey": "Articulo 34",
+        "gravedad": "Gravisimo",
+        "descripcion": "Fue visto asesinando a una gallina por que tenia hambre",
+        "fechaComision": "01/01/2020"
+      },
+      "expediente": {
+        "codigoExpediente": 767735501,
+        "numeroRegistro": 2,
+        "fechaApertura": "07/04/2025",
+        "estado": "Activo",
+        "delitos": [
+          "Asesinato"
+        ],
+        "juzgado": "Por determinar",
+        "totalVisitas": 0,
+        "nivelAdaptacion": "Por evaluar",
+        "actividades": [],
+        "observacionesConducta": "Ninguna",
+        "nivelRiesgo": "Peligroso"
+      },
+      "numeroDeExpediente": 2,
+      "fechaIngreso": "02/02/2020",
+      "fechaSalida": "05/02/2020",
+      "nivelDeSeguridad": "Alto",
+      "condicion": "Loco",
+      "sentencia": 3,
+      "celdaAsignada": "A",
+      "enAislamiento": false,
+      "nivelDeRiesgo": "Peligroso",
+      "numeroDeVisitas": 0,
+      "grupoSanguineo": "A+",
+      "fotoPath": "src/Resources/Images/preso_0_1744046151084.jpg",
+      "nombre": "Carlos",
+      "apellido": "Marrugo",
+      "edad": 20,
+      "id": 0,
+      "sexo": "Masculino",
+      "nacionalidad": "Colombiano",
+      "identificacion": "12337773"
+    },
+    "visitantes": [
+      {
+        "relacionConPreso": "Esposa/Esposo",
+        "requiereSupervision": false,
+        "nombre": "Maria",
+        "apellido": "ghjdd",
+        "edad": 23,
+        "id": 1,
+        "sexo": "Femenino",
+        "nacionalidad": "ssdsd",
+        "identificacion": "123322222"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "fechaVisita": "12/08/2026",
+    "horaVisita": "12:32",
+    "duracionVisita": "3",
+    "tipoVisita": "Familiar",
+    "lugarVisita": "Sala de visitas",
+    "preso": {
+      "estatura": 170.0,
+      "peso": 89.0,
+      "delito": {
+        "codigo": 23,
+        "nombre": "Asesinato",
+        "articuloLey": "Articulo 34",
+        "gravedad": "Gravisimo",
+        "descripcion": "Fue visto asesinando a una gallina por que tenia hambre",
+        "fechaComision": "01/01/2020"
+      },
+      "expediente": {
+        "codigoExpediente": 767735501,
+        "numeroRegistro": 2,
+        "fechaApertura": "07/04/2025",
+        "estado": "Activo",
+        "delitos": [
+          "Asesinato"
+        ],
+        "juzgado": "Por determinar",
+        "totalVisitas": 0,
+        "nivelAdaptacion": "Por evaluar",
+        "actividades": [],
+        "observacionesConducta": "Ninguna",
+        "nivelRiesgo": "Peligroso"
+      },
+      "numeroDeExpediente": 2,
+      "fechaIngreso": "02/02/2020",
+      "fechaSalida": "05/02/2020",
+      "nivelDeSeguridad": "Alto",
+      "condicion": "Loco",
+      "sentencia": 3,
+      "celdaAsignada": "A",
+      "enAislamiento": false,
+      "nivelDeRiesgo": "Peligroso",
+      "numeroDeVisitas": 0,
+      "grupoSanguineo": "A+",
+      "fotoPath": "src/Resources/Images/preso_0_1744046151084.jpg",
+      "nombre": "Carlos",
+      "apellido": "Marrugo",
+      "edad": 20,
+      "id": 0,
+      "sexo": "Masculino",
+      "nacionalidad": "Colombiano",
+      "identificacion": "12337773"
+    },
+    "visitantes": [
+      {
+        "relacionConPreso": "Padre/Madre",
+        "requiereSupervision": false,
+        "nombre": "Lwygbqd",
+        "apellido": "edec",
+        "edad": 33,
+        "id": 2,
+        "sexo": "Masculino",
+        "nacionalidad": "dcewcewcec",
+        "identificacion": "232313113"
+      }
+    ]
+  },
+  {
+    "id": 1,
+    "fechaVisita": "12/12/2026",
+    "horaVisita": "12:12",
+    "duracionVisita": "4",
+    "tipoVisita": "Intimas o Conyugales",
+    "lugarVisita": "Cabinas de visitas conyugales",
+    "preso": {
+      "estatura": 67.0,
+      "peso": 33.0,
+      "delito": {
+        "codigo": 87,
+        "nombre": "ASESINATO NIVEL 2",
+        "articuloLey": "LEY AZIL",
+        "gravedad": "HUMO",
+        "descripcion": "ASESINO AL PROFESOR\nDE EMPRENDIMIENTO",
+        "fechaComision": "09/09/2000"
+      },
+      "expediente": {
+        "codigoExpediente": -1880515100,
+        "numeroRegistro": 5,
+        "fechaApertura": "08/04/2025",
+        "estado": "Activo",
+        "delitos": [
+          "ASESINATO NIVEL 2"
+        ],
+        "juzgado": "Por determinar",
+        "totalVisitas": 0,
+        "nivelAdaptacion": "Por evaluar",
+        "actividades": [],
+        "observacionesConducta": "Ninguna",
+        "nivelRiesgo": "PELIGROSO"
+      },
+      "numeroDeExpediente": 5,
+      "fechaIngreso": "02/02/2020",
+      "fechaSalida": "09/09/2029",
+      "nivelDeSeguridad": "ALTO",
+      "condicion": "NORMAL",
+      "sentencia": 78,
+      "celdaAsignada": "A",
+      "enAislamiento": false,
+      "nivelDeRiesgo": "PELIGROSO",
+      "numeroDeVisitas": 0,
+      "grupoSanguineo": "B+",
+      "fotoPath": "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\Images\\preso_1.png",
+      "nombre": "HAIDER",
+      "apellido": "PAVON",
+      "edad": 67,
+      "id": 1,
+      "sexo": "M",
+      "nacionalidad": "COLOMBIANO",
+      "identificacion": "18828282"
+    },
+    "visitantes": [
+      {
+        "relacionConPreso": "Esposa/Esposo",
+        "requiereSupervision": false,
+        "nombre": "Luz",
+        "apellido": "wder",
+        "edad": 23,
+        "id": 1,
+        "sexo": "Femenino",
+        "nacionalidad": "erhgefdwwdezdfgb",
+        "identificacion": "1234567432123"
+      }
+    ]
+  }
 ]

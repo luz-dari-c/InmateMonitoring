@@ -2,20 +2,22 @@ package Model;
 
 import java.time.LocalDate;
 
-public class Guardia extends Persona {
+public class Oficial extends Persona {
 
     private String placa;
+    private String cargo;
     private LocalDate fechaIngreso;
     private String turno;
-    private Seccion seccion;
+    private String fotoPath; 
 
-    public Guardia(String nombre, String apellido, int edad, int id, String sexo, String nacionalidad, String identificacion,
-                   String placa, LocalDate fechaIngreso, String turno, Seccion seccion) {
+    public Oficial(String nombre, String apellido, int edad, int id, String sexo, String nacionalidad, String identificacion,
+                   String placa, String cargo, LocalDate fechaIngreso, String turno, String fotoPath) {
         super(nombre, apellido, edad, id, sexo, nacionalidad, identificacion);
         this.placa = placa;
+        this.cargo = cargo;
         this.fechaIngreso = fechaIngreso;
         this.turno = turno;
-        this.seccion = seccion;
+        this.fotoPath = fotoPath; 
     }
 
     public String getPlaca() {
@@ -24,6 +26,14 @@ public class Guardia extends Persona {
 
     public void setPlaca(String placa) {
         this.placa = placa;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
     }
 
     public LocalDate getFechaIngreso() {
@@ -42,11 +52,11 @@ public class Guardia extends Persona {
         this.turno = turno;
     }
 
-    public Seccion getSeccion() {
-        return seccion;
+    public String getFotoPath() {
+        return fotoPath;
     }
 
-    public void setSeccion(Seccion seccion) {
-        this.seccion = seccion;
+    public void setFotoPath(String fotoPath) {
+        this.fotoPath = fotoPath;
     }
 }
