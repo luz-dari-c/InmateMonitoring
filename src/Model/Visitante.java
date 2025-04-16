@@ -1,24 +1,15 @@
-
 package Model;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
-public class Visitante {
+public class Visitante extends Persona {
 
     private String relacionConPreso;
-    private String tipoVisita;
-    private LocalDate fechaVisita;
-    private LocalTime horaVisita;
-    private String duracionVisita;
     private boolean requiereSupervision;
 
-    public Visitante(String relacionConPreso, String tipoVisita, LocalDate fechaVisita, LocalTime horaVisita, String duracionVisita, boolean requiereSupervision) {
+    public Visitante(String nombre, String apellido, int edad, int id,
+            String sexo, String nacionalidad, String identificacion,
+            String relacionConPreso, boolean requiereSupervision) {
+        super(nombre, apellido, edad, id, sexo, nacionalidad, identificacion);
         this.relacionConPreso = relacionConPreso;
-        this.tipoVisita = tipoVisita;
-        this.fechaVisita = fechaVisita;
-        this.horaVisita = horaVisita;
-        this.duracionVisita = duracionVisita;
         this.requiereSupervision = requiereSupervision;
     }
 
@@ -30,38 +21,6 @@ public class Visitante {
         this.relacionConPreso = relacionConPreso;
     }
 
-    public String getTipoVisita() {
-        return tipoVisita;
-    }
-
-    public void setTipoVisita(String tipoVisita) {
-        this.tipoVisita = tipoVisita;
-    }
-
-    public LocalDate getFechaVisita() {
-        return fechaVisita;
-    }
-
-    public void setFechaVisita(LocalDate fechaVisita) {
-        this.fechaVisita = fechaVisita;
-    }
-
-    public LocalTime getHoraVisita() {
-        return horaVisita;
-    }
-
-    public void setHoraVisita(LocalTime horaVisita) {
-        this.horaVisita = horaVisita;
-    }
-
-    public String getDuracionVisita() {
-        return duracionVisita;
-    }
-
-    public void setDuracionVisita(String duracionVisita) {
-        this.duracionVisita = duracionVisita;
-    }
-
     public boolean isRequiereSupervision() {
         return requiereSupervision;
     }
@@ -69,4 +28,5 @@ public class Visitante {
     public void setRequiereSupervision(boolean requiereSupervision) {
         this.requiereSupervision = requiereSupervision;
     }
+
 }

@@ -53,7 +53,6 @@ public class Enfermera extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel11 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -63,9 +62,21 @@ public class Enfermera extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel16 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
+        jLabel17 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextPane3 = new javax.swing.JTextPane();
+        jLabel18 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tablaCitasHoy1 = new rojerusan.RSTableMetro();
+        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -148,12 +159,12 @@ public class Enfermera extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Registro clinico");
-        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 20, -1, -1));
+        jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial Black", 2, 12)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Sintomas:");
-        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, -1, -1));
+        jPanel5.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 170, -1, -1));
 
         jPanel8.setBackground(new java.awt.Color(29, 35, 51));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -174,18 +185,18 @@ public class Enfermera extends javax.swing.JFrame {
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel8.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 650, 10));
 
-        jPanel5.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 720, 100));
+        jPanel5.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 710, 100));
 
         jLabel6.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 102, 102));
         jLabel6.setText("Datos del paciente:");
-        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, -1, -1));
+        jPanel5.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 30, -1, -1));
 
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel10.setBackground(new java.awt.Color(29, 35, 51));
         jPanel10.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Motivo de la consulta:");
         jPanel10.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 10, 150, 30));
 
@@ -194,28 +205,31 @@ public class Enfermera extends javax.swing.JFrame {
         jPanel10.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 620, 140));
 
         jLabel10.setFont(new java.awt.Font("Arial Black", 0, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Sintomas:");
         jPanel10.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel10.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 440, -1));
-
+        jPanel11.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel11.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jPanel11.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel11.setText("Frecuencia respiratoria:");
-        jPanel11.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 140, -1));
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setText("Observaciones:");
+        jPanel11.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 210, 140, -1));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Temperatura corporal:");
         jPanel11.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 140, -1));
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Frecuencia cardiaca:");
         jPanel11.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 140, -1));
 
         jLabel15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Presion arterial:");
         jPanel11.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 140, -1));
 
@@ -231,7 +245,35 @@ public class Enfermera extends javax.swing.JFrame {
         jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jPanel11.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 140, 330, 20));
 
-        jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 610, 250));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel11.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 440, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Frecuencia respiratoria:");
+        jPanel11.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 140, -1));
+
+        jScrollPane3.setViewportView(jTextPane2);
+
+        jPanel11.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 480, 100));
+
+        jLabel17.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setText("Presunciones medicas:");
+        jPanel11.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, -1, -1));
+
+        jScrollPane4.setViewportView(jTextPane3);
+
+        jPanel11.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 480, 100));
+
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Tratamientos:");
+        jPanel11.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 510, -1, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Clonazepan", "Daflon", "Acetaminofén", "Tiamina", "Valcote", "Ampicilina" }));
+        jPanel11.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 540, 350, 40));
+
+        jPanel10.add(jPanel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 610, 680));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel14.setText("Presion arterial:");
@@ -239,7 +281,7 @@ public class Enfermera extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(jPanel10);
 
-        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 680, 270));
+        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 680, 270));
 
         viewEnfermera.addTab("tab3", jPanel5);
 
@@ -258,6 +300,47 @@ public class Enfermera extends javax.swing.JFrame {
         );
 
         jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, -10, 140, 170));
+
+        tablaCitasHoy1.setBackground(new java.awt.Color(255, 255, 255));
+        tablaCitasHoy1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Imagen", "Nombre", "Apellido", "Doctor"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tablaCitasHoy1.setAltoHead(22);
+        tablaCitasHoy1.setColorBackgoundHead(new java.awt.Color(0, 51, 51));
+        tablaCitasHoy1.setColorFilasBackgound2(new java.awt.Color(240, 240, 240));
+        tablaCitasHoy1.setColorFilasForeground1(new java.awt.Color(0, 0, 0));
+        tablaCitasHoy1.setColorFilasForeground2(new java.awt.Color(0, 0, 0));
+        tablaCitasHoy1.setFocusable(false);
+        tablaCitasHoy1.setFuenteFilas(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        tablaCitasHoy1.setFuenteFilasSelect(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        tablaCitasHoy1.setFuenteHead(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        tablaCitasHoy1.setGrosorBordeFilas(0);
+        tablaCitasHoy1.setMultipleSeleccion(false);
+        tablaCitasHoy1.setRequestFocusEnabled(false);
+        jScrollPane6.setViewportView(tablaCitasHoy1);
+
+        jPanel3.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 740, 380));
+
+        jLabel19.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Personas Atendidas");
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         viewEnfermera.addTab("tab1", jPanel3);
 
@@ -317,6 +400,7 @@ public class Enfermera extends javax.swing.JFrame {
     private javax.swing.JLabel EnfermeraFotolbl1;
     private javax.swing.JLabel NombreEnfermeralbl;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -324,6 +408,10 @@ public class Enfermera extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -345,14 +433,20 @@ public class Enfermera extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane jTextPane3;
     private rojerusan.RSTableMetro tablaCitasHoy;
+    private rojerusan.RSTableMetro tablaCitasHoy1;
     private javax.swing.JTabbedPane viewEnfermera;
     // End of variables declaration//GEN-END:variables
 }

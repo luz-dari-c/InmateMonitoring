@@ -1,6 +1,7 @@
 package Model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExpedienteJudicial {
@@ -11,7 +12,6 @@ public class ExpedienteJudicial {
     private String estado;
     private List<String> delitos;
     private LocalDate fechaSentencia;
-    private String tiempoCondena;
     private String juzgado;
     private int totalVisitas;
     private String nivelAdaptacion;
@@ -19,18 +19,28 @@ public class ExpedienteJudicial {
     private String observacionesConducta;
     private String nivelRiesgo;
 
-    public ExpedienteJudicial(int codigoExpediente, int numeroRegistro, LocalDate fechaApertura, String estado, List<String> delitos, LocalDate fechaSentencia, String tiempoCondena, String juzgado, int totalVisitas, String nivelAdaptacion, List<String> actividades, String observacionesConducta, String nivelRiesgo) {
+    public ExpedienteJudicial() {
+        this.delitos = new ArrayList<>();
+        this.actividades = new ArrayList<>();
+        this.estado = "Activo";
+        this.nivelAdaptacion = "Por evaluar";
+        this.observacionesConducta = "Ninguna";
+    }
+
+    public ExpedienteJudicial(int codigoExpediente, int numeroRegistro, LocalDate fechaApertura, String estado,
+            List<String> delitos, LocalDate fechaSentencia, String juzgado, int totalVisitas,
+            String nivelAdaptacion, List<String> actividades, String observacionesConducta,
+            String nivelRiesgo) {
         this.codigoExpediente = codigoExpediente;
         this.numeroRegistro = numeroRegistro;
         this.fechaApertura = fechaApertura;
         this.estado = estado;
-        this.delitos = delitos;
+        this.delitos = delitos != null ? delitos : new ArrayList<>();
         this.fechaSentencia = fechaSentencia;
-        this.tiempoCondena = tiempoCondena;
         this.juzgado = juzgado;
         this.totalVisitas = totalVisitas;
         this.nivelAdaptacion = nivelAdaptacion;
-        this.actividades = actividades;
+        this.actividades = actividades != null ? actividades : new ArrayList<>();
         this.observacionesConducta = observacionesConducta;
         this.nivelRiesgo = nivelRiesgo;
     }
@@ -72,7 +82,7 @@ public class ExpedienteJudicial {
     }
 
     public void setDelitos(List<String> delitos) {
-        this.delitos = delitos;
+        this.delitos = delitos != null ? delitos : new ArrayList<>();
     }
 
     public LocalDate getFechaSentencia() {
@@ -81,14 +91,6 @@ public class ExpedienteJudicial {
 
     public void setFechaSentencia(LocalDate fechaSentencia) {
         this.fechaSentencia = fechaSentencia;
-    }
-
-    public String getTiempoCondena() {
-        return tiempoCondena;
-    }
-
-    public void setTiempoCondena(String tiempoCondena) {
-        this.tiempoCondena = tiempoCondena;
     }
 
     public String getJuzgado() {
@@ -120,7 +122,7 @@ public class ExpedienteJudicial {
     }
 
     public void setActividades(List<String> actividades) {
-        this.actividades = actividades;
+        this.actividades = actividades != null ? actividades : new ArrayList<>();
     }
 
     public String getObservacionesConducta() {

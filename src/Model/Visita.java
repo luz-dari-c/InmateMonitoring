@@ -1,13 +1,14 @@
-
 package Model;
-
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Visita {
 
     private int idVisita;
+    private String codigo;
     private LocalDate fechaVisita;
     private LocalTime horaVisita;
     private String duracionVisita;
@@ -15,10 +16,11 @@ public class Visita {
     private String lugarVisita;
     private boolean visitaAprobada;
     private Preso preso;
-    private Visitante visitante;
+    private List<Visitante> visitantes;
 
-    public Visita(int idVisita, LocalDate fechaVisita, LocalTime horaVisita, String duracionVisita, String tipoVisita, String lugarVisita, boolean visitaAprobada, Preso preso, Visitante visitante) {
+    public Visita(int idVisita, String codigo, LocalDate fechaVisita, LocalTime horaVisita, String duracionVisita, String tipoVisita, String lugarVisita, boolean visitaAprobada, Preso preso, Visitante visitante) {
         this.idVisita = idVisita;
+        this.codigo = codigo;
         this.fechaVisita = fechaVisita;
         this.horaVisita = horaVisita;
         this.duracionVisita = duracionVisita;
@@ -26,7 +28,7 @@ public class Visita {
         this.lugarVisita = lugarVisita;
         this.visitaAprobada = visitaAprobada;
         this.preso = preso;
-        this.visitante = visitante;
+        this.visitantes = new ArrayList<>(2);
     }
 
     public int getIdVisita() {
@@ -35,6 +37,14 @@ public class Visita {
 
     public void setIdVisita(int idVisita) {
         this.idVisita = idVisita;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public LocalDate getFechaVisita() {
@@ -93,11 +103,7 @@ public class Visita {
         this.preso = preso;
     }
 
-    public Visitante getVisitante() {
-        return visitante;
-    }
-
-    public void setVisitante(Visitante visitante) {
-        this.visitante = visitante;
+    public List<Visitante> getVisitantes() {
+        return visitantes;
     }
 }
