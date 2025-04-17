@@ -1,21 +1,29 @@
 {
- "usuarios": [
+  "usuarios": [
     {
-      "email": "mDiaz",
-      "password": "Marcos19",
+      "email": "director@institucion.com",
+      "password": "director123",
       "rol": "DIRECTOR"
-    }
-  ,
-    {
-      "email": "recepcion@clinica.com",
-      "password": "recepcion123",
-      "rol": "RECEPCIONISTA"
     },
     {
-        "email":"doctor@clinica.com",
-        "password":"doctor123",
-        "rol":"MEDICO"
+      "email": "oficial@institucion.com",
+      "password": "oficial123",
+      "rol": "OFICIAL"
+    },
+    {
+      "email": "control@institucion.com",
+      "password": "control123",
+      "rol": "PERSONAL_DE_CONTROL"
+    },
+    {
+      "email": "registro@institucion.com",
+      "password": "registro123",
+      "rol": "OFICIAL_DE_REGISTRO"
+    },
+    {
+      "email": "enfermera@institucion.com",
+      "password": "enfermera123",
+      "rol": "ENFERMERA"
     }
-    
   ]
 }
