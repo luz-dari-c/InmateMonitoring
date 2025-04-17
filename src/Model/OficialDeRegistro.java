@@ -10,7 +10,7 @@ public class OficialDeRegistro extends Persona {
     private String turno;
 
     public OficialDeRegistro(String nombre, String apellido, int edad, int id,
-            String sexo, String nacionalidad, String identificacion,
+       String sexo, String nacionalidad, String identificacion,
             String numeroPlaca, String rango, LocalDate fechaIngreso,
             String turno) {
         super(nombre, apellido, edad, id, sexo, nacionalidad, identificacion);

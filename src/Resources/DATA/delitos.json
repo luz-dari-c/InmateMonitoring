@@ -1,5 +1,538 @@
-{
-    "delitos":[
-        
-    ]
-}
+[
+  {
+    "codigo": 4,
+    "nombre": "Daño en bien ajeno",
+    "articuloLey": "r",
+    "gravedad": "r",
+    "descripcion": "iejidejie",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 9,
+    "nombre": "Violación de habitación ajena",
+    "articuloLey": "uwu",
+    "gravedad": "w",
+    "descripcion": "dfggf",
+    "fechaComision": "2020-09-08"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Contrabando",
+    "articuloLey": "Ley19",
+    "gravedad": "Gravisimo",
+    "descripcion": "Estaba contrabandeando \nbebidas alucinogenas",
+    "fechaComision": "1987-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Suplantación de identidad",
+    "articuloLey": "Ley 59",
+    "gravedad": "Gravisimo",
+    "descripcion": "Se hizo pasar por maluma",
+    "fechaComision": "2000-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Suplantación de identidad",
+    "articuloLey": "Ley 59",
+    "gravedad": "Gravisimo",
+    "descripcion": "Se hizo pasar por maluma",
+    "fechaComision": "2000-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Suplantación de identidad",
+    "articuloLey": "Ley 59",
+    "gravedad": "Gravisimo",
+    "descripcion": "Se hizo pasar por maluma",
+    "fechaComision": "2000-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Suplantación de identidad",
+    "articuloLey": "Ley 59",
+    "gravedad": "Gravisimo",
+    "descripcion": "Se hizo pasar por maluma",
+    "fechaComision": "2000-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Suplantación de identidad",
+    "articuloLey": "Ley 59",
+    "gravedad": "Gravisimo",
+    "descripcion": "Se hizo pasar por maluma",
+    "fechaComision": "2000-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Suplantación de identidad",
+    "articuloLey": "Ley 59",
+    "gravedad": "Gravisimo",
+    "descripcion": "Se hizo pasar por maluma",
+    "fechaComision": "2000-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Suplantación de identidad",
+    "articuloLey": "Ley 59",
+    "gravedad": "Gravisimo",
+    "descripcion": "Se hizo pasar por maluma",
+    "fechaComision": "2000-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Suplantación de identidad",
+    "articuloLey": "Ley 59",
+    "gravedad": "Gravisimo",
+    "descripcion": "Se hizo pasar por maluma",
+    "fechaComision": "2000-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Suplantación de identidad",
+    "articuloLey": "Ley 59",
+    "gravedad": "Gravisimo",
+    "descripcion": "Se hizo pasar por maluma",
+    "fechaComision": "2000-09-02"
+  },
+  {
+    "codigo": 45,
+    "nombre": "Terrorismo",
+    "articuloLey": "LEY TERR",
+    "gravedad": "34",
+    "descripcion": "TERRORISTA",
+    "fechaComision": "2020-09-09"
+  },
+  {
+    "codigo": 45,
+    "nombre": "Terrorismo",
+    "articuloLey": "LEY TERR",
+    "gravedad": "34",
+    "descripcion": "TERRORISTA",
+    "fechaComision": "2020-09-09"
+  },
+  {
+    "codigo": 45,
+    "nombre": "Tortura",
+    "articuloLey": "FF",
+    "gravedad": "ALTA",
+    "descripcion": "TORTURO A LAS PERSONAS",
+    "fechaComision": "2023-09-08"
+  },
+  {
+    "codigo": 2,
+    "nombre": "Abuso de autoridad",
+    "articuloLey": "LEY AB",
+    "gravedad": "BAJA",
+    "descripcion": "SE HIZO PASAR POR\nPOLICIA",
+    "fechaComision": "2025-04-05"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Calumnia",
+    "articuloLey": "2",
+    "gravedad": "M",
+    "descripcion": "CALUMNIO MUCHA GENTE",
+    "fechaComision": "2020-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Calumnia",
+    "articuloLey": "2",
+    "gravedad": "M",
+    "descripcion": "CALUMNIO MUCHA GENTE",
+    "fechaComision": "2020-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Daño en bien ajeno",
+    "articuloLey": "2",
+    "gravedad": "M",
+    "descripcion": "CALUMNIO MUCHA GENTE",
+    "fechaComision": "2020-09-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Daño en bien ajeno",
+    "articuloLey": "2",
+    "gravedad": "M",
+    "descripcion": "CALUMNIO MUCHA GENTE",
+    "fechaComision": "2020-09-02"
+  },
+  {
+    "codigo": 22,
+    "nombre": "Omisión de socorro",
+    "articuloLey": "LEY 303",
+    "gravedad": "BAJA22",
+    "descripcion": "VIO A ALGUIEN AHOGANDOS\nY NO LA AYUDO",
+    "fechaComision": "2022-09-02"
+  },
+  {
+    "codigo": 33,
+    "nombre": "Daño en bien ajeno",
+    "articuloLey": "ley roja",
+    "gravedad": "gravisima",
+    "descripcion": "Destruyó una casa jugando\nfutbol",
+    "fechaComision": "2000-02-02"
+  },
+  {
+    "codigo": 33,
+    "nombre": "Daño en bien ajeno",
+    "articuloLey": "ley roja",
+    "gravedad": "gravisima",
+    "descripcion": "Destruyó una casa jugando\nfutbol",
+    "fechaComision": "2000-02-02"
+  },
+  {
+    "codigo": 33,
+    "nombre": "Daño en bien ajeno",
+    "articuloLey": "ley roja",
+    "gravedad": "gravisima",
+    "descripcion": "Destruyó una casa jugando\nfutbol",
+    "fechaComision": "2000-02-02"
+  },
+  {
+    "codigo": 33,
+    "nombre": "Daño en bien ajeno",
+    "articuloLey": "ley roja",
+    "gravedad": "gravisima",
+    "descripcion": "Destruyó una casa jugando\nfutbol",
+    "fechaComision": "2000-02-02"
+  },
+  {
+    "codigo": 22,
+    "nombre": "Omisión de socorro",
+    "articuloLey": "KEY",
+    "gravedad": "MALA",
+    "descripcion": "Vio a alguien ahogandose ey no hizo nada",
+    "fechaComision": "1980-02-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Terrorismo",
+    "articuloLey": "LEY NEGRA",
+    "gravedad": "GRAVISMO",
+    "descripcion": "ESTABA DELINQUIENDO\nINFILTRANDO DROGA Y MATANDO\nDE MANERA MALA",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Terrorismo",
+    "articuloLey": "LEY NEGRA",
+    "gravedad": "GRAVISMO",
+    "descripcion": "ESTABA DELINQUIENDO\nINFILTRANDO DROGA Y MATANDO\nDE MANERA MALA",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 9,
+    "nombre": "Genocidio",
+    "articuloLey": "LEY FUCIA",
+    "gravedad": "BAJA",
+    "descripcion": "MATO A LA GENTE EN EL AUDITORIO",
+    "fechaComision": "2000-09-02"
+  },
+  {
+    "codigo": 56,
+    "nombre": "Daño informático",
+    "articuloLey": "DAÑO KILL",
+    "gravedad": "MEDIA",
+    "descripcion": "HACKEO EL SISTEMA DE UNICOLOMBO\nPOR QUE DECIA QUE ERA MUY \nLENTO",
+    "fechaComision": "2024-02-01"
+  },
+  {
+    "codigo": 6,
+    "nombre": "Abuso de autoridad",
+    "articuloLey": "LEY ABS",
+    "gravedad": "GRAVISIMO",
+    "descripcion": "Le gusta mucho mandar y cuando la mandan se molesta",
+    "fechaComision": "2020-01-02"
+  },
+  {
+    "codigo": 27,
+    "nombre": "Enriquecimiento ilícito",
+    "articuloLey": "LEY 234",
+    "gravedad": "MEDIA",
+    "descripcion": "Se hizo millonaria, robando mangos y vendiendolos",
+    "fechaComision": "2021-08-09"
+  },
+  {
+    "codigo": 3,
+    "nombre": "Tráfico de fauna o flora silvestre",
+    "articuloLey": "LEY 78",
+    "gravedad": "BAJA",
+    "descripcion": "Se robó un conejo por que se veia bonito",
+    "fechaComision": "2025-04-04"
+  },
+  {
+    "codigo": 3,
+    "nombre": "Tráfico de fauna o flora silvestre",
+    "articuloLey": "LEY 78",
+    "gravedad": "BAJA",
+    "descripcion": "Se robó un conejo por que se veia bonito",
+    "fechaComision": "2025-04-04"
+  },
+  {
+    "codigo": 3,
+    "nombre": "Tráfico de fauna o flora silvestre",
+    "articuloLey": "LEY 78",
+    "gravedad": "BAJA",
+    "descripcion": "Se robó un conejo por que se veia bonito",
+    "fechaComision": "2025-04-04"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Estafa",
+    "articuloLey": "LEY 237",
+    "gravedad": "ALTA",
+    "descripcion": "Estafo en un banco fingiendo ser el dueño",
+    "fechaComision": "2025-04-02"
+  },
+  {
+    "codigo": 2,
+    "nombre": "Contrabando",
+    "articuloLey": "LEY 3",
+    "gravedad": "BAJA",
+    "descripcion": "Contrabandeando bebidas ilicitas para ganar mas diner",
+    "fechaComision": "2021-01-02"
+  },
+  {
+    "codigo": 343,
+    "nombre": "Injuria",
+    "articuloLey": "3",
+    "gravedad": "edd",
+    "descripcion": "23wdwddw",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Calumnia",
+    "articuloLey": "ley azul",
+    "gravedad": "Alta",
+    "descripcion": "Calumnia ocntra e preofesor",
+    "fechaComision": "2020-09-02"
+  },
+  {
+    "codigo": 34,
+    "nombre": "Daño en bien ajeno",
+    "articuloLey": "LEY 19",
+    "gravedad": "ALTA",
+    "descripcion": "Se metió a una casa y se puso a robar",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 3,
+    "nombre": "Violación de habitación ajena",
+    "articuloLey": "LEY 32",
+    "gravedad": "GRAVISIMO",
+    "descripcion": "Se metio a robar",
+    "fechaComision": "2023-02-02"
+  },
+  {
+    "codigo": 5,
+    "nombre": "Calumnia",
+    "articuloLey": "Ley Calumniadora",
+    "gravedad": "Baja",
+    "descripcion": "Calumniaba contra su profesor",
+    "fechaComision": "2023-03-09"
+  },
+  {
+    "codigo": 12,
+    "nombre": "Injuria",
+    "articuloLey": "Ley 283",
+    "gravedad": "Gravisimo",
+    "descripcion": "Es una loca",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 9,
+    "nombre": "Calumnia",
+    "articuloLey": "Ley azul",
+    "gravedad": "alta",
+    "descripcion": "Calumnia a los profesores",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 9,
+    "nombre": "Daño en bien ajeno",
+    "articuloLey": "ley amarilla",
+    "gravedad": "Mucha",
+    "descripcion": "Daño una moto",
+    "fechaComision": "1900-09-09"
+  },
+  {
+    "codigo": 22,
+    "nombre": "Omisión de socorro",
+    "articuloLey": "Ley naranja",
+    "gravedad": "baja",
+    "descripcion": "Vio a un perro con hambre y no le dio comida",
+    "fechaComision": "2023-02-03"
+  },
+  {
+    "codigo": 3,
+    "nombre": "Abuso de confianza",
+    "articuloLey": "Ley negra",
+    "gravedad": "Baja",
+    "descripcion": "Abuso de la confianza de la vida",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 33,
+    "nombre": "Invasión de tierras o edificaciones",
+    "articuloLey": "Ley tierral",
+    "gravedad": "Alta",
+    "descripcion": "Invadio un terreno y dijo que era cristobal Colon",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 9,
+    "nombre": "Daño informático",
+    "articuloLey": "Ley Hackel",
+    "gravedad": "Alta",
+    "descripcion": "Hackeo el facebook de su mamá",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 8,
+    "nombre": "Perturbación del orden público",
+    "articuloLey": "45",
+    "gravedad": "Alta",
+    "descripcion": "Se puso a cantar tralalero tralala mientras sus vecinos dormian",
+    "fechaComision": "2024-02-02"
+  },
+  {
+    "codigo": 22,
+    "nombre": "Tráfico de estupefacientes",
+    "articuloLey": "Ley mota",
+    "gravedad": "Alta",
+    "descripcion": "Vendia marihuana y cuando la policia\nle pregunto dijo que era cilantro",
+    "fechaComision": "2025-02-02"
+  },
+  {
+    "codigo": 12,
+    "nombre": "Falsedad en documento público",
+    "articuloLey": "Ley green",
+    "gravedad": "Media",
+    "descripcion": "Se hizo pasar por petro en el banco\ny la levantaron a palazos por que se lo creyeron",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 12,
+    "nombre": "Falsedad en documento público",
+    "articuloLey": "Ley green",
+    "gravedad": "Media",
+    "descripcion": "Se hizo pasar por petro en el banco\ny la levantaron a palazos por que se lo creyeron",
+    "fechaComision": "2020-02-02"
+  },
+  {
+    "codigo": 12,
+    "nombre": "Violación de habitación ajena",
+    "articuloLey": "Ley 237",
+    "gravedad": "Baja",
+    "descripcion": "Entró a una habitacion ajena t mintio diciendo que pensaba que era el baño",
+    "fechaComision": "2024-04-10"
+  },
+  {
+    "codigo": 12,
+    "nombre": "Calumnia",
+    "articuloLey": "Ley 34",
+    "gravedad": "Media",
+    "descripcion": "",
+    "fechaComision": "2024-04-18"
+  },
+  {
+    "codigo": 12,
+    "nombre": "Lesiones personales leves",
+    "articuloLey": "Ley 78",
+    "gravedad": "Alta",
+    "descripcion": "Se lesiono un pie",
+    "fechaComision": "2022-04-18"
+  },
+  {
+    "codigo": 1,
+    "nombre": "Calumnia",
+    "articuloLey": "Ley roja",
+    "gravedad": "Baja",
+    "descripcion": "Calumniaba al profesor",
+    "fechaComision": "2025-04-11"
+  },
+  {
+    "codigo": 23,
+    "nombre": "Inasistencia alimentaria",
+    "articuloLey": "Ley 356",
+    "gravedad": "Media",
+    "descripcion": "Tiene hijos y no quiere pagar la pension\nse los dejo a una vecina para que \nlos cuidara",
+    "fechaComision": "2024-04-10"
+  },
+  {
+    "codigo": 19,
+    "nombre": "Secuestro simple",
+    "articuloLey": "Ley 389",
+    "gravedad": "Media",
+    "descripcion": "Secuestro al profesor\nde emprendimiento\npara que le subiera la nota",
+    "fechaComision": "2024-04-22"
+  },
+  {
+    "codigo": 66,
+    "nombre": "Minería ilegal",
+    "articuloLey": "Ley 362",
+    "gravedad": "Alta",
+    "descripcion": "Minaba hierro en el patio\nde su casa\npero la vieron y dijo \nque estaba sembrando tomate",
+    "fechaComision": "2025-04-15"
+  },
+  {
+    "codigo": 265,
+    "nombre": "Daño en bien ajeno",
+    "articuloLey": "Artículo 265 - Daño en bien ajeno",
+    "gravedad": "Baja",
+    "descripcion": "Daño el bien ajeno",
+    "fechaComision": "2025-04-03"
+  },
+  {
+    "codigo": 265,
+    "nombre": "Daño en bien ajeno",
+    "articuloLey": "Artículo 265 - Daño en bien ajeno",
+    "gravedad": "Media",
+    "descripcion": "Se metio a una propiedad\nen la noche para dormir",
+    "fechaComision": "2023-04-04"
+  },
+  {
+    "codigo": 189,
+    "nombre": "Violación de habitación ajena",
+    "articuloLey": "",
+    "gravedad": "Media",
+    "descripcion": "Entro a la habtacion y no salio",
+    "fechaComision": "2025-04-02"
+  },
+  {
+    "codigo": 131,
+    "nombre": "Omisión de socorro",
+    "articuloLey": "",
+    "gravedad": "Alta",
+    "descripcion": "Fue vista ignorando el socorro de un joven accidentado",
+    "fechaComision": "2025-04-05"
+  },
+  {
+    "codigo": 233,
+    "nombre": "Inasistencia alimentaria",
+    "articuloLey": "",
+    "gravedad": "Media",
+    "descripcion": "Tiene hijos y no paga la pension",
+    "fechaComision": "2025-04-02"
+  },
+  {
+    "codigo": 111,
+    "nombre": "Lesiones personales leves",
+    "articuloLey": "",
+    "gravedad": "Alta",
+    "descripcion": "Se lesionaba asi mismo",
+    "fechaComision": "2025-04-01"
+  },
+  {
+    "codigo": 319,
+    "nombre": "Contrabando",
+    "articuloLey": "",
+    "gravedad": "Media",
+    "descripcion": "Contrabandeba marihuna y decia que era cilantro",
+    "fechaComision": "2024-04-07"
+  }
+]

@@ -9,13 +9,12 @@ public class Persona {
     private String sexo;
     private String nacionalidad;
     private String identificacion;
-    private static int ultimoId = 0; 
 
     public Persona(String nombre, String apellido, int edad, int id, String sexo, String nacionalidad, String identificacion) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;
-        this.id = ++ultimoId;
+        this.id = 0;
         this.sexo = sexo;
         this.nacionalidad = nacionalidad;
         this.identificacion = identificacion;

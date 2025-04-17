@@ -1,140 +1,488 @@
 [
   {
-    "estatura": 170.0,
-    "peso": 89.0,
-    "delito": {
-      "codigo": 23,
-      "nombre": "Asesinato",
-      "articuloLey": "Articulo 34",
-      "gravedad": "Gravisimo",
-      "descripcion": "Fue visto asesinando a una gallina por que tenia hambre",
-      "fechaComision": "2020-01-01"
-    },
+    "estatura": 169.0,
+    "peso": 80.0,
+    "delitos": [
+      {
+        "codigo": 12,
+        "nombre": "Violación de habitación ajena",
+        "articuloLey": "Ley 237",
+        "gravedad": "Baja",
+        "descripcion": "Entró a una habitacion ajena t mintio diciendo que pensaba que era el baño",
+        "fechaComision": "2024-04-10"
+      },
+      {
+        "codigo": 12,
+        "nombre": "Calumnia",
+        "articuloLey": "Ley 34",
+        "gravedad": "Media",
+        "descripcion": "",
+        "fechaComision": "2024-04-18"
+      },
+      {
+        "codigo": 12,
+        "nombre": "Lesiones personales leves",
+        "articuloLey": "Ley 78",
+        "gravedad": "Alta",
+        "descripcion": "Se lesiono un pie",
+        "fechaComision": "2022-04-18"
+      }
+    ],
     "expediente": {
-      "codigoExpediente": 767735501,
-      "numeroRegistro": 2,
-      "fechaApertura": "2025-04-07",
+      "codigoExpediente": "EXP-X4YU-XA30",
+      "numeroRegistro": "REG-2025-9539",
+      "fechaApertura": "2025-04-13",
       "estado": "Activo",
       "delitos": [
-        "Asesinato"
+        {
+          "codigo": 12,
+          "nombre": "Violación de habitación ajena",
+          "articuloLey": "Ley 237",
+          "gravedad": "Baja",
+          "descripcion": "Entró a una habitacion ajena t mintio diciendo que pensaba que era el baño",
+          "fechaComision": "2024-04-10"
+        },
+        {
+          "codigo": 12,
+          "nombre": "Calumnia",
+          "articuloLey": "Ley 34",
+          "gravedad": "Media",
+          "descripcion": "",
+          "fechaComision": "2024-04-18"
+        },
+        {
+          "codigo": 12,
+          "nombre": "Lesiones personales leves",
+          "articuloLey": "Ley 78",
+          "gravedad": "Alta",
+          "descripcion": "Se lesiono un pie",
+          "fechaComision": "2022-04-18"
+        }
       ],
       "juzgado": "Por determinar",
       "totalVisitas": 0,
       "nivelAdaptacion": "Por evaluar",
       "actividades": [],
       "observacionesConducta": "Ninguna",
-      "nivelRiesgo": "Peligroso"
+      "nivelRiesgo": "Alto"
     },
-    "numeroDeExpediente": 2,
-    "fechaIngreso": "2020-02-02",
-    "fechaSalida": "2020-02-05",
-    "nivelDeSeguridad": "Alto",
-    "condicion": "Loco",
-    "sentencia": 3,
-    "celdaAsignada": "A",
-    "enAislamiento": false,
-    "nivelDeRiesgo": "Peligroso",
+    "sentencia": {
+      "años": 1,
+      "meses": 1,
+      "fechaIngreso": "2025-04-04",
+      "fechaSalidaCalculada": "2026-05-04"
+    },
+    "nivelDeSeguridad": "Baja",
+    "seccionAsignada": "Sección C",
+    "condicion": "Condenado en traslado",
+    "celdaAsignada": "CELD-21",
+    "enAislamiento": true,
+    "nivelDeRiesgo": "Alto",
     "numeroDeVisitas": 0,
-    "grupoSanguineo": "A+",
-    "fotoPath": "src/Resources/Images/preso_0_1744046151084.jpg",
-    "nombre": "Carlos",
-    "apellido": "Marrugo",
-    "edad": 20,
-    "id": 0,
-    "sexo": "Masculino",
-    "nacionalidad": "Colombiano",
-    "identificacion": "12337773"
+    "grupoSanguineo": "B-",
+    "fotoPath": "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\Images\\preso_1.jpg",
+    "nombre": "Luz",
+    "apellido": "Gomez",
+    "edad": 19,
+    "id": 1,
+    "sexo": "F",
+    "nacionalidad": "Canadiense",
+    "identificacion": "1237440696"
   },
   {
-    "estatura": 67.0,
-    "peso": 33.0,
-    "delito": {
-      "codigo": 87,
-      "nombre": "ASESINATO NIVEL 2",
-      "articuloLey": "LEY AZIL",
-      "gravedad": "HUMO",
-      "descripcion": "ASESINO AL PROFESOR\nDE EMPRENDIMIENTO",
-      "fechaComision": "2000-09-09"
-    },
+    "estatura": 12.0,
+    "peso": 11.0,
+    "delitos": [
+      {
+        "codigo": 1,
+        "nombre": "Calumnia",
+        "articuloLey": "Ley roja",
+        "gravedad": "Baja",
+        "descripcion": "Calumniaba al profesor",
+        "fechaComision": "2025-04-11"
+      }
+    ],
     "expediente": {
-      "codigoExpediente": -1880515100,
-      "numeroRegistro": 5,
-      "fechaApertura": "2025-04-08",
+      "codigoExpediente": "EXP-BXTJ-Y4XL",
+      "numeroRegistro": "REG-2025-5605",
+      "fechaApertura": "2025-04-13",
       "estado": "Activo",
       "delitos": [
-        "ASESINATO NIVEL 2"
+        {
+          "codigo": 1,
+          "nombre": "Calumnia",
+          "articuloLey": "Ley roja",
+          "gravedad": "Baja",
+          "descripcion": "Calumniaba al profesor",
+          "fechaComision": "2025-04-11"
+        }
       ],
       "juzgado": "Por determinar",
       "totalVisitas": 0,
       "nivelAdaptacion": "Por evaluar",
       "actividades": [],
       "observacionesConducta": "Ninguna",
-      "nivelRiesgo": "PELIGROSO"
+      "nivelRiesgo": "Riesgo medio"
     },
-    "numeroDeExpediente": 5,
-    "fechaIngreso": "2020-02-02",
-    "fechaSalida": "2029-09-09",
-    "nivelDeSeguridad": "ALTO",
-    "condicion": "NORMAL",
-    "sentencia": 78,
-    "celdaAsignada": "A",
+    "sentencia": {
+      "años": 0,
+      "meses": 8,
+      "fechaIngreso": "2022-04-01",
+      "fechaSalidaCalculada": "2022-12-01"
+    },
+    "nivelDeSeguridad": "Bajo",
+    "seccionAsignada": "Sección B",
+    "condicion": "Condenado",
+    "celdaAsignada": "CELD-12",
     "enAislamiento": false,
-    "nivelDeRiesgo": "PELIGROSO",
+    "nivelDeRiesgo": "Riesgo medio",
+    "numeroDeVisitas": 0,
+    "grupoSanguineo": "O-",
+    "fotoPath": "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\Images\\preso_2.jpg",
+    "nombre": "Daniela",
+    "apellido": "Crespo",
+    "edad": 15,
+    "id": 2,
+    "sexo": "F",
+    "nacionalidad": "Chilena",
+    "identificacion": "1237440697"
+  },
+  {
+    "estatura": 179.0,
+    "peso": 89.0,
+    "delitos": [
+      {
+        "codigo": 23,
+        "nombre": "Inasistencia alimentaria",
+        "articuloLey": "Ley 356",
+        "gravedad": "Media",
+        "descripcion": "Tiene hijos y no quiere pagar la pension\nse los dejo a una vecina para que \nlos cuidara",
+        "fechaComision": "2024-04-10"
+      },
+      {
+        "codigo": 233,
+        "nombre": "Inasistencia alimentaria",
+        "articuloLey": "",
+        "gravedad": "Media",
+        "descripcion": "Tiene hijos y no paga la pension",
+        "fechaComision": "2025-04-02"
+      },
+      {
+        "codigo": 111,
+        "nombre": "Lesiones personales leves",
+        "articuloLey": "",
+        "gravedad": "Alta",
+        "descripcion": "Se lesionaba asi mismo",
+        "fechaComision": "2025-04-01"
+      },
+      {
+        "codigo": 319,
+        "nombre": "Contrabando",
+        "articuloLey": "",
+        "gravedad": "Media",
+        "descripcion": "Contrabandeba marihuna y decia que era cilantro",
+        "fechaComision": "2024-04-07"
+      }
+    ],
+    "expediente": {
+      "codigoExpediente": "EXP-VEKK-Z2AQ",
+      "numeroRegistro": "REG-2025-6400",
+      "fechaApertura": "2025-04-14",
+      "estado": "Activo",
+      "delitos": [
+        {
+          "codigo": 23,
+          "nombre": "Inasistencia alimentaria",
+          "articuloLey": "Ley 356",
+          "gravedad": "Media",
+          "descripcion": "Tiene hijos y no quiere pagar la pension\nse los dejo a una vecina para que \nlos cuidara",
+          "fechaComision": "2024-04-10"
+        },
+        {
+          "codigo": 233,
+          "nombre": "Inasistencia alimentaria",
+          "articuloLey": "",
+          "gravedad": "Media",
+          "descripcion": "Tiene hijos y no paga la pension",
+          "fechaComision": "2025-04-02"
+        },
+        {
+          "codigo": 111,
+          "nombre": "Lesiones personales leves",
+          "articuloLey": "",
+          "gravedad": "Alta",
+          "descripcion": "Se lesionaba asi mismo",
+          "fechaComision": "2025-04-01"
+        },
+        {
+          "codigo": 319,
+          "nombre": "Contrabando",
+          "articuloLey": "",
+          "gravedad": "Media",
+          "descripcion": "Contrabandeba marihuna y decia que era cilantro",
+          "fechaComision": "2024-04-07"
+        }
+      ],
+      "juzgado": "Por determinar",
+      "totalVisitas": 0,
+      "nivelAdaptacion": "Por evaluar",
+      "actividades": [],
+      "observacionesConducta": "Ninguna",
+      "nivelRiesgo": "Alto"
+    },
+    "sentencia": {
+      "años": 2,
+      "meses": 3,
+      "fechaIngreso": "2025-04-04",
+      "fechaSalidaCalculada": "2027-07-04"
+    },
+    "nivelDeSeguridad": "Baja",
+    "seccionAsignada": "Sección C",
+    "condicion": "Condenado",
+    "celdaAsignada": "CELD-22",
+    "enAislamiento": false,
+    "nivelDeRiesgo": "Alto",
     "numeroDeVisitas": 0,
     "grupoSanguineo": "B+",
-    "fotoPath": "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\Images\\preso_1.png",
-    "nombre": "HAIDER",
-    "apellido": "PAVON",
-    "edad": 67,
-    "id": 1,
+    "fotoPath": "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\Images\\preso_3.jpg",
+    "nombre": "Catrina",
+    "apellido": "Gonzales",
+    "edad": 23,
+    "id": 3,
     "sexo": "M",
-    "nacionalidad": "COLOMBIANO",
-    "identificacion": "18828282"
+    "nacionalidad": "Chilena",
+    "identificacion": "40401010"
   },
   {
-    "estatura": 7.0,
-    "peso": 6.0,
-    "delito": {
-      "codigo": 0,
-      "nombre": "MATACION",
-      "articuloLey": "989",
-      "gravedad": "SJDISJD",
-      "descripcion": "NCDSIFEN",
-      "fechaComision": "3000-03-03"
-    },
+    "estatura": 169.0,
+    "peso": 56.0,
+    "delitos": [
+      {
+        "codigo": 19,
+        "nombre": "Secuestro simple",
+        "articuloLey": "Ley 389",
+        "gravedad": "Media",
+        "descripcion": "Secuestro al profesor\nde emprendimiento\npara que le subiera la nota",
+        "fechaComision": "2024-04-22"
+      }
+    ],
     "expediente": {
-      "codigoExpediente": 2043744497,
-      "numeroRegistro": 45,
-      "fechaApertura": "2025-04-08",
+      "codigoExpediente": "EXP-F2VN-MRM4",
+      "numeroRegistro": "REG-2025-8459",
+      "fechaApertura": "2025-04-14",
       "estado": "Activo",
       "delitos": [
-        "MATACION"
+        {
+          "codigo": 19,
+          "nombre": "Secuestro simple",
+          "articuloLey": "Ley 389",
+          "gravedad": "Media",
+          "descripcion": "Secuestro al profesor\nde emprendimiento\npara que le subiera la nota",
+          "fechaComision": "2024-04-22"
+        }
       ],
       "juzgado": "Por determinar",
       "totalVisitas": 0,
       "nivelAdaptacion": "Por evaluar",
       "actividades": [],
       "observacionesConducta": "Ninguna",
-      "nivelRiesgo": "EJDNS"
+      "nivelRiesgo": "Riesgo alto"
     },
-    "numeroDeExpediente": 45,
-    "fechaIngreso": "1900-09-09",
-    "fechaSalida": "2000-09-09",
-    "nivelDeSeguridad": "II",
-    "condicion": "DHU",
-    "sentencia": 7,
-    "celdaAsignada": "A",
+    "sentencia": {
+      "años": 2,
+      "meses": 3,
+      "fechaIngreso": "2025-04-14",
+      "fechaSalidaCalculada": "2027-07-14"
+    },
+    "nivelDeSeguridad": "Medio",
+    "seccionAsignada": "Sección B",
+    "condicion": "Condenado en traslado",
+    "celdaAsignada": "CELD-13",
     "enAislamiento": false,
-    "nivelDeRiesgo": "EJDNS",
+    "nivelDeRiesgo": "Riesgo alto",
     "numeroDeVisitas": 0,
-    "grupoSanguineo": "A+",
-    "fotoPath": "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\Images\\preso_2.jpg",
-    "nombre": "iejie",
-    "apellido": "jheu",
-    "edad": 78,
-    "id": 2,
-    "sexo": "M",
-    "nacionalidad": "jsduehdi",
-    "identificacion": "83748374"
+    "grupoSanguineo": "AB+",
+    "fotoPath": "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\Images\\preso_4.jpg",
+    "nombre": "Maria",
+    "apellido": "Mier",
+    "edad": 18,
+    "id": 4,
+    "sexo": "F",
+    "nacionalidad": "Colombiana",
+    "identificacion": "11223344"
+  },
+  {
+    "estatura": 150.0,
+    "peso": 66.0,
+    "delitos": [
+      {
+        "codigo": 66,
+        "nombre": "Minería ilegal",
+        "articuloLey": "Ley 362",
+        "gravedad": "Alta",
+        "descripcion": "Minaba hierro en el patio\nde su casa\npero la vieron y dijo \nque estaba sembrando tomate",
+        "fechaComision": "2025-04-15"
+      }
+    ],
+    "expediente": {
+      "codigoExpediente": "EXP-7L10-PSNV",
+      "numeroRegistro": "REG-2025-1563",
+      "fechaApertura": "2025-04-14",
+      "estado": "Activo",
+      "delitos": [
+        {
+          "codigo": 66,
+          "nombre": "Minería ilegal",
+          "articuloLey": "Ley 362",
+          "gravedad": "Alta",
+          "descripcion": "Minaba hierro en el patio\nde su casa\npero la vieron y dijo \nque estaba sembrando tomate",
+          "fechaComision": "2025-04-15"
+        }
+      ],
+      "juzgado": "Por determinar",
+      "totalVisitas": 0,
+      "nivelAdaptacion": "Por evaluar",
+      "actividades": [],
+      "observacionesConducta": "Ninguna",
+      "nivelRiesgo": "Riesgo medio"
+    },
+    "sentencia": {
+      "años": 4,
+      "meses": 2,
+      "fechaIngreso": "2021-04-19",
+      "fechaSalidaCalculada": "2025-06-19"
+    },
+    "nivelDeSeguridad": "Medio",
+    "seccionAsignada": "Sección A",
+    "condicion": "Condenado",
+    "celdaAsignada": "CELD-3",
+    "enAislamiento": false,
+    "nivelDeRiesgo": "Riesgo medio",
+    "numeroDeVisitas": 0,
+    "grupoSanguineo": "O-",
+    "fotoPath": "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\Images\\preso_5.jpg",
+    "nombre": "Ana",
+    "apellido": "Lucia",
+    "edad": 77,
+    "id": 5,
+    "sexo": "F",
+    "nacionalidad": "Japonesa",
+    "identificacion": "12840223"
+  },
+  {
+    "estatura": 189.0,
+    "peso": 45.0,
+    "delitos": [
+      {
+        "codigo": 265,
+        "nombre": "Daño en bien ajeno",
+        "articuloLey": "Artículo 265 - Daño en bien ajeno",
+        "gravedad": "Baja",
+        "descripcion": "Daño el bien ajeno",
+        "fechaComision": "2025-04-03"
+      }
+    ],
+    "expediente": {
+      "codigoExpediente": "EXP-22J7-BWN2",
+      "numeroRegistro": "REG-2025-2345",
+      "fechaApertura": "2025-04-14",
+      "estado": "Activo",
+      "delitos": [
+        {
+          "codigo": 265,
+          "nombre": "Daño en bien ajeno",
+          "articuloLey": "Artículo 265 - Daño en bien ajeno",
+          "gravedad": "Baja",
+          "descripcion": "Daño el bien ajeno",
+          "fechaComision": "2025-04-03"
+        }
+      ],
+      "juzgado": "Por determinar",
+      "totalVisitas": 0,
+      "nivelAdaptacion": "Por evaluar",
+      "actividades": [],
+      "observacionesConducta": "Ninguna",
+      "nivelRiesgo": "Riesgo medio"
+    },
+    "sentencia": {
+      "años": 15,
+      "meses": 0,
+      "fechaIngreso": "2025-04-07",
+      "fechaSalidaCalculada": "2040-04-07"
+    },
+    "nivelDeSeguridad": "Bajo",
+    "seccionAsignada": "Sección B",
+    "condicion": "Condenado",
+    "celdaAsignada": "CELD-14",
+    "enAislamiento": false,
+    "nivelDeRiesgo": "Riesgo medio",
+    "numeroDeVisitas": 0,
+    "grupoSanguineo": "A-",
+    "fotoPath": "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\Images\\preso_6.jpg",
+    "nombre": "Soom",
+    "apellido": "Hum",
+    "edad": 22,
+    "id": 6,
+    "sexo": "F",
+    "nacionalidad": "Chilena",
+    "identificacion": "4"
+  },
+  {
+    "estatura": 170.0,
+    "peso": 66.0,
+    "delitos": [
+      {
+        "codigo": 220,
+        "nombre": "Injuria",
+        "articuloLey": "Artículo 220",
+        "gravedad": "Baja",
+        "descripcion": "ESTUVO ROBANDO EN CASA AJENA\nY LUEGO EMPEZO A DECIR \nLA CATRINA\nY AJA SE PUSO LOCO",
+        "fechaComision": "2025-04-04"
+      }
+    ],
+    "expediente": {
+      "codigoExpediente": "EXP-NZ4Q-LD7L",
+      "numeroRegistro": "REG-2025-7229",
+      "fechaApertura": "2025-04-17",
+      "estado": "Activo",
+      "delitos": [
+        {
+          "codigo": 220,
+          "nombre": "Injuria",
+          "articuloLey": "Artículo 220",
+          "gravedad": "Baja",
+          "descripcion": "ESTUVO ROBANDO EN CASA AJENA\nY LUEGO EMPEZO A DECIR \nLA CATRINA\nY AJA SE PUSO LOCO",
+          "fechaComision": "2025-04-04"
+        }
+      ],
+      "juzgado": "Por determinar",
+      "totalVisitas": 0,
+      "nivelAdaptacion": "Por evaluar",
+      "actividades": [],
+      "observacionesConducta": "Ninguna",
+      "nivelRiesgo": "Riesgo bajo"
+    },
+    "sentencia": {
+      "años": 6,
+      "meses": 4,
+      "fechaIngreso": "2025-04-17",
+      "fechaSalidaCalculada": "2031-08-17"
+    },
+    "nivelDeSeguridad": "Medio",
+    "seccionAsignada": "Sección B",
+    "condicion": "Condenado",
+    "celdaAsignada": "CELD-15",
+    "enAislamiento": false,
+    "nivelDeRiesgo": "Riesgo bajo",
+    "numeroDeVisitas": 0,
+    "grupoSanguineo": "A-",
+    "fotoPath": "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\Images\\preso_7.png",
+    "nombre": "Loza",
+    "apellido": "Tabirie",
+    "edad": 44,
+    "id": 7,
+    "sexo": "F",
+    "nacionalidad": "Colombiana",
+    "identificacion": "12234553"
   }
 ]

@@ -1,5 +1,5 @@
 
-package Informacion;
+package View;
 
 import View.OficialDeRegistro;
 import View.RoundedPanel;
@@ -49,10 +49,16 @@ public class ActualizarInformaciónODR extends javax.swing.JPanel {
         jPanel8 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jPanel9 = new RoundedPanel(30);
+        nuevoCorreo = new javax.swing.JTextField();
+        nuevaEdad = new javax.swing.JTextField();
+        nuevaIdenti = new javax.swing.JTextField();
+        nuevaNacio = new javax.swing.JTextField();
+        nuevoNombre = new javax.swing.JTextField();
+        nuevaContra = new javax.swing.JTextField();
+        nuevoApellido = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         LabelFOTO = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -81,7 +87,7 @@ public class ActualizarInformaciónODR extends javax.swing.JPanel {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 0, 0));
         jLabel2.setText("Los campos que no desee modificar déjelos en blanco*");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 290, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 80, 290, -1));
 
         jPanel4.setBackground(new java.awt.Color(180, 180, 195));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -103,19 +109,19 @@ public class ActualizarInformaciónODR extends javax.swing.JPanel {
 
         jPanel3.setBackground(new java.awt.Color(29, 35, 51));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 10));
+        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 940, 10));
 
         jPanel7.setBackground(new java.awt.Color(29, 35, 51));
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 10, 370));
+        jPanel4.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 10, 420));
 
         jPanel6.setBackground(new java.awt.Color(29, 35, 51));
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 0, 10, 370));
+        jPanel4.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 10, 10, 400));
 
         jPanel5.setBackground(new java.awt.Color(29, 35, 51));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 0, 10, 370));
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 0, 10, 370));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -139,16 +145,16 @@ public class ActualizarInformaciónODR extends javax.swing.JPanel {
 
         jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Correo Elctronico:");
-        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, -1, -1));
+        jLabel12.setText("Correo Electronico:");
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 70, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Contraseña:");
-        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 120, -1, 20));
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 120, -1, 20));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel4.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 140, 340, 10));
+        jPanel4.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 140, 380, 10));
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel4.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 87, 310, 10));
@@ -166,41 +172,61 @@ public class ActualizarInformaciónODR extends javax.swing.JPanel {
         jPanel4.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 310, 10));
 
         jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 310, 10));
+        jPanel4.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 160, 10));
 
         jSeparator8.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel4.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 90, 340, 10));
+        jPanel4.add(jSeparator8, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 90, 380, 10));
 
         jPanel8.setBackground(new java.awt.Color(29, 35, 51));
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 780, 10));
+        jPanel4.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 940, 10));
 
         jButton1.setBackground(new java.awt.Color(48, 49, 81));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Actualizar");
-        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 300, 180, 40));
+        jPanel4.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 180, 40));
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("CUENTA");
-        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 30, -1, -1));
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, -1, -1));
+        jPanel4.add(nuevoCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 60, 250, 30));
+        jPanel4.add(nuevaEdad, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, 240, -1));
+        jPanel4.add(nuevaIdenti, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 220, 30));
+        jPanel4.add(nuevaNacio, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 220, 30));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 780, 380));
+        nuevoNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoNombreActionPerformed(evt);
+            }
+        });
+        jPanel4.add(nuevoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 230, 30));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Vista previa foto de perfil");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 160, -1, -1));
+        nuevaContra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevaContraActionPerformed(evt);
+            }
+        });
+        jPanel4.add(nuevaContra, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 110, 260, 30));
 
-        jButton2.setText("Subir foto de perfil");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 420, 150, -1));
+        nuevoApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nuevoApellidoActionPerformed(evt);
+            }
+        });
+        jPanel4.add(nuevoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 240, -1));
 
-        jPanel9.setBackground(new java.awt.Color(180, 180, 195));
-        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel9.add(LabelFOTO, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, 170));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel4.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 300, 100, 30));
 
-        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 200, 140, 190));
+        LabelFOTO.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        jPanel4.add(LabelFOTO, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 270, 100, 90));
+
+        jButton2.setText("Cambiar foto de perfil");
+        jPanel4.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 220, 160, -1));
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 940, 420));
 
         add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1050, 590));
     }// </editor-fold>//GEN-END:initComponents
@@ -210,19 +236,31 @@ public class ActualizarInformaciónODR extends javax.swing.JPanel {
      
     }//GEN-LAST:event_BotonRegresarActionPerformed
 
+    private void nuevoApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevoApellidoActionPerformed
+
+    private void nuevoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevoNombreActionPerformed
+
+    private void nuevaContraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevaContraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nuevaContraActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonRegresar;
     private javax.swing.JLabel LabelFOTO;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -237,7 +275,6 @@ public class ActualizarInformaciónODR extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -246,5 +283,12 @@ public class ActualizarInformaciónODR extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JTextField nuevaContra;
+    private javax.swing.JTextField nuevaEdad;
+    private javax.swing.JTextField nuevaIdenti;
+    private javax.swing.JTextField nuevaNacio;
+    private javax.swing.JTextField nuevoApellido;
+    private javax.swing.JTextField nuevoCorreo;
+    private javax.swing.JTextField nuevoNombre;
     // End of variables declaration//GEN-END:variables
 }

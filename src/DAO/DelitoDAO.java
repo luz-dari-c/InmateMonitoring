@@ -12,11 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
+import java.time.LocalDate;
 
 public class DelitoDAO {
    
     private static final String JSON_FILE = "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\DATA\\delitos.json";
-    private Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    private Gson gson;
+            
+    
+      public DelitoDAO() {
+        this.gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+            .setPrettyPrinting()
+            .create();
+    }
+    
 
     public List<Delito> cargarTodos() {
         File archivo = new File(JSON_FILE);
