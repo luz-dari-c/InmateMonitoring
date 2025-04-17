@@ -36,7 +36,7 @@ public class Persona {
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
-    
+
     public int getEdad() {
         return edad;
     }
@@ -76,4 +76,13 @@ public class Persona {
     public void setIdentificacion(String identificacion) {
         this.identificacion = identificacion;
     }
+
+    public static int getUltimoId() {
+        return ultimoId;
+    }
+
+    public static void setUltimoId(int ultimoId) {
+        Persona.ultimoId = ultimoId;
+    }
+
 }

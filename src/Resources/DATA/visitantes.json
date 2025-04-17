@@ -1,0 +1,26 @@
+[
+  {
+    "relacionConPreso": "Esposa/Esposo",
+    "requiereSupervision": false,
+    "fotoPath": "C:\\Users\\nicol\\OneDrive\\Escritorio\\InmateMonitoring\\src\\Resources\\Images\\visitante_1.jpg",
+    "nombre": "Luz",
+    "apellido": "wder",
+    "edad": 23,
+    "id": 1,
+    "sexo": "Femenino",
+    "nacionalidad": "erhgefdwwdezdfgb",
+    "identificacion": "1234567432123"
+  },
+  {
+    "relacionConPreso": "Padre/Madre",
+    "requiereSupervision": false,
+    "fotoPath": "C:\\Users\\nicol\\OneDrive\\Escritorio\\InmateMonitoring\\src\\Resources\\Images\\visitante_2.jpg",
+    "nombre": "Lwygbqd",
+    "apellido": "edec",
+    "edad": 33,
+    "id": 2,
+    "sexo": "Masculino",
+    "nacionalidad": "dcewcewcec",
+    "identificacion": "232313113"
+  }
+]

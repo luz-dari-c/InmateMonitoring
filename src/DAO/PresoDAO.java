@@ -18,7 +18,7 @@ import java.time.LocalDate;
 
 public class PresoDAO {
 
-    private static final String JSON_FILE = "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\DATA\\presos.json";
+    private static final String JSON_FILE = "C:\\Users\\nicol\\OneDrive\\Escritorio\\InmateMonitoring\\src\\Resources\\DATA\\presos.json";
     private static final String IMAGES_DIR = "C:\\Users\\ASUS\\Documents\\NetBeansProjects\\InmateMonitoring\\src\\Resources\\Images\\";
 
     private Gson gson = new GsonBuilder()
