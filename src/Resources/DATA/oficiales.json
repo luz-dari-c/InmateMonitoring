@@ -1,0 +1,16 @@
+[
+  {
+    "nombre": "Nicol",
+    "apellido": "Martínez",
+    "edad": 30,
+    "id": 1,
+    "sexo": "Femenino",
+    "nacionalidad": "Colombiana",
+    "identificacion": "123456789",
+    "placa": "OF1234",
+    "cargo": "Jefe de Seguridad",
+    "fechaIngreso": "2023-01-10",
+    "turno": "Diurno",
+    "fotoPath": "C:\\Users\\nicol\\OneDrive\\Escritorio\\InmateMonitoring\\src\\Resources\\Images\\oficial_1.jpg"
+  }
+]
