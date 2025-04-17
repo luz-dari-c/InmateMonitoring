@@ -5,6 +5,7 @@
 package View;
 
 import DAO.UsuarioDAO;
+import Model.Rol;
 import Model.Usuario;
 import Sombra.textoSombra;
 import java.awt.event.ActionEvent;
@@ -23,8 +24,10 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
+        textoSombra usuario = new textoSombra("Ingrese su usuario", FieldUsuario);
+        textoSombra contraseña = new textoSombra("Ingrese su contraseña", Password);
         
-        // Posiciones destino (ajústalas a tu diseño actual)
+       
 
 
 
@@ -49,10 +52,10 @@ public class Login extends javax.swing.JFrame {
         txtUsuario = new javax.swing.JLabel();
         txtPassword = new javax.swing.JLabel();
         txtSignIn = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Rolescmb = new javax.swing.JComboBox<>();
         Ingresar = new button.Button();
-        passwordField1 = new passwordfield.PasswordField();
-        textField1 = new textfield.TextField();
+        Password = new passwordfield.PasswordField();
+        FieldUsuario = new textfield.TextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -90,23 +93,28 @@ public class Login extends javax.swing.JFrame {
         txtSignIn.setText("INPEC");
         jPanel2.add(txtSignIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 30, 150, 40));
 
-        jComboBox1.setBackground(new java.awt.Color(204, 204, 204));
-        jComboBox1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 0, 0));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Director", "Oficial de registro", "Personal se control", "Guardia", "Medico" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        Rolescmb.setBackground(new java.awt.Color(204, 204, 204));
+        Rolescmb.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        Rolescmb.setForeground(new java.awt.Color(0, 0, 0));
+        Rolescmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Director", "Oficial de registro", "Personal se control", "Guardia", "Medico" }));
+        Rolescmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                RolescmbActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 420, 40));
+        jPanel2.add(Rolescmb, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 420, 40));
 
         Ingresar.setBackground(new java.awt.Color(0, 51, 102));
         Ingresar.setForeground(new java.awt.Color(255, 255, 255));
         Ingresar.setText("Ingresar");
+        Ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresarActionPerformed(evt);
+            }
+        });
         jPanel2.add(Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 250, 40));
-        jPanel2.add(passwordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 390, 50));
-        jPanel2.add(textField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 390, 50));
+        jPanel2.add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 290, 390, 50));
+        jPanel2.add(FieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 200, 390, 50));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picures/inpec-removebg-preview (1).png"))); // NOI18N
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
@@ -134,13 +142,52 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void RolescmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RolescmbActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_RolescmbActionPerformed
 
     private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
        
     }//GEN-LAST:event_button1ActionPerformed
+
+    private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
+        String email = FieldUsuario.getText().trim();
+    String password = new String(Password.getPassword());
+    Rol rolSeleccionado = (Rol) Rolescmb.getSelectedItem();
+
+   UsuarioDAO usuarioDAO = new UsuarioDAO();
+Usuario usuario = usuarioDAO.validarCredenciales(email, password, rolSeleccionado);
+
+if (usuario != null) {
+    String mensaje = "Bienvenid@ " + usuario.getRol().toString();
+    JOptionPane.showMessageDialog(this, mensaje, "Login Exitoso", JOptionPane.INFORMATION_MESSAGE);
+    
+    switch (usuario.getRol()) {
+        case DIRECTOR:
+            new Director().setVisible(true);
+            break;
+        case OFICIAL:
+            new Oficial().setVisible(true);
+            break;
+        case PERSONAL_DE_CONTROL:
+            new PersonalDeControl().setVisible(true);
+            break;
+        case OFICIAL_DE_REGISTRO:
+            new OficialDeRegistro().setVisible(true);
+            break;
+        case ENFERMERA:
+            new Enfermera().setVisible(true);
+            break;
+    }
+    this.dispose();
+} else {
+    JOptionPane.showMessageDialog(this,
+        "Credenciales incorrectas o rol no coincide",
+        "Error de Login",
+        JOptionPane.ERROR_MESSAGE);
+}
+
+    }//GEN-LAST:event_IngresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,8 +225,10 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private textfield.TextField FieldUsuario;
     private button.Button Ingresar;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private passwordfield.PasswordField Password;
+    private javax.swing.JComboBox<String> Rolescmb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -188,8 +237,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblCandado;
-    private passwordfield.PasswordField passwordField1;
-    private textfield.TextField textField1;
     private javax.swing.JLabel txtPassword;
     private javax.swing.JLabel txtSignIn;
     private javax.swing.JLabel txtUsuario;
