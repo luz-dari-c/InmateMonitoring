@@ -1,83 +1,52 @@
-
 package Model;
 
-
-import java.time.LocalDate;
-
-public class Guardia extends Persona {
-
-    private String placa;
-    private String rango;
+public class Guardia {
+    private String nombre;
+    private String apellido;
+    private String cedula;
     private String cargo;
-    private LocalDate fechaIngreso;
     private String turno;
-    private Seccion seccion;
-    private String tipoDeContrato;
+    private int edad;
+    private String nacionalidad;
+    private String correo;
+    private String fechaNacimiento;
+    private String rutaImagen;
 
-    public Guardia(String nombre, String apellido, int edad, int id, String sexo, String nacionalidad, String identificacion, String placa, String rango, String cargo, LocalDate fechaIngreso, String turno, Seccion seccion, String tipoDeContrato) {
-        super(nombre, apellido, edad, id, sexo, nacionalidad, identificacion);
-        this.placa = placa;
-        this.rango = rango;
+    // Constructor
+    public Guardia(String nombre, String apellido, String cedula, String cargo, String turno, int edad, 
+                   String nacionalidad, String correo, String fechaNacimiento, String rutaImagen) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.cedula = cedula;
         this.cargo = cargo;
-        this.fechaIngreso = fechaIngreso;
         this.turno = turno;
-        this.seccion = seccion;
-        this.tipoDeContrato = tipoDeContrato;
+        this.edad = edad;
+        this.nacionalidad = nacionalidad;
+        this.correo = correo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.rutaImagen = rutaImagen;
     }
 
-    public String getPlaca() {
-        return placa;
-    }
-
-    public void setPlaca(String placa) {
-        this.placa = placa;
-    }
-
-    public String getRango() {
-        return rango;
-    }
-
-    public void setRango(String rango) {
-        this.rango = rango;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
-    public LocalDate getFechaIngreso() {
-        return fechaIngreso;
-    }
-
-    public void setFechaIngreso(LocalDate fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
-
-    public String getTurno() {
-        return turno;
-    }
-
-    public void setTurno(String turno) {
-        this.turno = turno;
-    }
-
-    public Seccion getSeccion() {
-        return seccion;
-    }
-
-    public void setSeccion(Seccion seccion) {
-        this.seccion = seccion;
-    }
-
-    public String getTipoDeContrato() {
-        return tipoDeContrato;
-    }
-
-    public void setTipoDeContrato(String tipoDeContrato) {
-        this.tipoDeContrato = tipoDeContrato;
-    }
+    // Getters y Setters
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public String getApellido() { return apellido; }
+    public void setApellido(String apellido) { this.apellido = apellido; }
+    public String getCedula() { return cedula; }
+    public void setCedula(String cedula) { this.cedula = cedula; }
+    public String getCargo() { return cargo; }
+    public void setCargo(String cargo) { this.cargo = cargo; }
+    public String getTurno() { return turno; }
+    public void setTurno(String turno) { this.turno = turno; }
+    public int getEdad() { return edad; }
+    public void setEdad(int edad) { this.edad = edad; }
+    public String getNacionalidad() { return nacionalidad; }
+    public void setNacionalidad(String nacionalidad) { this.nacionalidad = nacionalidad; }
+    public String getCorreo() { return correo; }
+    public void setCorreo(String correo) { this.correo = correo; }
+    public String getFechaNacimiento() { return fechaNacimiento; }
+    public void setFechaNacimiento(String fechaNacimiento) { this.fechaNacimiento = fechaNacimiento; }
+    public String getRutaImagen() { return rutaImagen; }
+    public void setRutaImagen(String rutaImagen) { this.rutaImagen = rutaImagen; }
+    
 }

@@ -4,13 +4,13 @@ public class Visitante extends Persona {
 
     private String relacionConPreso;
     private boolean requiereSupervision;
+    private String fotoPath;
 
-    public Visitante(String nombre, String apellido, int edad, int id,
-            String sexo, String nacionalidad, String identificacion,
-            String relacionConPreso, boolean requiereSupervision) {
+    public Visitante(String relacionConPreso, boolean requiereSupervision, String fotoPath, String nombre, String apellido, int edad, int id, String sexo, String nacionalidad, String identificacion) {
         super(nombre, apellido, edad, id, sexo, nacionalidad, identificacion);
         this.relacionConPreso = relacionConPreso;
         this.requiereSupervision = requiereSupervision;
+        this.fotoPath = fotoPath;
     }
 
     public String getRelacionConPreso() {
@@ -27,6 +27,14 @@ public class Visitante extends Persona {
 
     public void setRequiereSupervision(boolean requiereSupervision) {
         this.requiereSupervision = requiereSupervision;
+    }
+
+    public String getFotoPath() {
+        return fotoPath;
+    }
+
+    public void setFotoPath(String fotoPath) {
+        this.fotoPath = fotoPath;
     }
 
 }

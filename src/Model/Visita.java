@@ -7,44 +7,33 @@ import java.util.List;
 
 public class Visita {
 
-    private int idVisita;
-    private String codigo;
+    private int id;
     private LocalDate fechaVisita;
     private LocalTime horaVisita;
     private String duracionVisita;
     private String tipoVisita;
     private String lugarVisita;
-    private boolean visitaAprobada;
     private Preso preso;
     private List<Visitante> visitantes;
+    private static int ultimoId = 0;
 
-    public Visita(int idVisita, String codigo, LocalDate fechaVisita, LocalTime horaVisita, String duracionVisita, String tipoVisita, String lugarVisita, boolean visitaAprobada, Preso preso, Visitante visitante) {
-        this.idVisita = idVisita;
-        this.codigo = codigo;
+    public Visita(int id, LocalDate fechaVisita, LocalTime horaVisita, String duracionVisita, String tipoVisita, String lugarVisita, Preso preso, List<Visitante> visitantes) {
+        this.id = ++ultimoId;
         this.fechaVisita = fechaVisita;
         this.horaVisita = horaVisita;
         this.duracionVisita = duracionVisita;
         this.tipoVisita = tipoVisita;
         this.lugarVisita = lugarVisita;
-        this.visitaAprobada = visitaAprobada;
         this.preso = preso;
-        this.visitantes = new ArrayList<>(2);
+        this.visitantes = new ArrayList<>();
     }
 
-    public int getIdVisita() {
-        return idVisita;
+    public int getId() {
+        return id;
     }
 
-    public void setIdVisita(int idVisita) {
-        this.idVisita = idVisita;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public LocalDate getFechaVisita() {
@@ -87,14 +76,6 @@ public class Visita {
         this.lugarVisita = lugarVisita;
     }
 
-    public boolean isVisitaAprobada() {
-        return visitaAprobada;
-    }
-
-    public void setVisitaAprobada(boolean visitaAprobada) {
-        this.visitaAprobada = visitaAprobada;
-    }
-
     public Preso getPreso() {
         return preso;
     }
@@ -106,4 +87,17 @@ public class Visita {
     public List<Visitante> getVisitantes() {
         return visitantes;
     }
+
+    public void setVisitantes(List<Visitante> visitantes) {
+        this.visitantes = visitantes;
+    }
+
+    public static int getUltimoId() {
+        return ultimoId;
+    }
+
+    public static void setUltimoId(int ultimoId) {
+        Visita.ultimoId = ultimoId;
+    }
+
 }

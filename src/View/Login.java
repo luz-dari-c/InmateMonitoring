@@ -5,13 +5,17 @@
 package View;
 
 import DAO.UsuarioDAO;
+import Model.Rol;
 import Model.Usuario;
 import Sombra.textoSombra;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
- * @author ASUS
+ * @author SHARLOK, NICOLLE, LUZ DARI
  */
 public class Login extends javax.swing.JFrame {
 
@@ -20,8 +24,13 @@ public class Login extends javax.swing.JFrame {
      */
     public Login() {
         initComponents();
-        textoSombra usuario = new textoSombra("Ingrese su usuario", FieldUsuario);
+        textoSombra correo = new textoSombra("Ingrese su correo", FieldCorreo);
         textoSombra contraseña = new textoSombra("Ingrese su contraseña", Password);
+        
+       
+
+
+
 
     }
 
@@ -34,78 +43,99 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        lblCandado = new javax.swing.JLabel();
         jPanel2 = new RoundedPanel(30);
         txtUsuario = new javax.swing.JLabel();
         txtPassword = new javax.swing.JLabel();
-        Ingresar = new javax.swing.JButton();
         txtSignIn = new javax.swing.JLabel();
-        baseUsuario = new RoundedPanel(30);
-        FieldUsuario = new javax.swing.JTextField();
-        Password = new javax.swing.JPasswordField();
-        BasePassword = new RoundedPanel(30);
+        Rolescmb = new javax.swing.JComboBox<>();
+        INPEClogo = new javax.swing.JLabel();
+        Lema = new javax.swing.JLabel();
+        button1 = new button.Button();
+        Password = new passwordfield.PasswordField();
+        FieldCorreo = new textfield.TextField();
+        jLabel4 = new javax.swing.JLabel();
+
+        jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pictures/icons8-email-40.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 230, -1, 50));
+
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picures/1117691499019247666-removebg-preview (3)_1.png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 40, 310, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 40, 350, -1));
+
+        lblCandado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picures/Diseño_sin_título__4_-removebg-preview (2)_1.png"))); // NOI18N
+        jPanel1.add(lblCandado, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 310, -1, 50));
 
         jPanel2.setBackground(new java.awt.Color(29, 35, 51));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtUsuario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        txtUsuario.setText("Usuario");
-        jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, -1, -1));
+        txtUsuario.setText("Correo");
+        jPanel2.add(txtUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 50, -1));
 
+        txtPassword.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(255, 255, 255));
         txtPassword.setText("Password");
-        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 60, -1));
+        jPanel2.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, 70, 30));
 
-        Ingresar.setText("Ingresar");
-        Ingresar.addActionListener(new java.awt.event.ActionListener() {
+        txtSignIn.setFont(new java.awt.Font("Arial", 1, 40)); // NOI18N
+        txtSignIn.setForeground(new java.awt.Color(255, 255, 255));
+        txtSignIn.setText("INPEC");
+        jPanel2.add(txtSignIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 150, 40));
+
+        Rolescmb.setBackground(new java.awt.Color(204, 204, 204));
+        Rolescmb.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        Rolescmb.setForeground(new java.awt.Color(0, 0, 0));
+        Rolescmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Director", "Oficial de registro", "Personal se control", "Guardia", "Medico" }));
+        Rolescmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IngresarActionPerformed(evt);
+                RolescmbActionPerformed(evt);
             }
         });
-        jPanel2.add(Ingresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, 150, 40));
+        jPanel2.add(Rolescmb, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 150, 440, 40));
 
-        txtSignIn.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        txtSignIn.setForeground(new java.awt.Color(255, 255, 255));
-        txtSignIn.setText("SIGN IN");
-        jPanel2.add(txtSignIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 150, 40));
+        INPEClogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picures/inpec-removebg-preview (1).png"))); // NOI18N
+        jPanel2.add(INPEClogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
-        baseUsuario.setBackground(new java.awt.Color(131, 156, 196));
-        baseUsuario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Lema.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
+        Lema.setForeground(new java.awt.Color(153, 153, 153));
+        Lema.setText("Con orden y precisión, aseguramos la institución.");
+        jPanel2.add(Lema, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
 
-        FieldUsuario.setBackground(new java.awt.Color(131, 156, 196));
-        FieldUsuario.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        FieldUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        FieldUsuario.setBorder(null);
-        baseUsuario.add(FieldUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 470, 50));
+        button1.setText("Inicie sesión");
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(button1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, 150, -1));
+        jPanel2.add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 400, 40));
+        jPanel2.add(FieldCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 220, 400, 40));
 
-        jPanel2.add(baseUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 490, 50));
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setText("Elija su rol:");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 130, 70, 20));
 
-        Password.setBackground(new java.awt.Color(131, 156, 196));
-        Password.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        Password.setForeground(new java.awt.Color(255, 255, 255));
-        Password.setBorder(null);
-        jPanel2.add(Password, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 470, 50));
-
-        BasePassword.setBackground(new java.awt.Color(131, 156, 196));
-        BasePassword.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel2.add(BasePassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 490, 50));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 670, 450));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 910, 520));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1043, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,28 +145,85 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void RolescmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RolescmbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RolescmbActionPerformed
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    String email = FieldCorreo.getText().trim();
+    String password = new String(Password.getPassword());
+    Rol rolSeleccionado = (Rol) Rolescmb.getSelectedItem();
+
+   UsuarioDAO usuarioDAO = new UsuarioDAO();
+Usuario usuario = usuarioDAO.validarCredenciales(email, password, rolSeleccionado);
+
+if (usuario != null) {
+    String mensaje = "Bienvenid@ " + usuario.getRol().toString();
+    JOptionPane.showMessageDialog(this, mensaje, "Login Exitoso", JOptionPane.INFORMATION_MESSAGE);
+    
+    switch (usuario.getRol()) {
+        case DIRECTOR:
+            new Director().setVisible(true);
+            break;
+        case OFICIAL:
+            new Oficial().setVisible(true);
+            break;
+        case PERSONAL_DE_CONTROL:
+            new PersonalDeControl().setVisible(true);
+            break;
+        case OFICIAL_DE_REGISTRO:
+            new OficialDeRegistro().setVisible(true);
+            break;
+        case ENFERMERA:
+            new Enfermera().setVisible(true);
+            break;
+    }
+    this.dispose();
+} else {
+    JOptionPane.showMessageDialog(this,
+        "Credenciales incorrectas o rol no coincide",
+        "Error de Login",
+        JOptionPane.ERROR_MESSAGE);
+}
+    }//GEN-LAST:event_button1ActionPerformed
+
     private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
-        String emails = FieldUsuario.getText().trim();
-        String passwords = new String(Password.getPassword());
+        String email = FieldCorreo.getText().trim();
+    String password = new String(Password.getPassword());
+    Rol rolSeleccionado = (Rol) Rolescmb.getSelectedItem();
 
-        if (emails.isEmpty() || passwords.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Email y constraseña son requeridos", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+   UsuarioDAO usuarioDAO = new UsuarioDAO();
+Usuario usuario = usuarioDAO.validarCredenciales(email, password, rolSeleccionado);
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = usuarioDAO.validarCredenciales(emails, passwords);
+if (usuario != null) {
+    String mensaje = "Bienvenid@ " + usuario.getRol().toString();
+    JOptionPane.showMessageDialog(this, mensaje, "Login Exitoso", JOptionPane.INFORMATION_MESSAGE);
+    
+    switch (usuario.getRol()) {
+        case DIRECTOR:
+            new Director().setVisible(true);
+            break;
+        case OFICIAL:
+            new Oficial().setVisible(true);
+            break;
+        case PERSONAL_DE_CONTROL:
+            new PersonalDeControl().setVisible(true);
+            break;
+        case OFICIAL_DE_REGISTRO:
+            new OficialDeRegistro().setVisible(true);
+            break;
+        case ENFERMERA:
+            new Enfermera().setVisible(true);
+            break;
+    }
+    this.dispose();
+} else {
+    JOptionPane.showMessageDialog(this,
+        "Credenciales incorrectas o rol no coincide",
+        "Error de Login",
+        JOptionPane.ERROR_MESSAGE);
+}
 
-        if (usuario != null) {
-            if (usuarioDAO.esDirector(usuario)) {
-                JOptionPane.showMessageDialog(this, "Bienvenido Director", "Login Exitoso", JOptionPane.INFORMATION_MESSAGE);
-                new Director().setVisible(true);
-                this.dispose();
-
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Email o contraseña incorrectos", "Error de Login", JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_IngresarActionPerformed
 
     /**
@@ -175,14 +262,19 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel BasePassword;
-    private javax.swing.JTextField FieldUsuario;
-    private javax.swing.JButton Ingresar;
-    private javax.swing.JPasswordField Password;
-    private javax.swing.JPanel baseUsuario;
+    private textfield.TextField FieldCorreo;
+    private javax.swing.JLabel INPEClogo;
+    private javax.swing.JLabel Lema;
+    private passwordfield.PasswordField Password;
+    private javax.swing.JComboBox<String> Rolescmb;
+    private button.Button button1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblCandado;
     private javax.swing.JLabel txtPassword;
     private javax.swing.JLabel txtSignIn;
     private javax.swing.JLabel txtUsuario;

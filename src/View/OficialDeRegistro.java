@@ -4,7 +4,6 @@ import DAO.CeldaDAO;
 import DAO.DelitoDAO;
 import DAO.PresoDAO;
 import Informacion.HistorialMedicoPreso;
-import Informacion.HistorialVisitasPreso;
 import Model.Celda;
 import Model.Delito;
 import Model.Preso;
@@ -417,16 +416,7 @@ public class OficialDeRegistro extends javax.swing.JFrame {
         });
 
         historialVisita.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                HistorialVisitasPreso hvp = new HistorialVisitasPreso();
-                hvp.setSize(800, 600);
-                hvp.setVisible(true);
-
-                OficialDeRegistro.this.setContentPane(hvp);
-                OficialDeRegistro.this.revalidate();
-                OficialDeRegistro.this.repaint();
-            }
+         
         });
 
     }

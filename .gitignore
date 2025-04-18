@@ -40,4 +40,4 @@ logs/
 *.tmp
 *.swp
 *~
-~$*
+~$*nbproject/private/
